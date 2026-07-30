@@ -1,0 +1,1252 @@
+.achievements-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.achievements-section::before,
+.achievements-section::after {
+  position: absolute;
+  z-index: 0;
+  border-radius: 999px;
+  content: "";
+  pointer-events: none;
+  filter: blur(40px);
+}
+
+.achievements-section::before {
+  width: 30rem;
+  height: 30rem;
+  top: -4rem;
+  right: -10rem;
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.16), transparent 70%);
+}
+
+.achievements-section::after {
+  width: 26rem;
+  height: 26rem;
+  left: -12rem;
+  bottom: 2rem;
+  background: radial-gradient(circle, rgba(96, 165, 250, 0.13), transparent 70%);
+}
+
+.achievements-shell {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 14px;
+  width: 100%;
+}
+
+/* ---------- Core glass surface ---------- */
+
+.ep-achievement-glass {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 26px;
+  background: linear-gradient(
+    155deg,
+    rgba(255, 255, 255, 0.55) 0%,
+    rgba(255, 255, 255, 0.22) 45%,
+    rgba(255, 255, 255, 0.32) 100%
+  );
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.7) inset,
+    0 0 0 1px rgba(37, 99, 235, 0.04) inset,
+    0 18px 40px -12px rgba(15, 35, 75, 0.16);
+  backdrop-filter: blur(26px) saturate(160%);
+  -webkit-backdrop-filter: blur(26px) saturate(160%);
+}
+
+/* faint top sheen typical of glass panels */
+.ep-achievement-glass::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.9),
+    transparent
+  );
+  content: "";
+  pointer-events: none;
+}
+
+.achievements-recognition,
+.certificates-showcase,
+.clients-showcase {
+  padding: 18px;
+}
+
+/* ---------- Intro ---------- */
+
+.achievements-intro-wide {
+  width: 100%;
+  padding: 0 6px 8px;
+}
+
+.achievements-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 999px;
+  padding: 6px 11px;
+  background: rgba(255, 255, 255, 0.45);
+  color: #2563eb;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.8) inset,
+    0 6px 16px rgba(37, 99, 235, 0.08);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.achievements-intro-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.5fr);
+  align-items: end;
+  gap: 28px;
+}
+
+.achievements-intro-row h2 {
+  max-width: 640px;
+  margin: 0;
+  color: #0b1834;
+  font-size: clamp(1.55rem, 2.25vw, 2.05rem);
+  font-weight: 650;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+}
+
+.achievements-intro-row h2 em {
+  position: relative;
+  color: #2563eb;
+  font-style: italic;
+  font-weight: 650;
+}
+
+.achievements-intro-row h2 em::after {
+  position: absolute;
+  right: 0;
+  bottom: -4px;
+  left: 0;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #2563eb, rgba(37, 99, 235, 0.1));
+  content: "";
+}
+
+.achievements-intro-row p {
+  max-width: 400px;
+  margin: 0 0 6px;
+  color: #5b6b8c;
+  font-size: 0.82rem;
+  line-height: 1.48;
+}
+
+/* ---------- Panel headings ---------- */
+
+.achievement-panel-heading,
+.achievement-heading-copy,
+.clients-heading-row {
+  display: flex;
+  align-items: center;
+}
+
+.achievement-panel-heading,
+.achievement-heading-copy {
+  gap: 10px;
+}
+
+.achievement-heading-icon {
+  display: grid;
+  flex: 0 0 auto;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 11px;
+  background: rgba(255, 255, 255, 0.5);
+  color: #2563eb;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.85) inset,
+    0 6px 16px rgba(37, 99, 235, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.achievement-panel-heading h3 {
+  margin: 0;
+  color: #0b1834;
+  font-size: 0.96rem;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+
+.achievement-panel-heading p {
+  margin: 3px 0 0;
+  color: #6c7994;
+  font-size: 0.74rem;
+}
+
+/* ---------- Recognition grid ---------- */
+
+.recognition-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.recognition-item {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 17px;
+  padding: 16px 14px;
+  background: linear-gradient(
+    160deg,
+    rgba(255, 255, 255, 0.55),
+    rgba(255, 255, 255, 0.2)
+  );
+  text-align: center;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.85) inset;
+  backdrop-filter: blur(16px) saturate(150%);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
+  transition:
+    transform 180ms ease,
+    background 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.recognition-item:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(
+    160deg,
+    rgba(255, 255, 255, 0.68),
+    rgba(255, 255, 255, 0.28)
+  );
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.9) inset,
+    0 12px 26px -8px rgba(37, 99, 235, 0.16);
+}
+
+.recognition-badge {
+  display: inline-grid;
+  width: 30px;
+  height: 30px;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.55);
+  color: #2563eb;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.9) inset;
+}
+
+.recognition-item h4 {
+  margin: 10px 0 2px;
+  color: #101c36;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.recognition-item strong {
+  display: block;
+  color: #2563eb;
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+
+.recognition-item p {
+  max-width: 220px;
+  margin: 7px auto 0;
+  color: #6c7994;
+  font-size: 0.68rem;
+  line-height: 1.55;
+}
+
+/* ---------- Certificates ---------- */
+
+.certificate-heading {
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.achievement-text-link {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 999px;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.45);
+  color: #2563eb;
+  font-size: 0.71rem;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.85) inset;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition:
+    transform 180ms ease,
+    background 180ms ease;
+}
+
+.achievement-text-link:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.certificate-stage {
+  position: relative;
+  height: clamp(220px, 22vw, 290px);
+  margin-top: 6px;
+}
+
+.certificate-track {
+  position: absolute;
+  inset: 0 52px;
+  overflow: hidden;
+  perspective: 1200px;
+}
+
+.certificate-card {
+  --certificate-position: 0;
+  --certificate-distance: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: clamp(200px, 25vw, 360px);
+  aspect-ratio: 1.414 / 1;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+  opacity: calc(1 - (var(--certificate-distance) * 0.2));
+  transform:
+    translate(
+      calc(-50% + (var(--certificate-position) * clamp(160px, 18vw, 270px))),
+      -50%
+    )
+    scale(calc(1 - (var(--certificate-distance) * 0.14)))
+    rotateY(calc(var(--certificate-position) * -4deg));
+  transform-origin: center;
+  transition:
+    transform 440ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 300ms ease,
+    filter 300ms ease;
+  z-index: calc(10 - var(--certificate-distance));
+  filter: saturate(calc(1 - (var(--certificate-distance) * 0.12)));
+}
+
+.certificate-card.is-active {
+  opacity: 1;
+  filter: saturate(1);
+}
+
+.certificate-card.is-hidden {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.certificate-image-frame {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 16px;
+  background: linear-gradient(
+    155deg,
+    rgba(255, 255, 255, 0.55),
+    rgba(255, 255, 255, 0.22)
+  );
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.85) inset,
+    0 20px 40px -14px rgba(15, 35, 75, 0.28);
+  backdrop-filter: blur(18px) saturate(150%);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+}
+
+.certificate-image-frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.certificate-placeholder {
+  position: absolute;
+  inset: 0;
+  display: none;
+  place-items: center;
+  align-content: center;
+  gap: 6px;
+  padding: 22px;
+  background: linear-gradient(
+    155deg,
+    rgba(255, 255, 255, 0.6),
+    rgba(233, 241, 255, 0.4)
+  );
+  color: #15213b;
+  text-align: center;
+}
+
+.certificate-image-missing .certificate-placeholder {
+  display: grid;
+}
+
+.certificate-placeholder svg {
+  color: #2563eb;
+}
+
+.certificate-placeholder small {
+  color: #2563eb;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.certificate-placeholder strong {
+  max-width: 280px;
+  font-size: clamp(0.9rem, 1.4vw, 1.2rem);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.certificate-placeholder em {
+  color: #6c7994;
+  font-size: 0.7rem;
+}
+
+.certificate-arrow {
+  position: absolute;
+  z-index: 20;
+  top: 50%;
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  color: #2050c0;
+  cursor: pointer;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.85) inset,
+    0 10px 22px rgba(37, 99, 235, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transform: translateY(-50%);
+  transition:
+    transform 180ms ease,
+    background 180ms ease;
+}
+
+.certificate-arrow:hover {
+  background: rgba(255, 255, 255, 0.75);
+  transform: translateY(-50%) scale(1.05);
+}
+
+.certificate-arrow-left {
+  left: 2px;
+}
+
+.certificate-arrow-right {
+  right: 2px;
+}
+
+.certificate-dots {
+  position: relative;
+  z-index: 4;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  margin-top: -2px;
+}
+
+.certificate-dots button {
+  width: 5px;
+  height: 5px;
+  border: 0;
+  border-radius: 999px;
+  padding: 0;
+  background: rgba(37, 99, 235, 0.22);
+  cursor: pointer;
+  transition:
+    width 180ms ease,
+    background 180ms ease;
+}
+
+.certificate-dots button.is-active {
+  width: 18px;
+  background: #2563eb;
+}
+
+/* ---------- Clients ---------- */
+
+.clients-heading-row {
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.client-logo-row {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 14px;
+  padding: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 19px;
+  background: rgba(255, 255, 255, 0.22);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.75) inset;
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+}
+
+.client-logo-item {
+  display: flex;
+  min-height: 92px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 14px;
+  padding: 12px 10px;
+  background: linear-gradient(
+    155deg,
+    rgba(255, 255, 255, 0.5),
+    rgba(255, 255, 255, 0.18)
+  );
+  color: #14213c;
+  text-align: left;
+  text-decoration: none;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.85) inset;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition:
+    transform 180ms ease,
+    background 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.client-logo-item:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(
+    155deg,
+    rgba(255, 255, 255, 0.7),
+    rgba(255, 255, 255, 0.3)
+  );
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.9) inset,
+    0 12px 26px -8px rgba(37, 99, 235, 0.14);
+}
+
+.client-logo-mark {
+  display: grid;
+  flex: 0 0 auto;
+  width: 60px;
+  height: 60px;
+  place-items: center;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  overflow: visible;
+}
+
+.client-logo-mark img {
+  display: block;
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+}
+
+.client-logo-mark > span {
+  color: #2563eb;
+  font-size: 0.64rem;
+  font-weight: 800;
+}
+
+.client-logo-item strong {
+  max-width: 100px;
+  color: #14213c;
+  font-size: 0.66rem;
+  font-weight: 650;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.client-logo-more {
+  color: #5b6b8c;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 1180px) {
+  .achievements-intro-row {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .recognition-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .client-logo-row {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .achievements-shell {
+    gap: 12px;
+  }
+
+  .ep-achievement-glass {
+    border-radius: 22px;
+  }
+
+  .achievements-intro-wide {
+    padding-inline: 2px;
+  }
+
+  .achievements-intro-row h2 {
+    font-size: clamp(1.7rem, 8vw, 2.2rem);
+  }
+
+  .recognition-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .certificate-heading,
+  .clients-heading-row {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .certificate-stage {
+    height: 225px;
+  }
+
+  .certificate-track {
+    inset: 0 34px;
+  }
+
+  .certificate-card {
+    width: min(78vw, 300px);
+    transform:
+      translate(
+        calc(-50% + (var(--certificate-position) * 72vw)),
+        -50%
+      )
+      scale(calc(1 - (var(--certificate-distance) * 0.16)));
+  }
+
+  .certificate-arrow {
+    width: 34px;
+    height: 34px;
+  }
+
+  .client-logo-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .client-logo-item {
+    min-height: 80px;
+  }
+}
+
+@media (max-width: 470px) {
+  .achievements-recognition,
+  .certificates-showcase,
+  .clients-showcase {
+    padding: 15px;
+  }
+
+  .certificate-track {
+    inset: 0 24px;
+  }
+
+  .certificate-card {
+    width: 76vw;
+  }
+
+  .achievement-text-link {
+    padding: 7px 10px;
+  }
+
+  .client-logo-item {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .recognition-item,
+  .achievement-text-link,
+  .certificate-card,
+  .certificate-arrow,
+  .certificate-dots button,
+  .client-logo-item {
+    transition: none !important;
+  }
+
+  .recognition-item:hover,
+  .achievement-text-link:hover,
+  .certificate-arrow:hover,
+  .client-logo-item:hover {
+    transform: none;
+  }
+}
+
+/* =========================================================
+   10/10 TITLES & RECOGNITION REDESIGN
+   Paste this at the END of achievements-section.css
+   ========================================================= */
+
+.achievements-recognition {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(16px, 1.7vw, 22px);
+  border: 1px solid rgba(37, 99, 235, 0.12);
+  background:
+    radial-gradient(circle at 92% 8%, rgba(37, 99, 235, 0.13), transparent 28%),
+    radial-gradient(circle at 8% 100%, rgba(96, 165, 250, 0.08), transparent 26%),
+    rgba(255, 255, 255, 0.72);
+  box-shadow:
+    0 24px 70px rgba(29, 78, 216, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+}
+
+.achievements-recognition::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.42;
+  background-image:
+    linear-gradient(rgba(37, 99, 235, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37, 99, 235, 0.035) 1px, transparent 1px);
+  background-size: 34px 34px;
+  mask-image: linear-gradient(to bottom, black, transparent 72%);
+}
+
+.recognition-panel-heading {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.recognition-count {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0 11px;
+  border: 1px solid rgba(37, 99, 235, 0.13);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+  color: #2563eb;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.88);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.recognition-grid-editorial {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.recognition-grid-editorial .recognition-item {
+  position: relative;
+  display: flex;
+  min-height: 178px;
+  flex-direction: column;
+  justify-content: space-between;
+  grid-column: span 4;
+  overflow: hidden;
+  padding: 15px;
+  border: 1px solid rgba(37, 99, 235, 0.1);
+  border-radius: 18px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(247, 250, 255, 0.76));
+  box-shadow:
+    0 16px 40px rgba(29, 78, 216, 0.055),
+    inset 0 1px 0 rgba(255, 255, 255, 0.98);
+  text-align: left;
+  transition:
+    transform 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.recognition-grid-editorial .recognition-item::before {
+  content: "";
+  position: absolute;
+  width: 104px;
+  height: 104px;
+  top: -62px;
+  right: -48px;
+  border-radius: 50%;
+  background: rgba(37, 99, 235, 0.08);
+  filter: blur(2px);
+}
+
+.recognition-grid-editorial .recognition-item::after {
+  content: "";
+  position: absolute;
+  inset: auto 18px 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.26), transparent);
+}
+
+.recognition-grid-editorial .recognition-item:hover {
+  transform: translateY(-2px);
+  border-color: rgba(37, 99, 235, 0.24);
+  box-shadow:
+    0 24px 52px rgba(29, 78, 216, 0.11),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
+}
+
+.recognition-grid-editorial .recognition-item-featured {
+  grid-column: span 3;
+  min-height: 178px;
+  padding: 15px;
+  border-color: rgba(37, 99, 235, 0.22);
+  background:
+    radial-gradient(circle at 88% 12%, rgba(96, 165, 250, 0.19), transparent 32%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(239, 246, 255, 0.9));
+  box-shadow:
+    0 24px 60px rgba(29, 78, 216, 0.11),
+    inset 0 1px 0 #fff;
+}
+
+.recognition-grid-editorial .recognition-item-winner {
+  grid-column: span 3;
+}
+
+.recognition-grid-editorial .recognition-item-podium,
+.recognition-grid-editorial .recognition-item-hackathon,
+.recognition-grid-editorial .recognition-item-municipal,
+.recognition-grid-editorial .recognition-item-default {
+  grid-column: span 3;
+}
+
+.recognition-card-topline {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.recognition-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 28px;
+  padding: 0 9px;
+  border: 1px solid rgba(37, 99, 235, 0.12);
+  border-radius: 999px;
+  background: rgba(239, 246, 255, 0.86);
+  color: #2563eb;
+  font-size: 0.61rem;
+  font-weight: 850;
+  letter-spacing: 0.055em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.recognition-index {
+  color: rgba(15, 23, 42, 0.18);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+}
+
+.recognition-copy {
+  position: relative;
+  z-index: 1;
+  margin-top: 16px;
+}
+
+.recognition-copy h4 {
+  display: -webkit-box;
+  overflow: hidden;
+  max-width: 24ch;
+  margin: 0;
+  color: #0f172a;
+  font-size: clamp(0.9rem, 1.02vw, 1.06rem);
+  font-weight: 820;
+  letter-spacing: -0.035em;
+  line-height: 1.18;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.recognition-item-featured .recognition-copy h4 {
+  max-width: 24ch;
+  font-size: clamp(0.9rem, 1.02vw, 1.06rem);
+}
+
+.recognition-copy strong {
+  display: block;
+  margin-top: 7px;
+  color: #2563eb;
+  font-size: 0.68rem;
+  font-weight: 800;
+  line-height: 1.3;
+}
+
+.recognition-copy p {
+  display: -webkit-box;
+  overflow: hidden;
+  max-width: 48ch;
+  margin: 9px 0 0;
+  color: #64748b;
+  font-size: 0.7rem;
+  line-height: 1.45;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.recognition-item-featured .recognition-copy p {
+  max-width: 48ch;
+  font-size: 0.7rem;
+  -webkit-line-clamp: 3;
+}
+
+.recognition-card-footer {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 14px;
+  color: rgba(37, 99, 235, 0.56);
+}
+
+.recognition-card-footer span {
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(90deg, rgba(37, 99, 235, 0.22), transparent);
+}
+
+@media (max-width: 1180px) {
+  .recognition-grid-editorial .recognition-item-featured {
+    grid-column: span 4;
+  }
+
+  .recognition-grid-editorial .recognition-item-winner,
+  .recognition-grid-editorial .recognition-item-podium,
+  .recognition-grid-editorial .recognition-item-hackathon,
+  .recognition-grid-editorial .recognition-item-municipal,
+  .recognition-grid-editorial .recognition-item-default {
+    grid-column: span 4;
+  }
+}
+
+@media (max-width: 860px) {
+  .recognition-grid-editorial {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .recognition-grid-editorial .recognition-item,
+  .recognition-grid-editorial .recognition-item-featured,
+  .recognition-grid-editorial .recognition-item-winner,
+  .recognition-grid-editorial .recognition-item-podium,
+  .recognition-grid-editorial .recognition-item-hackathon,
+  .recognition-grid-editorial .recognition-item-municipal,
+  .recognition-grid-editorial .recognition-item-default {
+    grid-column: span 1;
+    min-height: 170px;
+  }
+
+  .recognition-grid-editorial .recognition-item-featured {
+    grid-column: span 1;
+  }
+}
+
+@media (max-width: 620px) {
+  .achievements-recognition {
+    padding: 14px;
+    border-radius: 22px;
+  }
+
+  .recognition-panel-heading {
+    align-items: flex-start;
+  }
+
+  .recognition-count {
+    display: none;
+  }
+
+  .recognition-grid-editorial {
+    grid-template-columns: 1fr;
+  }
+
+  .recognition-grid-editorial .recognition-item,
+  .recognition-grid-editorial .recognition-item-featured {
+    grid-column: 1;
+    min-height: unset;
+    padding: 15px;
+    border-radius: 18px;
+  }
+
+  .recognition-copy {
+    margin-top: 14px;
+  }
+
+  .recognition-item-featured .recognition-copy h4 {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .achievements-intro-row h2 {
+    font-size: clamp(1.45rem, 8.5vw, 1.9rem);
+  }
+
+  .achievement-panel-heading,
+  .recognition-panel-heading {
+    display: grid;
+    grid-template-columns: 34px minmax(0, 1fr);
+  }
+
+  .certificate-stage {
+    height: 205px;
+  }
+
+  .certificate-track {
+    inset-inline: 14px;
+  }
+
+  .certificate-arrow {
+    width: 32px;
+    height: 32px;
+  }
+
+  .client-logo-row {
+    grid-template-columns: 1fr;
+  }
+
+  .client-logo-item {
+    min-height: 74px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .recognition-grid-editorial .recognition-item {
+    transition: none;
+  }
+
+  .recognition-grid-editorial .recognition-item:hover {
+    transform: none;
+  }
+}
+
+/* Portfolio hierarchy refinement: dominant featured achievement, quieter proof sections. */
+.recognition-grid-editorial {
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.recognition-grid-editorial .recognition-item {
+  min-height: 168px;
+  padding: 16px;
+}
+
+.recognition-grid-editorial .recognition-item-featured {
+  grid-column: span 5;
+  grid-row: span 2;
+  min-height: 350px;
+  padding: 24px;
+  background:
+    radial-gradient(circle at 88% 18%, rgba(37, 99, 235, 0.2), transparent 32%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(235, 244, 255, 0.9));
+}
+
+.recognition-grid-editorial .recognition-item-featured::before {
+  content: "01";
+  top: auto;
+  right: 18px;
+  bottom: -24px;
+  width: auto;
+  height: auto;
+  color: rgba(37, 99, 235, 0.08);
+  background: none;
+  filter: none;
+  font-size: 112px;
+  font-weight: 900;
+  letter-spacing: -0.08em;
+  line-height: 1;
+}
+
+.recognition-item-featured .recognition-status {
+  background: #2563eb;
+  color: #fff;
+}
+
+.recognition-item-featured .recognition-copy {
+  margin-top: 42px;
+}
+
+.recognition-item-featured .recognition-copy h4 {
+  max-width: 12ch;
+  font-size: clamp(2rem, 3vw, 3.2rem);
+  line-height: 0.95;
+  letter-spacing: -0.06em;
+  -webkit-line-clamp: 3;
+}
+
+.recognition-item-featured .recognition-copy strong {
+  margin-top: 16px;
+  max-width: 32ch;
+  font-size: 0.9rem;
+}
+
+.recognition-item-featured .recognition-copy p {
+  max-width: 40ch;
+  margin-top: 16px;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  -webkit-line-clamp: 4;
+}
+
+.recognition-grid-editorial .recognition-item-winner {
+  grid-column: span 4;
+}
+
+.recognition-grid-editorial .recognition-item-podium {
+  grid-column: span 3;
+}
+
+.recognition-grid-editorial .recognition-item-hackathon,
+.recognition-grid-editorial .recognition-item-municipal,
+.recognition-grid-editorial .recognition-item-default {
+  grid-column: span 4;
+  min-height: 150px;
+}
+
+.certificates-showcase {
+  padding-block: 16px;
+}
+
+.certificate-stage {
+  height: clamp(176px, 18vw, 232px);
+}
+
+.certificate-card {
+  width: clamp(190px, 21vw, 302px);
+  opacity: calc(0.92 - (var(--certificate-distance) * 0.18));
+}
+
+.certificate-card.is-active {
+  opacity: 1;
+}
+
+.certificate-image-frame {
+  border-radius: 14px;
+}
+
+.client-logo-row {
+  gap: 0;
+  padding: 10px 8px;
+  border-color: rgba(255, 255, 255, 0.62);
+  background: rgba(255, 255, 255, 0.36);
+}
+
+.client-logo-item {
+  min-height: 74px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.client-logo-item:not(:last-child) {
+  border-right: 1px solid rgba(148, 163, 184, 0.18);
+}
+
+.client-logo-mark {
+  width: 66px;
+  height: 60px;
+}
+
+.client-logo-mark img {
+  width: 62px;
+  height: 58px;
+}
+
+@media (max-width: 1180px) {
+  .recognition-grid-editorial .recognition-item-featured {
+    grid-column: span 6;
+    min-height: 320px;
+  }
+
+  .recognition-grid-editorial .recognition-item-winner,
+  .recognition-grid-editorial .recognition-item-podium,
+  .recognition-grid-editorial .recognition-item-hackathon,
+  .recognition-grid-editorial .recognition-item-municipal,
+  .recognition-grid-editorial .recognition-item-default {
+    grid-column: span 6;
+  }
+}
+
+@media (max-width: 760px) {
+  .recognition-grid-editorial {
+    grid-template-columns: 1fr;
+  }
+
+  .recognition-grid-editorial .recognition-item,
+  .recognition-grid-editorial .recognition-item-featured,
+  .recognition-grid-editorial .recognition-item-winner,
+  .recognition-grid-editorial .recognition-item-podium,
+  .recognition-grid-editorial .recognition-item-hackathon,
+  .recognition-grid-editorial .recognition-item-municipal,
+  .recognition-grid-editorial .recognition-item-default {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .recognition-grid-editorial .recognition-item-featured {
+    min-height: 280px;
+  }
+
+  .recognition-item-featured .recognition-copy {
+    margin-top: 24px;
+  }
+
+  .recognition-item-featured .recognition-copy h4 {
+    font-size: clamp(1.8rem, 11vw, 2.6rem);
+  }
+
+  .client-logo-item:not(:last-child) {
+    border-right: 0;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+  }
+}

@@ -1,0 +1,958 @@
+/* Final responsive safety layer for the public portfolio and admin studio. */
+
+:root {
+  --portfolio-container-max: 1280px;
+  --portfolio-container-padding: 20px;
+  --portfolio-gutter: var(--portfolio-container-padding);
+  --portfolio-max-width: var(--portfolio-container-max);
+  --portfolio-inner-width: min(100%, var(--portfolio-container-max));
+  --responsive-page-gutter: var(--portfolio-container-padding);
+  --portfolio-container-width: var(--portfolio-inner-width);
+}
+
+@media (min-width: 768px) {
+  :root {
+    --portfolio-container-padding: 32px;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --portfolio-container-padding: 40px;
+  }
+}
+
+@media (min-width: 1440px) {
+  :root {
+    --portfolio-container-padding: 48px;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+img,
+video,
+canvas,
+svg {
+  max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+  max-width: 100%;
+}
+
+:where(p, h1, h2, h3, h4, h5, h6, a, span, strong, small, label, button) {
+  overflow-wrap: anywhere;
+}
+
+/* Public portfolio shells */
+:where(
+  .pp-page,
+  .pp-hero,
+  .about-pp,
+  .experience-section,
+  .projects-pp,
+  .achievements-section,
+  .tp-section,
+  .technical-proof,
+  .contact-pp,
+  .footer-pp
+) {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+:where(
+  .pp-ref-shell,
+  .about-pp__shell,
+  .experience-container,
+  .projects-pp__shell,
+  .achievements-shell,
+  .tp-shell,
+  .contact-pp__shell,
+  .footer-pp__shell
+) {
+  width: min(100% - (var(--responsive-page-gutter) * 2), 1440px);
+  max-width: 100%;
+  margin-inline: auto;
+}
+
+@supports not (overflow: clip) {
+  :where(.pp-page, .pp-hero, .about-pp, .projects-pp, .contact-pp, .footer-pp) {
+    overflow-x: hidden;
+  }
+}
+
+@media (max-width: 1180px) {
+  :where(
+    .pp-ref-shell,
+    .about-pp__top,
+    .experience-layout,
+    .projects-pp__layout,
+    .contact-pp__grid
+  ) {
+    grid-template-columns: 1fr !important;
+  }
+
+  .pp-ref-copy,
+  .pp-ref-visual,
+  .about-pp__portrait-side,
+  .about-pp__content,
+  .contact-pp__left,
+  .contact-code {
+    min-width: 0 !important;
+  }
+
+  .pp-ref-visual {
+    margin-inline: auto;
+  }
+
+  .contact-code {
+    transform: none;
+    margin-top: 32px;
+  }
+}
+
+@media (max-width: 1180px) and (min-width: 981px) {
+  .pp-hero--reference .pp-ref-shell {
+    width: var(--portfolio-container-width, min(1500px, calc(100% - 200px))) !important;
+    max-width: 1500px !important;
+    display: grid !important;
+    grid-template-columns: 430px 560px !important;
+    justify-content: center !important;
+    gap: 18px !important;
+    padding-top: 0 !important;
+  }
+
+  .pp-hero--reference .pp-ref-copy,
+  .pp-hero--reference .pp-ref-visual {
+    min-width: 0 !important;
+  }
+
+  .pp-hero--reference .pp-ref-visual {
+    width: 100% !important;
+    margin-inline: 0 !important;
+  }
+
+  .pp-hero--reference .pp-ref-bottom-bar {
+    width: var(--portfolio-container-width, min(1500px, calc(100% - 200px))) !important;
+    max-width: 1500px !important;
+  }
+}
+
+@media (max-width: 900px) {
+  :where(.pp-ref-actions, .contact-pp__cta, .footer-pp__bottom) {
+    grid-template-columns: 1fr !important;
+  }
+
+  .pp-ref-shell {
+    padding-top: clamp(104px, 16vw, 132px);
+  }
+
+  .pp-ref-title {
+    font-size: clamp(46px, 13vw, 76px) !important;
+    line-height: 0.98 !important;
+  }
+
+  .about-pp__content h2,
+  .contact-pp__left h2 {
+    font-size: clamp(36px, 9vw, 58px) !important;
+    line-height: 1.02 !important;
+  }
+
+  .pp-ref-platform-panel,
+  .pp-ref-tech-panel,
+  .footer-pp__tech-row,
+  .footer-pp__technologies > div {
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .pp-ref-platform-panel::-webkit-scrollbar,
+  .pp-ref-tech-panel::-webkit-scrollbar,
+  .footer-pp__tech-row::-webkit-scrollbar,
+  .footer-pp__technologies > div::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --responsive-page-gutter: var(--portfolio-gutter);
+  }
+
+  :where(
+    .about-pp,
+    .experience-section,
+    .projects-pp,
+    .achievements-section,
+    .tp-section,
+    .technical-proof,
+    .contact-pp
+  ) {
+    padding-block: clamp(64px, 15vw, 92px) !important;
+  }
+
+  :where(.pp-ref-actions, .contact-pp__cta-actions) {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+  }
+
+  :where(.pp-ref-btn, .contact-pp__cta-actions a, .contact-code__submit) {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .pp-ref-visual {
+    width: min(100%, 390px) !important;
+    min-height: 500px !important;
+  }
+
+  .pp-ref-stats-card,
+  .pp-featured-project-card {
+    position: relative !important;
+    inset: auto !important;
+    width: min(100%, 330px) !important;
+    margin: 14px auto 0 !important;
+  }
+
+  .about-pp__stats,
+  .about-pp__proof-points,
+  .footer-pp__main,
+  .footer-pp__trust-card {
+    grid-template-columns: 1fr !important;
+  }
+
+  .about-pp__portrait-side {
+    min-height: 520px !important;
+  }
+
+  .contact-code__row {
+    grid-template-columns: 1fr !important;
+  }
+
+  .contact-term__row {
+    grid-template-columns: 1fr !important;
+    gap: 4px !important;
+  }
+}
+
+/* Consistent public portfolio horizontal rhythm.
+   Only decorative/background elements should bleed outside this container. */
+.portfolio-container,
+:where(
+  .hero-page .hero-body,
+  .home-hero .home-hero__content,
+  .about-page .about-layout,
+  .about-section .about-shell,
+  .experience-section .experience-container,
+  .experience-section .xp-closing,
+  .projects-page .projects-shell,
+  .projects-library .projects-library__shell,
+  .projects-pp .projects-pp__shell,
+  .achievements-section .achievements-shell,
+  .technical-proof .technical-proof__inner,
+  .tp-shell > :not(.tp-decoration),
+  .contact-pp .contact-pp__shell,
+  .footer-pp .footer-pp__main,
+  .footer-pp .footer-pp__tech-row,
+  .footer-pp .footer-pp__bottom
+) {
+  width: 100% !important;
+  max-width: var(--portfolio-container-max) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: var(--portfolio-container-padding) !important;
+  padding-right: var(--portfolio-container-padding) !important;
+  box-sizing: border-box !important;
+}
+
+:where(
+  .home-hero,
+  .about-page,
+  .about-section,
+  .experience-section,
+  .projects-page,
+  .projects-library,
+  .projects-pp,
+  .achievements-section,
+  .technical-proof,
+  .contact-pp
+) {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.hero-page .hero-body {
+  box-sizing: border-box !important;
+}
+
+.tp-shell {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+.projects-pp .projects-pp__shell {
+  box-sizing: border-box !important;
+}
+
+.footer-pp .footer-pp__main,
+.footer-pp .footer-pp__tech-row,
+.footer-pp .footer-pp__bottom {
+  box-sizing: border-box !important;
+}
+
+@media (max-width: 620px) {
+  .pp-navbar-wrap {
+    transform: none !important;
+  }
+
+  .hero-page .hero-copy {
+    min-width: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .hero-page .hero-title {
+    max-width: 100% !important;
+    font-size: clamp(34px, 9.7vw, 39px) !important;
+    line-height: 1.02 !important;
+  }
+
+  .hero-page .hero-title em {
+    display: block !important;
+    width: max-content !important;
+    max-width: 100% !important;
+  }
+
+  .hero-page .hero-title b {
+    display: block !important;
+  }
+
+  .hero-page .hero-description,
+  .hero-page .hero-cta-row,
+  .hero-page .hero-focus,
+  .hero-page .hero-focus__chips {
+    width: min(100%, calc(100vw - 40px)) !important;
+    max-width: 100% !important;
+  }
+
+  .hero-page .hero-description p {
+    width: 100% !important;
+    max-width: calc(100vw - 64px) !important;
+    font-size: 14px !important;
+  }
+
+  .hero-page .hero-primary-cta,
+  .hero-page .hero-intro-btn {
+    width: min(100%, calc(100vw - 64px)) !important;
+    max-width: calc(100vw - 64px) !important;
+    min-width: 0 !important;
+  }
+
+  .hero-page .hero-focus__chips {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 8px !important;
+  }
+
+  .hero-page .hero-focus__chips span {
+    width: 100% !important;
+    min-width: 0 !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    text-align: center !important;
+  }
+}
+
+/* Technologies / Stack section */
+@media (max-width: 1080px) {
+  .tp-shell {
+    padding-top: clamp(96px, 13vw, 128px) !important;
+  }
+
+  .tp-visual,
+  .tp-map,
+  .tech-visual {
+    width: 100% !important;
+    max-width: 860px !important;
+    min-height: 0 !important;
+    height: auto !important;
+    margin-inline: auto !important;
+    padding: 28px !important;
+  }
+
+  .tp-map,
+  .tech-visual {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 22px !important;
+    place-items: stretch !important;
+  }
+
+  .tp-core,
+  .tech-core {
+    position: relative !important;
+    inset: auto !important;
+    grid-column: 1 / -1 !important;
+    grid-row: 1 !important;
+    justify-self: center !important;
+    width: min(205px, 54vw) !important;
+    height: min(205px, 54vw) !important;
+    transform: none !important;
+  }
+
+  .tp-cluster,
+  .tech-cluster,
+  .tp-cluster-front,
+  .tp-cluster-back,
+  .tp-cluster-mobile,
+  .tp-cluster-data {
+    position: relative !important;
+    inset: auto !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    width: 100% !important;
+    transform: none !important;
+    z-index: 2 !important;
+  }
+
+  .tp-connections,
+  .tech-connectors,
+  .tp-orbit-line {
+    display: none !important;
+  }
+}
+
+@media (max-width: 620px) {
+  .tp-visual,
+  .tp-map,
+  .tech-visual {
+    grid-template-columns: 1fr !important;
+    gap: 18px !important;
+    padding: 20px 14px !important;
+    border-radius: 28px !important;
+  }
+
+  .tp-cluster-grid,
+  .tech-cluster-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 12px !important;
+    justify-items: stretch !important;
+  }
+
+  .tp-card,
+  .tech-card {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    height: 92px !important;
+  }
+
+  .tp-principles,
+  .tech-principles {
+    grid-template-columns: 1fr !important;
+    gap: 0 !important;
+  }
+}
+
+/* Admin studio */
+body.vx-admin-route {
+  overflow-x: hidden;
+}
+
+body.vx-admin-route :where(.vx-shell, .vx-main, .vx-content, .vx-page-body) {
+  min-width: 0;
+  max-width: 100%;
+}
+
+body.vx-admin-route :where(
+  .vx-page-body,
+  .vx-page-body *,
+  .vx-content,
+  .vx-content *
+) {
+  min-width: 0;
+}
+
+body.vx-admin-route :where(
+  .vx-dashboard-pro,
+  .vx-dashboard-grid,
+  .vx-overview-grid,
+  .vx-insight-grid,
+  .vx-project-hero,
+  .vx-stats,
+  .vx-toolbar,
+  .vx-projects-grid,
+  .vx-field-row,
+  .vx-form-preview,
+  .ap-stats,
+  .ap-grid,
+  .ap-toolbar,
+  .cms-grid,
+  .cms-form-grid
+) {
+  max-width: 100%;
+}
+
+body.vx-admin-route :where(
+  .vx-table-scroll,
+  .vx-table-wrap,
+  .ap-table-wrap,
+  .cms-table-wrap,
+  .vx-page-body table
+) {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+body.vx-admin-route :where(input, select, textarea, .vx-input, .vx-select, .vx-textarea) {
+  width: 100%;
+}
+
+@media (max-width: 1100px) {
+  body.vx-admin-route .vx-shell {
+    display: block !important;
+  }
+
+  body.vx-admin-route .vx-main,
+  body.vx-admin-route .vx-shell.is-collapsed .vx-main {
+    width: 100% !important;
+    margin-left: 0 !important;
+  }
+
+  body.vx-admin-route .vx-content {
+    width: 100% !important;
+    padding-inline: clamp(14px, 4vw, 24px) !important;
+  }
+
+  body.vx-admin-route .vx-sidebar {
+    position: fixed !important;
+    inset: 12px auto 12px 12px !important;
+    width: min(88vw, 320px) !important;
+    min-width: 0 !important;
+    height: calc(100dvh - 24px) !important;
+    max-height: calc(100dvh - 24px) !important;
+    transform: translateX(calc(-100% - 20px));
+    transition: transform 240ms ease;
+  }
+
+  body.vx-admin-route .vx-sidebar.is-open {
+    transform: translateX(0) !important;
+  }
+
+  body.vx-admin-route .vx-sb-close,
+  body.vx-admin-route .vx-topbar-menu {
+    display: grid !important;
+  }
+
+  body.vx-admin-route .vx-sb-collapse {
+    display: none !important;
+  }
+
+  body.vx-admin-route .vx-overlay.is-open {
+    display: block !important;
+  }
+
+  body.vx-admin-route :where(
+    .vx-dashboard-grid,
+    .vx-overview-grid,
+    .vx-insight-grid,
+    .vx-project-hero,
+    .vx-toolbar,
+    .ap-toolbar,
+    .cms-grid,
+    .cms-form-grid
+  ) {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 760px) {
+  body.vx-admin-route .vx-topbar {
+    height: auto !important;
+    min-height: 66px !important;
+    padding: 10px 12px !important;
+    grid-template-columns: auto minmax(0, 1fr) auto !important;
+  }
+
+  body.vx-admin-route .vx-topbar-search {
+    order: 4;
+    grid-column: 1 / -1;
+    width: 100% !important;
+    max-width: none !important;
+  }
+
+  body.vx-admin-route .vx-topbar-search kbd,
+  body.vx-admin-route .vx-topbar-profile strong {
+    display: none !important;
+  }
+
+  body.vx-admin-route .vx-topbar-end {
+    gap: 6px !important;
+  }
+
+  body.vx-admin-route .vx-content {
+    padding: 12px !important;
+  }
+
+  body.vx-admin-route .vx-page-head {
+    grid-template-columns: 1fr !important;
+    min-height: 0 !important;
+    padding: 18px !important;
+  }
+
+  body.vx-admin-route .vx-page-head h1 {
+    font-size: clamp(28px, 10vw, 42px) !important;
+    line-height: 1 !important;
+  }
+
+  body.vx-admin-route .vx-page-actions {
+    width: 100% !important;
+    justify-content: stretch !important;
+  }
+
+  body.vx-admin-route .vx-page-actions > * {
+    flex: 1 1 auto;
+  }
+
+  body.vx-admin-route :where(
+    .vx-stats,
+    .ap-stats,
+    .vx-projects-grid,
+    .ap-grid,
+    .vx-field-row,
+    .vx-form-preview
+  ) {
+    grid-template-columns: 1fr !important;
+  }
+
+  body.vx-admin-route .vx-dropdown {
+    position: fixed !important;
+    top: 72px !important;
+    right: 12px !important;
+    left: 12px !important;
+    width: auto !important;
+  }
+
+  body.vx-admin-route .vx-command {
+    padding: 72px 12px 12px !important;
+  }
+
+  .vx-login {
+    min-height: 100dvh !important;
+    grid-template-columns: 1fr !important;
+  }
+
+  .vx-login-main {
+    min-height: 100dvh !important;
+    padding: 18px !important;
+  }
+
+  .vx-login-card {
+    width: min(100%, 440px) !important;
+  }
+}
+
+@media (max-width: 420px) {
+  body.vx-admin-route .vx-content {
+    padding-inline: 10px !important;
+  }
+
+  body.vx-admin-route .vx-page-head {
+    border-radius: 22px !important;
+  }
+
+  body.vx-admin-route .vx-topbar-icon-btn,
+  body.vx-admin-route .vx-topbar-menu,
+  body.vx-admin-route .vx-topbar-avatar {
+    width: 36px !important;
+    height: 36px !important;
+  }
+
+  body.vx-admin-route .vx-sidebar {
+    inset: 8px auto 8px 8px !important;
+    width: min(90vw, 300px) !important;
+    height: calc(100dvh - 16px) !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media (max-width: 1180px) and (min-width: 901px) {
+  .pp-hero--reference .pp-ref-shell {
+    width: calc(100% - 84px) !important;
+    max-width: 900px !important;
+    display: grid !important;
+    grid-template-columns: 382px minmax(0, 500px) !important;
+    gap: 16px !important;
+    align-items: start !important;
+    justify-content: center !important;
+    padding-top: 0 !important;
+  }
+
+  .pp-hero--reference .pp-ref-visual {
+    width: 100% !important;
+    min-height: 510px !important;
+    display: block !important;
+    margin-inline: 0 !important;
+    padding-top: 0 !important;
+  }
+}
+
+/* Galaxy dark mode for the public portfolio. */
+:root[data-portfolio-theme="dark"] {
+  color-scheme: dark;
+  --background: #030714;
+  --text-primary: #f4f8ff;
+  --text-secondary: #b7c6e7;
+}
+
+.public-portfolio-shell.is-galaxy-dark {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  background:
+    radial-gradient(circle at 16% 12%, rgba(67, 124, 255, 0.28), transparent 28rem),
+    radial-gradient(circle at 82% 20%, rgba(139, 92, 246, 0.24), transparent 30rem),
+    radial-gradient(circle at 48% 76%, rgba(6, 182, 212, 0.16), transparent 32rem),
+    linear-gradient(180deg, #020513 0%, #05091a 48%, #07051a 100%) !important;
+  color: #f4f8ff !important;
+}
+
+.public-portfolio-shell.is-galaxy-dark::before,
+.public-portfolio-shell.is-galaxy-dark::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.public-portfolio-shell.is-galaxy-dark::before {
+  background:
+    radial-gradient(circle, rgba(255, 255, 255, 0.72) 0 1px, transparent 1.5px) 8% 12% / 140px 140px,
+    radial-gradient(circle, rgba(147, 197, 253, 0.55) 0 1px, transparent 1.4px) 42% 28% / 190px 190px,
+    radial-gradient(circle, rgba(216, 180, 254, 0.44) 0 1px, transparent 1.5px) 76% 16% / 170px 170px;
+  opacity: 0.5;
+  mask-image: linear-gradient(to bottom, #000, rgba(0, 0, 0, 0.72), transparent);
+}
+
+.public-portfolio-shell.is-galaxy-dark::after {
+  background:
+    linear-gradient(115deg, transparent 5%, rgba(88, 166, 255, 0.1) 32%, transparent 58%),
+    radial-gradient(ellipse at 62% 15%, rgba(36, 107, 254, 0.24), transparent 34rem);
+  filter: blur(0.2px);
+  opacity: 0.88;
+}
+
+.public-portfolio-shell.is-galaxy-dark :where(
+  .home-hero,
+  .about-page,
+  .about-section,
+  .experience-section,
+  .projects-page,
+  .projects-library,
+  .projects-pp,
+  .achievements-section,
+  .technical-proof,
+  .contact-pp,
+  .footer-pp
+) {
+  background:
+    radial-gradient(circle at 78% 8%, rgba(59, 130, 246, 0.13), transparent 25rem),
+    radial-gradient(circle at 10% 78%, rgba(124, 58, 237, 0.12), transparent 22rem),
+    transparent !important;
+  color: #f4f8ff !important;
+}
+
+.public-portfolio-shell.is-galaxy-dark :where(
+  h1, h2, h3, h4,
+  .home-title,
+  .about-page h2,
+  .experience-section h2,
+  .projects-page h2,
+  .projects-library h2,
+  .achievements-section h2,
+  .technical-proof h2,
+  .contact-pp h2
+) {
+  color: #f7fbff !important;
+  text-shadow: 0 0 36px rgba(96, 165, 250, 0.12);
+}
+
+.public-portfolio-shell.is-galaxy-dark :where(
+  p, li, small, span,
+  .home-description,
+  .about-page p,
+  .experience-section p,
+  .projects-page p,
+  .projects-library p,
+  .achievements-section p,
+  .technical-proof p,
+  .contact-pp p
+) {
+  color: #b7c6e7;
+}
+
+.public-portfolio-shell.is-galaxy-dark :where(
+  .home-eyebrow,
+  .home-tools > p,
+  .home-clients > p,
+  .home-micro--coords,
+  .home-micro--tag
+) {
+  color: rgba(157, 195, 255, 0.78) !important;
+}
+
+.public-portfolio-shell.is-galaxy-dark :where(
+  .home-metrics-rail,
+  .home-tool,
+  .about-layout > *,
+  .experience-section article,
+  .projects-page article,
+  .projects-library article,
+  .achievements-section article,
+  .technical-proof article,
+  .contact-pp__shell,
+  .footer-pp__main,
+  .footer-pp__tech-row,
+  .footer-pp__bottom
+) {
+  border-color: rgba(148, 183, 255, 0.18) !important;
+  background:
+    linear-gradient(135deg, rgba(10, 18, 42, 0.74), rgba(13, 24, 55, 0.48)),
+    rgba(7, 12, 29, 0.62) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 24px 70px rgba(0, 0, 0, 0.28),
+    0 0 44px rgba(37, 99, 235, 0.08) !important;
+  backdrop-filter: blur(24px) saturate(1.25);
+  -webkit-backdrop-filter: blur(24px) saturate(1.25);
+}
+
+.public-portfolio-shell.is-galaxy-dark .home-hero__grid {
+  opacity: 0.28 !important;
+  background-image:
+    linear-gradient(rgba(96, 165, 250, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(96, 165, 250, 0.08) 1px, transparent 1px) !important;
+}
+
+.public-portfolio-shell.is-galaxy-dark .home-portal__blue {
+  background:
+    radial-gradient(circle at 30% 22%, rgba(255, 255, 255, 0.72), transparent 12%),
+    radial-gradient(circle at 50% 52%, #60a5fa 0%, #246bfe 36%, #3b0764 76%) !important;
+  box-shadow:
+    inset 0 0 44px rgba(255, 255, 255, 0.25),
+    0 0 100px rgba(37, 99, 235, 0.52),
+    0 0 170px rgba(124, 58, 237, 0.28) !important;
+}
+
+.public-portfolio-shell.is-galaxy-dark .home-code-card {
+  background:
+    linear-gradient(135deg, rgba(3, 8, 23, 0.98), rgba(20, 24, 57, 0.9)),
+    rgba(3, 7, 18, 0.96) !important;
+  border-color: rgba(125, 174, 255, 0.2) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    0 34px 90px rgba(0, 0, 0, 0.42),
+    0 0 70px rgba(36, 107, 254, 0.18) !important;
+}
+
+.public-portfolio-shell.is-galaxy-dark .pp-navbar-wrap {
+  color: #f5f9ff !important;
+}
+
+.public-portfolio-shell.is-galaxy-dark .pp-navbar-wrap::before {
+  background: linear-gradient(90deg, transparent, rgba(96, 165, 250, 0.36), rgba(168, 85, 247, 0.28), transparent) !important;
+}
+
+.public-portfolio-shell.is-galaxy-dark .pp-navbar {
+  border-color: rgba(167, 197, 255, 0.18) !important;
+  background:
+    linear-gradient(100deg, rgba(7, 12, 31, 0.78), rgba(13, 22, 52, 0.66), rgba(28, 20, 61, 0.58)),
+    rgba(3, 7, 18, 0.62) !important;
+  box-shadow:
+    0 28px 70px rgba(0, 0, 0, 0.34),
+    0 0 44px rgba(37, 99, 235, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+.public-portfolio-shell.is-galaxy-dark .pp-navbar-shine {
+  background:
+    linear-gradient(108deg, transparent 8%, rgba(147, 197, 253, 0.18) 28%, transparent 48%, rgba(216, 180, 254, 0.13) 72%, transparent 90%),
+    radial-gradient(circle at 96% 6%, rgba(96, 165, 250, 0.42), transparent 7rem) !important;
+}
+
+.public-portfolio-shell.is-galaxy-dark .pp-navbar-links a,
+.public-portfolio-shell.is-galaxy-dark .pp-navbar-id strong {
+  color: rgba(239, 246, 255, 0.88) !important;
+}
+
+.public-portfolio-shell.is-galaxy-dark .pp-navbar-id em,
+.public-portfolio-shell.is-galaxy-dark .pp-navbar-num,
+.public-portfolio-shell.is-galaxy-dark .pp-navbar-links li.is-active a,
+.public-portfolio-shell.is-galaxy-dark .pp-navbar-links a:hover {
+  color: #8ec5ff !important;
+}
+
+.public-portfolio-shell.is-galaxy-dark .pp-navbar-theme {
+  background:
+    radial-gradient(circle at 34% 24%, rgba(255, 255, 255, 0.9), transparent 15%),
+    linear-gradient(145deg, #f8fafc, #bfdbfe) !important;
+  color: #0f2b5d !important;
+  box-shadow:
+    0 0 0 4px rgba(96, 165, 250, 0.12),
+    0 0 30px rgba(147, 197, 253, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.92) !important;
+}
+
+.public-portfolio-shell.is-galaxy-dark .pp-navbar-cta,
+.public-portfolio-shell.is-galaxy-dark .home-btn--primary {
+  border-color: rgba(125, 174, 255, 0.72) !important;
+  background: linear-gradient(135deg, #3b82f6, #5b5ff7 48%, #8b5cf6) !important;
+  color: #ffffff !important;
+  box-shadow: 0 18px 48px rgba(59, 130, 246, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+}
+
+.public-portfolio-shell.is-galaxy-dark .pp-navbar-cta :where(span, svg),
+.public-portfolio-shell.is-galaxy-dark .home-btn--primary :where(span, svg) {
+  color: #ffffff !important;
+}
+
+.public-portfolio-shell.is-galaxy-dark .home-btn--secondary,
+.public-portfolio-shell.is-galaxy-dark .pp-navbar-menu-button {
+  border-color: rgba(148, 183, 255, 0.18) !important;
+  background: rgba(12, 20, 45, 0.78) !important;
+  color: #eaf2ff !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 16px 34px rgba(0, 0, 0, 0.2) !important;
+}

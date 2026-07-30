@@ -1,0 +1,311 @@
+{
+  "profile": {
+    "name": "Erudita Zilbeari",
+    "role": "Full-Stack Web & Mobile Developer · UI/UX Designer",
+    "location": "Tetovo, North Macedonia",
+    "headline": "Crafting refined digital products with code and design.",
+    "about": "I'm Erudita, a full-stack developer and UI/UX designer building software where engineering precision meets exceptional design. From AI-powered platforms and complex operational dashboards to mobile apps and production websites for real businesses, I turn ambitious ideas into polished digital products that are built to work, built to scale, and built to stand out. My experience spans 20+ projects, international hackathons, competition-winning work, and client projects across borders, but my standard remains the same: make it functional, make it exceptional, and never make it ordinary.",
+    "email": "hello@erudita.pro",
+    "phone": "+389 70 000 000",
+    "portraitUrl": "",
+    "availabilityText": "Available for 3 new client projects this month",
+    "stats": [
+      {
+        "label": "Years of Experience",
+        "value": "4+"
+      },
+      {
+        "label": "Projects Delivered",
+        "value": "30+"
+      },
+      {
+        "label": "Happy Clients",
+        "value": "20+"
+      },
+      {
+        "label": "Technologies",
+        "value": "13"
+      }
+    ],
+    "socials": {
+      "github": "https://github.com/",
+      "linkedin": "https://linkedin.com/",
+      "dribbble": "https://dribbble.com/"
+    }
+  },
+  "projects": [
+    {
+      "id": "p_1783865681287",
+      "title": "Pyramid Backstage — Admin Platform",
+      "category": "Full-Stack Web Application",
+      "description": "A full-stack event operations platform built during JunctionX Tirana 2026 for managing complex venue workflows. The admin dashboard centralizes event creation, space matching, scheduling, equipment reservations, proposals, task coordination, staff management, and operational readiness. It features AI-assisted event planning, a visual Digital Twin, automatic conflict detection, Kanban-based operations, readiness scoring, and real-time synchronization with the connected staff mobile app.",
+      "tags": [
+        "React",
+        "Vite",
+        "Tailwind CSS",
+        "Node.js",
+        "Supabase",
+        "TanStack Router",
+        "Framer Motion",
+        "Lucide React"
+      ],
+      "technologies": "React, Vite, Tailwind CSS, Node.js, Supabase, TanStack Router, Framer Motion, Lucide React",
+      "year": 2026,
+      "status": "Published",
+      "featured": true,
+      "liveUrl": "",
+      "githubUrl": "https://github.com/eru-z/pyramidbackstage-web",
+      "coverImage": "",
+      "images": [],
+      "videoUrl": "/uploads/1783865774441-c7f6340fd1-Pyramid-Backstage-JunctionX-Tirana-2026-1.mp4",
+      "screenshots": [],
+      "video": "/uploads/1783865774441-c7f6340fd1-Pyramid-Backstage-JunctionX-Tirana-2026-1.mp4",
+      "live": "",
+      "github": "https://github.com/eru-z/pyramidbackstage-web",
+      "image": "",
+      "type": "Full-Stack Web Application",
+      "tech": [
+        "React",
+        "Vite",
+        "Tailwind CSS",
+        "Node.js",
+        "Supabase",
+        "TanStack Router",
+        "Framer Motion",
+        "Lucide React"
+      ]
+    },
+    {
+      "id": "p1",
+      "title": "Pizzeria Paradiso",
+      "category": "Web · Restaurant",
+      "description": "Modern restaurant website with online ordering, reservations and a beautiful menu showcase.",
+      "tags": [
+        "React",
+        "Tailwind",
+        "Node.js"
+      ],
+      "year": "2025"
+    },
+    {
+      "id": "p4",
+      "title": "Real Estate Dashboard",
+      "category": "Web App · PropTech",
+      "description": "Admin dashboard for managing listings, leads, agents and analytics in real-time.",
+      "tags": [
+        "React",
+        "Tailwind",
+        "MySQL"
+      ],
+      "year": "2024"
+    },
+    {
+      "id": "p5",
+      "title": "Hospital Management System",
+      "category": "Enterprise Web App",
+      "description": "End-to-end hospital management — patients, doctors, scheduling, billing, and reports.",
+      "tags": [
+        "PHP",
+        "MySQL",
+        "Bootstrap"
+      ],
+      "year": "2024"
+    },
+    {
+      "id": "p6",
+      "title": "SciMaster AI",
+      "category": "AI · Education",
+      "description": "An AI-powered platform that helps students master scientific concepts with adaptive learning.",
+      "tags": [
+        "React",
+        "Node.js",
+        "AI"
+      ],
+      "year": "2025"
+    }
+  ],
+  "skills": [
+    {
+      "name": "HTML",
+      "level": 95,
+      "group": "Frontend"
+    },
+    {
+      "name": "CSS",
+      "level": 95,
+      "group": "Frontend"
+    },
+    {
+      "name": "Tailwind CSS",
+      "level": 95,
+      "group": "Frontend"
+    },
+    {
+      "name": "Bootstrap",
+      "level": 85,
+      "group": "Frontend"
+    },
+    {
+      "name": "React JS",
+      "level": 92,
+      "group": "Frontend"
+    },
+    {
+      "name": "React Native",
+      "level": 80,
+      "group": "Mobile"
+    },
+    {
+      "name": "Node.js",
+      "level": 85,
+      "group": "Backend"
+    },
+    {
+      "name": "PHP",
+      "level": 80,
+      "group": "Backend"
+    },
+    {
+      "name": "MySQL",
+      "level": 85,
+      "group": "Database"
+    },
+    {
+      "name": "PostgreSQL",
+      "level": 80,
+      "group": "Database"
+    },
+    {
+      "name": "WordPress",
+      "level": 80,
+      "group": "CMS"
+    }
+  ],
+  "services": [
+    {
+      "id": "s1",
+      "title": "Web Development",
+      "description": "High-performance marketing sites, dashboards, and web apps built with modern stacks.",
+      "icon": "Code2"
+    },
+    {
+      "id": "s2",
+      "title": "Mobile Development",
+      "description": "Cross-platform mobile apps with React Native — smooth, native-feeling experiences.",
+      "icon": "Smartphone"
+    },
+    {
+      "id": "s3",
+      "title": "UI / UX Design",
+      "description": "Design systems, wireframes, and pixel-perfect interfaces crafted in Figma.",
+      "icon": "Palette"
+    },
+    {
+      "id": "s4",
+      "title": "Full-Stack Solutions",
+      "description": "From database to deployment — complete product engineering, end to end.",
+      "icon": "Server"
+    }
+  ],
+  "experience": [
+    {
+      "id": "e_1783796866968",
+      "role": "Full-Stack Web Developer — Pizzeria Paradiso, Liechtenstein",
+      "company": "Pizzeria Paradiso · Liechtenstein",
+      "period": "2026",
+      "description": "Designed, developed, and delivered a production website for a real restaurant client in Liechtenstein, featuring online reservations, multilingual content, responsive design, and a polished user experience tailored to the business.",
+      "imageUrl": "/images/pizzeria-paradiso-cover.png"
+    },
+    {
+      "id": "e_1783796744863",
+      "role": "Web Development Assistant",
+      "company": "Digital School Tetova",
+      "period": "2026 — Present",
+      "description": "Support students during web development classes by debugging code, explaining technical concepts, and helping students who fall behind catch up, solve problems, and successfully complete their projects.",
+      "imageUrl": "/uploads/1783801915357-ee121ffe72-ChatGPT-Image-Jul-11-2026-10_31_37-PM.png"
+    },
+    {
+      "id": "e_1783796799896",
+      "role": "AI Summer School Assistant",
+      "company": "Create & Learn with AI",
+      "period": "Summer 2026 · 1-Week Program",
+      "description": "Assisted students during an AI-focused summer school, helping them explore AI tools, overcome technical challenges, debug their work, and turn creative ideas into functional AI-powered projects.",
+      "imageUrl": "/uploads/1783802056465-58b2515376-ChatGPT-Image-Jul-11-2026-10_34_05-PM.png"
+    }
+  ],
+  "contact": {
+    "email": "eruditazilbearids@gmail.com",
+    "phone": "+389 70 902 183",
+    "location": "Tetovo, North Macedonia",
+    "availability": "Available for freelance & full-time roles"
+  },
+  "achievements": {
+    "recognitions": [
+      {
+        "id": "achievement-1783804101992-e692a",
+        "title": "MindFlow OS — Champion Trials",
+        "subtitle": "Champion Trials · App Development Project",
+        "description": "Built MindFlow OS, an AI-powered productivity application designed to help users organize tasks, manage goals, improve focus, and create a more structured daily workflow.",
+        "year": "22 November 2025",
+        "published": true
+      },
+      {
+        "id": "achievement-1783803514068-51149",
+        "title": "Smart Tetova — Municipal Technology Competition",
+        "subtitle": "Municipality of Tetova · Innovation Competition",
+        "description": "Competed alongside industry specialists and established companies, building a smart-city platform for Tetova that combined intelligent traffic solutions, parking management, and citizen-powered reporting of urban issues.",
+        "year": "26-27 February 2025",
+        "published": true
+      },
+      {
+        "id": "achievement-1783803315567-af951",
+        "title": "JunctionX Tirana — Two-Time Hackathon Participant",
+        "subtitle": "International Hackathon · 2025 & 2026",
+        "description": "Participated twice in JunctionX Tirana, tackling challenges for Raiffeisen Bank in 2025 and Pyramid Backstage in 2026, building innovative technology solutions under intense hackathon time constraints.",
+        "year": "2025 — 2026",
+        "published": true
+      },
+      {
+        "id": "achievement-1783803071071-1ea18",
+        "title": "Eco Innovation Project",
+        "subtitle": "3rd Place · Europe House × Digital School Tetova",
+        "description": "Won 3rd place for an eco-focused technology project developed through a collaboration between Europe House and Digital School Tetova.",
+        "year": "11 June 2025",
+        "published": true
+      },
+      {
+        "id": "achievement-1783802921777-102f8",
+        "title": "Summer Code Fest — Green Travel Guide (GTG)",
+        "subtitle": "3rd Place · 48-Hour Hackathon",
+        "description": "Built GTG (Green Travel Guide) in just 48 hours—a sustainable travel platform designed to help users discover greener travel options and make more environmentally responsible choices.",
+        "year": "12 May 2024",
+        "published": true
+      },
+      {
+        "id": "achievement-1783802476339-2ffd0",
+        "title": "SciMaster AI — AI-Powered Student Platform",
+        "subtitle": "1st Place · Science Fair — Information Technology",
+        "description": "Developed SciMaster AI, a full-stack web and mobile learning platform featuring AI-powered math solving, interactive graphing, medicine tools, secure authentication, and an admin dashboard. Built with React.js, React Native, Node.js, Python, and NumPy.",
+        "year": "7 May 2026",
+        "published": true
+      },
+      {
+        "id": "achievement-1783802103762-18a5f",
+        "title": "SpringCodeFest",
+        "subtitle": "1st Place · React Native Kahoot Quiz Competition",
+        "description": "Won 1st place in a competitive Kahoot quiz testing React Native knowledge, concepts, and mobile development fundamentals.",
+        "year": "7 June 2026",
+        "published": true
+      }
+    ],
+    "certificates": [],
+    "clients": []
+  },
+  "resume": {
+    "fileName": "Nail_Beauty_Prospects_List.pdf",
+    "url": "/uploads/1783793023127-18f12322af-Nail_Beauty_Prospects_List.pdf",
+    "uploadedAt": "2026-07-11T18:03:43.175Z",
+    "enabled": true
+  },
+  "techStack": []
+}

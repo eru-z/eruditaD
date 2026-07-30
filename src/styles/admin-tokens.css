@@ -1,0 +1,146 @@
+/* ============================================================
+   ADMIN — DESIGN TOKENS & GLOBAL FOUNDATION
+   Clean reset + spacing scale + responsive base.
+   Loaded first via adminsidebar.css @import.
+   ============================================================ */
+
+:root {
+  /* Spacing scale (4px base) */
+  --vx-space-1: 4px;
+  --vx-space-2: 8px;
+  --vx-space-3: 12px;
+  --vx-space-4: 16px;
+  --vx-space-5: 20px;
+  --vx-space-6: 24px;
+  --vx-space-7: 32px;
+  --vx-space-8: 40px;
+
+  /* Content rhythm */
+  --vx-content-pad: clamp(14px, 2.2vw, 24px);
+  --vx-content-gap: clamp(12px, 1.6vw, 18px);
+  --vx-card-pad: clamp(14px, 1.6vw, 20px);
+
+  /* Layout */
+  --vx-content-max: 1480px;
+
+  /* Motion */
+  --vx-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --vx-dur-fast: 140ms;
+  --vx-dur-mid: 240ms;
+}
+
+/* ---------- Reset ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+img,
+svg,
+video,
+canvas {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid rgba(0, 0, 0, 0.55);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* ---------- Global tightening (NO !important) ---------- */
+/* Use specificity to gently reduce the wasted vertical space that
+   originally led to the !important nuke. */
+
+.vx-admin-content,
+.admin-content {
+  padding: var(--vx-content-pad);
+}
+
+.vx-admin-content > *:first-child,
+main > *:first-child {
+  margin-top: 0;
+}
+
+.vx-admin-content > *:last-child,
+main > *:last-child {
+  margin-bottom: 0;
+}
+
+/* Dashboard rhythm */
+.vx-dashboard-compact,
+.vx-dashboard-pro,
+.vx-dashboard {
+  gap: var(--vx-content-gap);
+}
+
+/* Cards, lists keep their own padding but cap the worst offenders */
+.vx-card-head {
+  padding: clamp(12px, 1.2vw, 16px) clamp(14px, 1.4vw, 18px);
+}
+
+/* ---------- Responsive baseline ---------- */
+@media (max-width: 1024px) {
+  :root {
+    --vx-content-pad: 16px;
+    --vx-content-gap: 12px;
+    --vx-card-pad: 14px;
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --vx-content-pad: 12px;
+    --vx-content-gap: 10px;
+    --vx-card-pad: 12px;
+  }
+
+  .vx-admin-content,
+  .admin-content {
+    padding: 12px;
+  }
+}
+
+/* Honor reduced motion across the admin */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

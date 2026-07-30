@@ -1,0 +1,83 @@
+{
+  "profile": {
+    "name": "Erudita Zilbeari",
+    "role": "Full-Stack Software Developer & UI/UX Designer",
+    "location": "Tetovo, North Macedonia",
+    "headline": "Building modern web and mobile products with strong UI/UX and clean engineering.",
+    "about": "Erudita builds full-stack web and mobile products, including portfolio websites, business websites, dashboards, management systems, AI-assisted platforms, mobile apps and polished UI/UX experiences.",
+    "availability": "Available for 3 new client projects this month"
+  },
+  "contact": {
+    "email": "hello@erudita.pro",
+    "phone": "+389 70 000 000",
+    "location": "Tetovo, North Macedonia",
+    "preferredAction": "Use the Contact section on the portfolio website."
+  },
+  "services": [
+    "Premium websites for businesses and personal brands",
+    "Admin panels and dashboards",
+    "Full-stack web applications",
+    "Mobile applications with React Native",
+    "UI/UX design, wireframes and design systems",
+    "Portfolio and business website redesigns"
+  ],
+  "skills": [
+    "HTML",
+    "CSS",
+    "Tailwind CSS",
+    "Bootstrap",
+    "React JS",
+    "React Native",
+    "Node.js",
+    "PHP",
+    "MySQL",
+    "PostgreSQL",
+    "WordPress",
+    "UI/UX Design",
+    "Figma"
+  ],
+  "projects": [
+    {
+      "name": "Pyramid Backstage",
+      "description": "A full-stack event operations platform with AI-assisted event planning, Digital Twin, scheduling, task management and operational dashboards."
+    },
+    {
+      "name": "Pizzeria Paradiso",
+      "description": "A modern restaurant website with menu browsing, booking/contact flow, responsive pages and clear calls to action."
+    },
+    {
+      "name": "Real Estate Dashboard",
+      "description": "A dashboard for listings, leads, agents, analytics and CRM-style property workflows."
+    },
+    {
+      "name": "Hospital Management System",
+      "description": "A management system covering patients, doctors, appointments, billing and reports."
+    },
+    {
+      "name": "SciMaster AI",
+      "description": "An AI-assisted education platform for explanations, study flows and student learning support."
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How can I contact Erudita?",
+      "answer": "Use the Contact section on the portfolio website, or email hello@erudita.pro."
+    },
+    {
+      "question": "Is Erudita available?",
+      "answer": "Erudita is available for 3 new client projects this month."
+    },
+    {
+      "question": "What services does Erudita offer?",
+      "answer": "Erudita offers premium websites, dashboards, full-stack web apps, mobile apps and UI/UX design."
+    },
+    {
+      "question": "What technologies does Erudita use?",
+      "answer": "Erudita works with React, React Native, Node.js, PHP, MySQL, PostgreSQL, Tailwind CSS, Bootstrap, WordPress and Figma."
+    },
+    {
+      "question": "What are Erudita's prices?",
+      "answer": "Pricing depends on project complexity, features, timeline and integrations. Please contact Erudita through the Contact section for a personalized quote."
+    }
+  ]
+}
