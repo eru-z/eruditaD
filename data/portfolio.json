@@ -1,792 +1,1405 @@
 {
-  "profile": {
-    "name": "Erudita Zilbeari",
-    "role": "Full-Stack Web & Mobile Developer · UI/UX Designer",
-    "location": "Tetovo, North Macedonia",
-    "headline": "Crafting refined digital products with code and design.",
-    "about": "I'm Erudita, a full-stack developer and UI/UX designer building software where engineering precision meets exceptional design. From AI-powered platforms and complex operational dashboards to mobile apps and production websites for real businesses, I turn ambitious ideas into polished digital products that are built to work, built to scale, and built to stand out. My experience spans 20+ projects, international hackathons, competition-winning work, and client projects across borders, but my standard remains the same: make it functional, make it exceptional, and never make it ordinary.",
-    "email": "eruditazilbearids@gmail.com",
-    "phone": "+389 70 902 183",
-    "portraitUrl": "",
-    "availabilityText": "Available for 3 new client projects this month",
-    "stats": [
-      {
-        "label": "Years of Experience",
-        "value": "4+"
-      },
-      {
-        "label": "Projects Delivered",
-        "value": "30+"
-      },
-      {
-        "label": "Happy Clients",
-        "value": "20+"
-      },
-      {
-        "label": "Technologies",
-        "value": "13"
-      }
-    ],
-    "socials": {
-      "linkedin": "https://www.linkedin.com/in/erudita-zilbeari-273b7035a"
-    }
-  },
-  "projects": [
-    {
-      "id": "p_1783865681287",
-      "title": "Pyramid Backstage — Admin Platform",
-      "category": "Full-Stack Web Application",
-      "description": "A full-stack event operations platform built during JunctionX Tirana 2026 for managing complex venue workflows. The admin dashboard centralizes event creation, space matching, scheduling, equipment reservations, proposals, task coordination, staff management, and operational readiness. It features AI-assisted event planning, a visual Digital Twin, automatic conflict detection, Kanban-based operations, readiness scoring, and real-time synchronization with the connected staff mobile app.",
-      "tags": [
-        "React",
-        "Vite",
-        "Tailwind CSS",
-        "Node.js",
-        "Supabase",
-        "TanStack Router",
-        "Framer Motion",
-        "Lucide React"
-      ],
-      "technologies": "React, Vite, Tailwind CSS, Node.js, Supabase, TanStack Router, Framer Motion, Lucide React",
-      "year": 2026,
-      "status": "Published",
-      "featured": true,
-      "liveUrl": "",
-      "githubUrl": "https://github.com/eru-z/pyramidbackstage-web",
-      "coverImage": "/images/logos/pyramid-backstage.png",
-      "images": [],
-      "videoUrl": "/uploads/1783865774441-c7f6340fd1-Pyramid-Backstage-JunctionX-Tirana-2026-1.mp4",
-      "screenshots": [],
-      "video": "/uploads/1783865774441-c7f6340fd1-Pyramid-Backstage-JunctionX-Tirana-2026-1.mp4",
-      "live": "",
-      "github": "https://github.com/eru-z/pyramidbackstage-web",
-      "image": "",
-      "type": "Full-Stack Web Application",
-      "tech": [
-        "React",
-        "Vite",
-        "Tailwind CSS",
-        "Node.js",
-        "Supabase",
-        "TanStack Router",
-        "Framer Motion",
-        "Lucide React"
-      ]
-    },
-    {
-      "id": "p1",
-      "number": "01",
-      "title": "Pizzeria Paradiso",
-      "category": "Web · Restaurant",
-      "type": "Restaurant Platform",
-      "description": "Italian restaurant and pizzeria in Vaduz, Liechtenstein serving freshly prepared pizzas, pasta, salads and desserts with dine-in, takeaway, online ordering, delivery and table reservations.",
-      "coverImage": "/images/pizzeria-paradiso-cover.png",
-      "mobileCoverImage": "/images/pizzeria-paradiso-mobile-about.png",
-      "screenshots": [],
-      "video": "",
-      "liveUrl": "https://pizzeriaparadiso.li",
-      "githubUrl": "",
-      "caseStudyUrl": "/projects/pizzeria",
-      "tech": [
-        "React",
-        "Tailwind CSS",
-        "Content System",
-        "SEO"
-      ],
-      "featured": true,
-      "status": "Published",
-      "year": "2025",
-      "tone": "restaurant",
-      "accent": "#F59E0B",
-      "url": "pizzeriaparadiso.li",
-      "headline": "Fresh. Authentic. Italian.",
-      "metric": "+42%",
-      "metricLabel": "Bookings",
-      "metrics": {
-        "impact": "+42%",
-        "performance": 98,
-        "seo": 96,
-        "accessibility": 100
-      },
-      "problem": "Guests needed one clear place to explore authentic Italian dishes, reserve a table and choose dine-in, takeaway, online ordering or delivery.",
-      "solution": "I built a responsive restaurant platform focused on quality ingredients, modern atmosphere, friendly service and fast booking/order paths.",
-      "results": "Guests can quickly discover pizzas, pasta, salads and desserts, then order online or reserve a table at Schwefelstrasse 14.",
-      "architecture": [
-        "React UI",
-        "Menu Content",
-        "Ordering Flow",
-        "Reservations"
-      ],
-      "techDecisions": [
-        "Mobile-first guest journey",
-        "Direct ordering and booking actions",
-        "Image-led restaurant storytelling"
-      ],
-      "timeline": "3-day production sprint from structure to polished launch.",
-      "filters": [
-        "Web",
-        "Client Work"
-      ],
-      "tags": [
-        "React",
-        "Tailwind",
-        "Node.js"
-      ],
-      "projectRole": "",
-      "impactDetails": [],
-      "technologies": "React, Tailwind, Node.js",
-      "images": [],
-      "videoUrl": ""
-    },
-    {
-      "id": "p4",
-      "number": "08",
-      "title": "Real Estate Dashboard",
-      "category": "Web App · PropTech",
-      "type": "PropTech Dashboard",
-      "description": "CRM dashboard for listings, leads, agent activity, revenue and pipeline visibility.",
-      "coverImage": "",
-      "screenshots": [],
-      "video": "",
-      "liveUrl": "",
-      "githubUrl": "https://github.com/",
-      "caseStudyUrl": "/projects/real-estate-crm",
-      "tech": [
-        "React",
-        "Tailwind CSS",
-        "MySQL",
-        "CRM"
-      ],
-      "featured": true,
-      "status": "Published",
-      "year": "2024",
-      "tone": "dashboard",
-      "accent": "#2563EB",
-      "url": "proptech.local",
-      "headline": "Every lead in view.",
-      "metric": "+47%",
-      "metricLabel": "Pipeline Visibility",
-      "metrics": {
-        "impact": "+47%",
-        "performance": 96,
-        "seo": 88,
-        "accessibility": 98
-      },
-      "problem": "Agents needed a clearer view of listings, lead status and revenue movement.",
-      "solution": "I designed a CRM-style dashboard with pipeline cards, listing metrics and agent views.",
-      "results": "Lead state and listing performance became easier to compare at a glance.",
-      "architecture": [
-        "CRM Shell",
-        "Listings",
-        "Pipeline",
-        "Metrics"
-      ],
-      "techDecisions": [
-        "Scannable card density",
-        "Status-driven pipeline",
-        "Metric cards for revenue signals"
-      ],
-      "timeline": "Dashboard sprint covering CRM shell, cards and analytics states.",
-      "filters": [
-        "Dashboard",
-        "Web"
-      ],
-      "tags": [
-        "React",
-        "Tailwind",
-        "MySQL"
-      ],
-      "projectRole": "",
-      "impactDetails": [],
-      "technologies": "React, Tailwind, MySQL",
-      "images": [],
-      "videoUrl": ""
-    },
-    {
-      "id": "p5",
-      "number": "07",
-      "title": "Hospital Management System",
-      "category": "Enterprise Web App",
-      "type": "Healthcare System",
-      "description": "Management system for patients, doctors, appointments, billing and operational reports.",
-      "coverImage": "",
-      "screenshots": [],
-      "video": "",
-      "liveUrl": "",
-      "githubUrl": "https://github.com/",
-      "caseStudyUrl": "/projects/hospital-system",
-      "tech": [
-        "PHP",
-        "MySQL",
-        "Bootstrap",
-        "Reports"
-      ],
-      "featured": false,
-      "status": "Published",
-      "year": "2024",
-      "tone": "dashboard",
-      "accent": "#0284C7",
-      "url": "hospital.local",
-      "headline": "Care operations, organized.",
-      "metric": "+52%",
-      "metricLabel": "Workflow Clarity",
-      "metrics": {
-        "impact": "+52%",
-        "performance": 93,
-        "seo": 86,
-        "accessibility": 95
-      },
-      "problem": "Hospital workflows needed structured records, scheduling and billing in one system.",
-      "solution": "I implemented role-based modules for patients, doctors, appointments, billing and reports.",
-      "results": "The system organizes daily operations into clearer admin workflows.",
-      "architecture": [
-        "PHP App",
-        "MySQL",
-        "Roles",
-        "Reports"
-      ],
-      "techDecisions": [
-        "Relational data model",
-        "Role-aware screens",
-        "Report-first admin views"
-      ],
-      "timeline": "School-scale full-stack build with CRUD and reporting modules.",
-      "filters": [
-        "Dashboard",
-        "Web"
-      ],
-      "tags": [
-        "PHP",
-        "MySQL",
-        "Bootstrap"
-      ],
-      "projectRole": "",
-      "impactDetails": [],
-      "technologies": "PHP, MySQL, Bootstrap",
-      "images": [],
-      "videoUrl": ""
-    },
-    {
-      "id": "p6",
-      "number": "05",
-      "title": "SciMaster AI",
-      "category": "AI · Education",
-      "type": "AI Education System",
-      "description": "Adaptive science learning concept with AI explanations, progress views and guided study sessions.",
-      "coverImage": "/images/logos/scimaster-ai.png",
-      "screenshots": [],
-      "video": "",
-      "liveUrl": "",
-      "githubUrl": "https://github.com/",
-      "caseStudyUrl": "/projects/scimaster-ai",
-      "tech": [
-        "React",
-        "Node.js",
-        "AI",
-        "PostgreSQL"
-      ],
-      "featured": false,
-      "status": "Published",
-      "year": "2025",
-      "tone": "dark",
-      "accent": "#7C3AED",
-      "url": "scimaster.ai",
-      "headline": "Study smarter with AI.",
-      "metric": "+36%",
-      "metricLabel": "Study Clarity",
-      "metrics": {
-        "impact": "+36%",
-        "performance": 94,
-        "seo": 90,
-        "accessibility": 97
-      },
-      "problem": "Students needed clearer explanations and a way to track mastery over complex science topics.",
-      "solution": "I modeled an AI-assisted study flow with topic cards, generated explanations and progress analytics.",
-      "results": "The concept creates a calmer learning loop from question to explanation to review.",
-      "architecture": [
-        "React App",
-        "AI Layer",
-        "Progress DB",
-        "Analytics"
-      ],
-      "techDecisions": [
-        "Prompt-ready content model",
-        "Progress-first dashboard",
-        "Reusable lesson components"
-      ],
-      "timeline": "Concept sprint for AI flow, dashboards and learning states.",
-      "filters": [
-        "AI",
-        "Web"
-      ],
-      "tags": [
-        "React",
-        "Node.js",
-        "AI"
-      ],
-      "projectRole": "",
-      "impactDetails": [],
-      "technologies": "React, Node.js, AI",
-      "images": [],
-      "videoUrl": ""
-    },
-    {
-      "id": "dashboard-system",
-      "number": "03",
-      "title": "Dashboard System",
-      "category": "Dashboard",
-      "type": "Admin & Analytics",
-      "description": "Compact analytics workspace with metric cards, lead tracking, charts and practical reporting workflows.",
-      "coverImage": "",
-      "screenshots": [],
-      "video": "",
-      "liveUrl": "",
-      "githubUrl": "https://github.com/",
-      "caseStudyUrl": "/projects/dashboard-system",
-      "tech": [
-        "React",
-        "Tailwind CSS",
-        "Charts",
-        "Admin UI"
-      ],
-      "featured": false,
-      "status": "Published",
-      "year": "2025",
-      "tone": "dashboard",
-      "accent": "#2563EB",
-      "url": "dashboard.local",
-      "headline": "Business data, easy to scan.",
-      "metric": "+58%",
-      "metricLabel": "Faster Reporting",
-      "metrics": {
-        "impact": "+58%",
-        "performance": 97,
-        "seo": 92,
-        "accessibility": 99
-      },
-      "problem": "Teams needed fast visibility into leads, revenue and operations without spreadsheet-heavy reporting.",
-      "solution": "I designed a dense dashboard system with reusable metrics, chart patterns and admin workflow components.",
-      "results": "Reporting became easier to scan and business decisions moved faster across core data.",
-      "architecture": [
-        "Admin Shell",
-        "Metrics API",
-        "Charts",
-        "Reports"
-      ],
-      "techDecisions": [
-        "Dense layout for daily use",
-        "Chart-ready data model",
-        "Reusable table and metric components"
-      ],
-      "timeline": "4-day prototype covering dashboard shell, charts and table states.",
-      "filters": [
-        "Dashboard",
-        "Web"
-      ],
-      "tags": [
-        "React",
-        "Tailwind CSS",
-        "Charts",
-        "Admin UI"
-      ],
-      "technologies": "React, Tailwind CSS, Charts, Admin UI",
-      "images": [],
-      "videoUrl": ""
-    },
-    {
-      "id": "digital-school",
-      "number": "04",
-      "title": "Digital School Tetovo",
-      "category": "Web",
-      "type": "Education Platform",
-      "description": "Education platform concept for courses, events, learning paths and student outcome storytelling.",
-      "coverImage": "",
-      "screenshots": [],
-      "video": "",
-      "liveUrl": "",
-      "githubUrl": "",
-      "caseStudyUrl": "/projects/digital-school",
-      "tech": [
-        "React",
-        "Tailwind CSS",
-        "CMS",
-        "SEO"
-      ],
-      "featured": false,
-      "status": "Published",
-      "year": "2025",
-      "tone": "school",
-      "accent": "#0EA5E9",
-      "url": "digitalschool.mk",
-      "headline": "Learn. Code. Grow.",
-      "metric": "+24%",
-      "metricLabel": "Course Interest",
-      "metrics": {
-        "impact": "+24%",
-        "performance": 96,
-        "seo": 95,
-        "accessibility": 100
-      },
-      "problem": "Students and parents needed clearer course discovery, outcomes and event information.",
-      "solution": "I built an education platform structure around learning paths, proof, events and simple updates.",
-      "results": "More course interest and a clearer first impression for future learners.",
-      "architecture": [
-        "Course Pages",
-        "Student Flow",
-        "Events",
-        "Content Admin"
-      ],
-      "techDecisions": [
-        "Content-led IA",
-        "Mobile-first course cards",
-        "Accessible navigation"
-      ],
-      "timeline": "5-day concept sprint for structure, UI and responsive behavior.",
-      "filters": [
-        "Web"
-      ],
-      "tags": [
-        "React",
-        "Tailwind CSS",
-        "CMS",
-        "SEO"
-      ],
-      "technologies": "React, Tailwind CSS, CMS, SEO",
-      "images": [],
-      "videoUrl": ""
-    },
-    {
-      "id": "mobile-booking",
-      "number": "06",
-      "title": "Mobile Booking App",
-      "category": "Mobile",
-      "type": "Service Booking",
-      "description": "Mobile-first booking experience for appointments, availability, confirmations and client history.",
-      "coverImage": "",
-      "screenshots": [],
-      "video": "",
-      "liveUrl": "",
-      "githubUrl": "",
-      "caseStudyUrl": "/projects/mobile-booking",
-      "tech": [
-        "React Native",
-        "Firebase",
-        "UI/UX",
-        "Notifications"
-      ],
-      "featured": false,
-      "status": "Published",
-      "year": "2024",
-      "tone": "school",
-      "accent": "#14B8A6",
-      "url": "booking.app",
-      "headline": "Book in seconds.",
-      "metric": "-41%",
-      "metricLabel": "Booking Friction",
-      "metrics": {
-        "impact": "-41%",
-        "performance": 95,
-        "seo": 88,
-        "accessibility": 96
-      },
-      "problem": "Clients needed a faster path from service discovery to confirmed appointment.",
-      "solution": "I designed a mobile flow with clear time slots, confirmation states and admin visibility.",
-      "results": "The booking journey became shorter, clearer and easier to repeat.",
-      "architecture": [
-        "Mobile UI",
-        "Availability",
-        "Notifications",
-        "Admin"
-      ],
-      "techDecisions": [
-        "Native-feeling screens",
-        "Simple state model",
-        "Accessible form controls"
-      ],
-      "timeline": "Mobile prototype sprint with core screens and admin handoff.",
-      "filters": [
-        "Mobile"
-      ],
-      "tags": [
-        "React Native",
-        "Firebase",
-        "UI/UX",
-        "Notifications"
-      ],
-      "technologies": "React Native, Firebase, UI/UX, Notifications",
-      "images": [],
-      "videoUrl": ""
-    },
-    {
-      "id": "portfolio-os",
-      "number": "09",
-      "title": "Portfolio OS",
-      "category": "Web",
-      "type": "Personal Platform",
-      "description": "Interactive portfolio system with assistant, command palette, admin content and project storytelling.",
-      "coverImage": "",
-      "screenshots": [],
-      "video": "",
-      "liveUrl": "",
-      "githubUrl": "",
-      "caseStudyUrl": "/projects/portfolio-os",
-      "tech": [
-        "React",
-        "Framer Motion",
-        "Tailwind CSS",
-        "Local CMS"
-      ],
-      "featured": false,
-      "status": "Published",
-      "year": "2026",
-      "tone": "school",
-      "accent": "#0EA5E9",
-      "url": "portfolio.local",
-      "headline": "A portfolio that behaves like software.",
-      "metric": "+64%",
-      "metricLabel": "Project Depth",
-      "metrics": {
-        "impact": "+64%",
-        "performance": 98,
-        "seo": 94,
-        "accessibility": 99
-      },
-      "problem": "A static portfolio could not communicate the depth of software, design and product thinking.",
-      "solution": "I built an interactive portfolio OS with project browsing, AI assistance and admin-editable content.",
-      "results": "The portfolio now feels like a product, not just a page.",
-      "architecture": [
-        "Public Site",
-        "Assistant",
-        "Admin",
-        "Project Data"
-      ],
-      "techDecisions": [
-        "Shared data model",
-        "Motion-led interactions",
-        "Compact case-study structure"
-      ],
-      "timeline": "Iterative portfolio build with admin and showcase layers.",
-      "filters": [
-        "Web"
-      ],
-      "tags": [
-        "React",
-        "Framer Motion",
-        "Tailwind CSS",
-        "Local CMS"
-      ],
-      "technologies": "React, Framer Motion, Tailwind CSS, Local CMS",
-      "images": [],
-      "videoUrl": ""
-    },
-    {
-      "id": "ai-support-console",
-      "number": "10",
-      "title": "AI Support Console",
-      "category": "AI",
-      "type": "Support Dashboard",
-      "description": "AI-assisted support dashboard for triage, conversation summaries and resolution tracking.",
-      "coverImage": "",
-      "screenshots": [],
-      "video": "",
-      "liveUrl": "",
-      "githubUrl": "",
-      "caseStudyUrl": "/projects/ai-support-console",
-      "tech": [
-        "React",
-        "AI",
-        "Node.js",
-        "Dashboard UI"
-      ],
-      "featured": false,
-      "status": "Published",
-      "year": "2026",
-      "tone": "dark",
-      "accent": "#6366F1",
-      "url": "support.ai",
-      "headline": "Support work, clarified.",
-      "metric": "-33%",
-      "metricLabel": "Triage Time",
-      "metrics": {
-        "impact": "-33%",
-        "performance": 94,
-        "seo": 86,
-        "accessibility": 98
-      },
-      "problem": "Support teams needed a calmer way to understand issues and prioritize tickets.",
-      "solution": "I designed an AI console with summaries, suggested categories and resolution metrics.",
-      "results": "The workflow reduces scanning time and makes ticket state easier to reason about.",
-      "architecture": [
-        "Inbox",
-        "AI Summary",
-        "Triage",
-        "Metrics"
-      ],
-      "techDecisions": [
-        "Human-in-control AI",
-        "Compact support layout",
-        "Clear resolution states"
-      ],
-      "timeline": "AI dashboard concept with core triage and summary screens.",
-      "filters": [
-        "AI",
-        "Dashboard"
-      ],
-      "tags": [
-        "React",
-        "AI",
-        "Node.js",
-        "Dashboard UI"
-      ],
-      "technologies": "React, AI, Node.js, Dashboard UI",
-      "images": [],
-      "videoUrl": ""
-    }
-  ],
-  "skills": [
-    { "name": "HTML", "level": 95, "group": "Frontend" },
-    { "name": "CSS", "level": 95, "group": "Frontend" },
-    { "name": "JS", "level": 92, "group": "Frontend" },
-    { "name": "Bootstrap", "level": 85, "group": "Frontend" },
-    { "name": "Tailwind", "level": 95, "group": "Frontend" },
-    { "name": "React.js", "level": 92, "group": "Frontend" },
-    { "name": "React Native", "level": 85, "group": "Mobile" },
-    { "name": "WordPress", "level": 85, "group": "CMS" },
-    { "name": "Python", "level": 85, "group": "Backend" },
-    { "name": "Node.js", "level": 85, "group": "Backend" },
-    { "name": "PHP", "level": 80, "group": "Backend" },
-    { "name": "PostgreSQL", "level": 85, "group": "Databases" },
-    { "name": "MySQL", "level": 85, "group": "Databases" },
-    { "name": "Vercel", "level": 90, "group": "Tools & Others" },
-    { "name": "git/GitHub", "level": 90, "group": "Tools & Others" },
-    { "name": "Hosting/Domains", "level": 85, "group": "Tools & Others" },
-    { "name": "Expo", "level": 85, "group": "Tools & Others" },
-    { "name": "Supabase", "level": 88, "group": "Tools & Others" }
-  ],  "services": [
-    {
-      "id": "s1",
-      "title": "Web Development",
-      "description": "High-performance marketing sites, dashboards, and web apps built with modern stacks.",
-      "icon": "Code2"
-    },
-    {
-      "id": "s2",
-      "title": "Mobile Development",
-      "description": "Cross-platform mobile apps with React Native — smooth, native-feeling experiences.",
-      "icon": "Smartphone"
-    },
-    {
-      "id": "s3",
-      "title": "UI / UX Design",
-      "description": "Design systems, wireframes, and pixel-perfect interfaces crafted in Figma.",
-      "icon": "Palette"
-    },
-    {
-      "id": "s4",
-      "title": "Full-Stack Solutions",
-      "description": "From database to deployment — complete product engineering, end to end.",
-      "icon": "Server"
-    }
-  ],
-  "experience": [
-    {
-      "id": "e_1783796866968",
-      "role": "Full-Stack Web Developer — Pizzeria Paradiso, Liechtenstein",
-      "company": "Pizzeria Paradiso · Liechtenstein",
-      "period": "2026",
-      "description": "Designed, developed, and delivered a production website for a real restaurant client in Liechtenstein, featuring online reservations, multilingual content, responsive design, and a polished user experience tailored to the business.",
-      "imageUrl": "/images/pizzeria-paradiso-cover.png"
-    },
-    {
-      "id": "e_1783796744863",
-      "role": "Web Development Assistant",
-      "company": "Digital School Tetova",
-      "period": "2026 — Present",
-      "description": "Support students during web development classes by debugging code, explaining technical concepts, and helping students who fall behind catch up, solve problems, and successfully complete their projects.",
-      "imageUrl": ""
-    },
-    {
-      "id": "e_1783796799896",
-      "role": "AI Summer School Assistant",
-      "company": "Create & Learn with AI",
-      "period": "Summer 2026 · 1-Week Program",
-      "description": "Assisted students during an AI-focused summer school, helping them explore AI tools, overcome technical challenges, debug their work, and turn creative ideas into functional AI-powered projects.",
-      "imageUrl": ""
-    }
-  ],
-  "contact": {
-    "email": "eruditazilbearids@gmail.com",
-    "phone": "+389 70 902 183",
-    "location": "Tetovo, North Macedonia",
-    "availability": "Available for freelance & full-time roles"
-  },
-  "achievements": {
-    "recognitions": [
-      {
-        "id": "achievement-1783804101992-e692a",
-        "title": "MindFlow OS — Champion Trials",
-        "subtitle": "Champion Trials · App Development Project",
-        "description": "Built MindFlow OS, an AI-powered productivity application designed to help users organize tasks, manage goals, improve focus, and create a more structured daily workflow.",
-        "year": "22 November 2025",
-        "published": true
-      },
-      {
-        "id": "achievement-1783803514068-51149",
-        "title": "Smart Tetova — Municipal Technology Competition",
-        "subtitle": "Municipality of Tetova · Innovation Competition",
-        "description": "Competed alongside industry specialists and established companies, building a smart-city platform for Tetova that combined intelligent traffic solutions, parking management, and citizen-powered reporting of urban issues.",
-        "year": "26-27 February 2025",
-        "published": true
-      },
-      {
-        "id": "achievement-1783803315567-af951",
-        "title": "JunctionX Tirana — Two-Time Hackathon Participant",
-        "subtitle": "International Hackathon · 2025 & 2026",
-        "description": "Participated twice in JunctionX Tirana, tackling challenges for Raiffeisen Bank in 2025 and Pyramid Backstage in 2026, building innovative technology solutions under intense hackathon time constraints.",
-        "year": "2025 — 2026",
-        "published": true
-      },
-      {
-        "id": "achievement-1783803071071-1ea18",
-        "title": "Eco Innovation Project",
-        "subtitle": "3rd Place · Europe House × Digital School Tetova",
-        "description": "Won 3rd place for an eco-focused technology project developed through a collaboration between Europe House and Digital School Tetova.",
-        "year": "11 June 2025",
-        "published": true
-      },
-      {
-        "id": "achievement-1783802921777-102f8",
-        "title": "Summer Code Fest — Green Travel Guide (GTG)",
-        "subtitle": "3rd Place · 48-Hour Hackathon",
-        "description": "Built GTG (Green Travel Guide) in just 48 hours—a sustainable travel platform designed to help users discover greener travel options and make more environmentally responsible choices.",
-        "year": "12 May 2024",
-        "published": true
-      },
-      {
-        "id": "achievement-1783802476339-2ffd0",
-        "title": "SciMaster AI — AI-Powered Student Platform",
-        "subtitle": "1st Place · Science Fair — Information Technology",
-        "description": "Developed SciMaster AI, a full-stack web and mobile learning platform featuring AI-powered math solving, interactive graphing, medicine tools, secure authentication, and an admin dashboard. Built with React.js, React Native, Node.js, Python, and NumPy.",
-        "year": "7 May 2026",
-        "published": true
-      },
-      {
-        "id": "achievement-1783802103762-18a5f",
-        "title": "SpringCodeFest",
-        "subtitle": "1st Place · React Native Kahoot Quiz Competition",
-        "description": "Won 1st place in a competitive Kahoot quiz testing React Native knowledge, concepts, and mobile development fundamentals.",
-        "year": "7 June 2026",
-        "published": true
-      }
-    ],
-    "certificates": [],
-    "clients": []
-  },
-  "resume": {
-    "fileName": "Nail_Beauty_Prospects_List.pdf",
-    "url": "/uploads/1783793023127-18f12322af-Nail_Beauty_Prospects_List.pdf",
-    "uploadedAt": "2026-07-11T18:03:43.175Z",
-    "enabled": true
-  },
-  "techStack": []
+    "profile":  {
+                    "name":  "Erudita Zilbeari",
+                    "role":  "Full-Stack Web \u0026 Mobile Developer · UI/UX Designer",
+                    "location":  "Tetovo, North Macedonia",
+                    "headline":  "Crafting refined digital products with code and design.",
+                    "about":  "I\u0027m Erudita, a full-stack developer and UI/UX designer building software where engineering precision meets exceptional design. From AI-powered platforms and complex operational dashboards to mobile apps and production websites for real businesses, I turn ambitious ideas into polished digital products that are built to work, built to scale, and built to stand out. My experience spans 20+ projects, international hackathons, competition-winning work, and client projects across borders, but my standard remains the same: make it functional, make it exceptional, and never make it ordinary.",
+                    "email":  "eruditazilbearids@gmail.com",
+                    "phone":  "+389 70 902 183",
+                    "portraitUrl":  "",
+                    "availabilityText":  "Available for 3 new client projects this month",
+                    "stats":  [
+                                  {
+                                      "label":  "Years of Experience",
+                                      "value":  "4+"
+                                  },
+                                  {
+                                      "label":  "Projects Delivered",
+                                      "value":  "30+"
+                                  },
+                                  {
+                                      "label":  "Happy Clients",
+                                      "value":  "20+"
+                                  },
+                                  {
+                                      "label":  "Technologies",
+                                      "value":  "13"
+                                  }
+                              ],
+                    "socials":  {
+                                    "linkedin":  "https://www.linkedin.com/in/erudita-zilbeari-273b7035a"
+                                }
+                },
+    "projects":  [
+                     {
+                         "id":  "p_1785462501322",
+                         "title":  "Chanel E-Commerce Concept",
+                         "category":  "Front-End • E-Commerce",
+                         "description":  "Chanel E-Commerce Concept is a luxury shopping website created with HTML, CSS, and JavaScript to demonstrate my front-end e-commerce skills. The project recreates a premium fashion retail experience through elegant product presentation, category browsing, interactive product details, shopping cart functionality, responsive layouts, and refined visual design.",
+                         "problem":  "Luxury e-commerce websites must balance strong brand presentation with clear navigation, responsive product discovery, and a smooth shopping journey without making the interface feel crowded or generic.",
+                         "solution":  "Designed and developed a responsive luxury storefront featuring curated product collections, category navigation, interactive product cards, product detail views, cart interactions, polished animations, and a premium visual system inspired by high-end fashion commerce.",
+                         "results":  "Created a complete front-end shopping experience that demonstrates e-commerce interface design, responsive development, JavaScript interaction, product organization, cart logic, and attention to luxury branding.",
+                         "projectRole":  "Designed and developed the complete front-end experience, including UI/UX, responsive layouts, product collections, category navigation, product interactions, shopping cart functionality, animations, testing, and cross-device optimization.",
+                         "techDecisions":  [
+                                               "HTML5",
+                                               "CSS3",
+                                               "JavaScript",
+                                               "Responsive Design",
+                                               "DOM Manipulation",
+                                               "Local Storage",
+                                               "Reusable product components",
+                                               "Mobile-first layouts",
+                                               "Interactive cart logic"
+                                           ],
+                         "impactDetails":  [
+                                               "Luxury e-commerce interface",
+                                               "Responsive product browsing",
+                                               "Interactive product cards",
+                                               "Product detail experience",
+                                               "Shopping cart functionality",
+                                               "Category-based navigation",
+                                               "Persistent cart data",
+                                               "Smooth UI interactions",
+                                               "Mobile-friendly storefront",
+                                               "Premium visual presentation"
+                                           ],
+                         "tags":  [
+                                      "HTML",
+                                      "CSS",
+                                      "JavaScript",
+                                      "E-Commerce",
+                                      "Luxury Fashion",
+                                      "Shopping Cart",
+                                      "Product Catalog",
+                                      "Responsive Design",
+                                      "Front-End",
+                                      "UI/UX"
+                                  ],
+                         "filters":  [
+                                         "Web",
+                                         "Front-End",
+                                         "E-Commerce",
+                                         "JavaScript",
+                                         "Fashion",
+                                         "Personal Project"
+                                     ],
+                         "technologies":  "HTML5, CSS3, JavaScript, Local Storage, Responsive Design",
+                         "year":  2023,
+                         "status":  "Published",
+                         "featured":  false,
+                         "liveUrl":  "",
+                         "githubUrl":  "https://github.com/eru-z/chanel-ui",
+                         "coverImage":  "/uploads/1785462585588-1d0253a03e-image-50.png",
+                         "images":  [
+                                        {
+                                            "id":  "ba69dd5f677d94216b2d",
+                                            "name":  "image (50).png",
+                                            "type":  "image/png",
+                                            "url":  "/uploads/1785462585588-1d0253a03e-image-50.png"
+                                        },
+                                        {
+                                            "id":  "2a162b7f1d471034f78a",
+                                            "name":  "image (51).png",
+                                            "type":  "image/png",
+                                            "url":  "/uploads/1785462586829-970e0266b4-image-51.png"
+                                        },
+                                        {
+                                            "id":  "8f43396850de01de0967",
+                                            "name":  "image (52).png",
+                                            "type":  "image/png",
+                                            "url":  "/uploads/1785462588496-2e5ee86e4e-image-52.png"
+                                        },
+                                        {
+                                            "id":  "1d831e9c2e1d4aaa921f",
+                                            "name":  "image (53).png",
+                                            "type":  "image/png",
+                                            "url":  "/uploads/1785462589769-6ed07e6283-image-53.png"
+                                        },
+                                        {
+                                            "id":  "f91b41d1981401424f3f",
+                                            "name":  "image (54).png",
+                                            "type":  "image/png",
+                                            "url":  "/uploads/1785462591329-5752908967-image-54.png"
+                                        },
+                                        {
+                                            "id":  "0d1ac52dca720df53106",
+                                            "name":  "image (55).png",
+                                            "type":  "image/png",
+                                            "url":  "/uploads/1785462593398-eb146a0399-image-55.png"
+                                        },
+                                        {
+                                            "id":  "75d754775f995dc21469",
+                                            "name":  "image (56).png",
+                                            "type":  "image/png",
+                                            "url":  "/uploads/1785462595114-a45d24c8f6-image-56.png"
+                                        },
+                                        {
+                                            "id":  "6d87f38160b059c1ea0f",
+                                            "name":  "image (57).png",
+                                            "type":  "image/png",
+                                            "url":  "/uploads/1785462596942-6e65b70a22-image-57.png"
+                                        },
+                                        {
+                                            "id":  "0e563587b49f39a085f2",
+                                            "name":  "image (58).png",
+                                            "type":  "image/png",
+                                            "url":  "/uploads/1785462599709-5b92af089c-image-58.png"
+                                        },
+                                        {
+                                            "id":  "3e1a54e2c6db11ab868f",
+                                            "name":  "image (59).png",
+                                            "type":  "image/png",
+                                            "url":  "/uploads/1785462601481-23788fc7af-image-59.png"
+                                        },
+                                        {
+                                            "id":  "f0a0c0dcf8fa54d3b9cc",
+                                            "name":  "image (60).png",
+                                            "type":  "image/png",
+                                            "url":  "/uploads/1785462603205-c0baed68e6-image-60.png"
+                                        }
+                                    ],
+                         "videoUrl":  "/uploads/1785462579798-4b57a6bea6-1783868514938-d9e42d1987-converted-copy_F8CF8EF0.mp4",
+                         "screenshots":  [
+                                             "/uploads/1785462585588-1d0253a03e-image-50.png",
+                                             "/uploads/1785462586829-970e0266b4-image-51.png",
+                                             "/uploads/1785462588496-2e5ee86e4e-image-52.png",
+                                             "/uploads/1785462589769-6ed07e6283-image-53.png",
+                                             "/uploads/1785462591329-5752908967-image-54.png",
+                                             "/uploads/1785462593398-eb146a0399-image-55.png",
+                                             "/uploads/1785462595114-a45d24c8f6-image-56.png",
+                                             "/uploads/1785462596942-6e65b70a22-image-57.png",
+                                             "/uploads/1785462599709-5b92af089c-image-58.png",
+                                             "/uploads/1785462601481-23788fc7af-image-59.png",
+                                             "/uploads/1785462603205-c0baed68e6-image-60.png"
+                                         ],
+                         "video":  "/uploads/1785462579798-4b57a6bea6-1783868514938-d9e42d1987-converted-copy_F8CF8EF0.mp4",
+                         "live":  "",
+                         "github":  "https://github.com/eru-z/chanel-ui",
+                         "image":  "/uploads/1785462585588-1d0253a03e-image-50.png",
+                         "type":  "Front-End • E-Commerce",
+                         "tech":  [
+                                      "HTML",
+                                      "CSS",
+                                      "JavaScript",
+                                      "E-Commerce",
+                                      "Luxury Fashion",
+                                      "Shopping Cart",
+                                      "Product Catalog",
+                                      "Responsive Design",
+                                      "Front-End",
+                                      "UI/UX"
+                                  ],
+                         "updatedAt":  "2026-07-31T12:43:23.653Z",
+                         "order":  0
+                     },
+                     {
+                         "id":  "p_1785462219224",
+                         "title":  "Netflix Clone",
+                         "category":  "Full-Stack Web Application",
+                         "description":  "Netflix Clone is a full-stack streaming platform inspired by the Netflix experience. It features user authentication, movie browsing, categorized content, search functionality, responsive design, and a backend-powered content management system. The project focuses on recreating a modern streaming interface while demonstrating full-stack web development fundamentals.",
+                         "problem":  "Building a modern streaming platform requires combining responsive frontend development with secure user authentication, dynamic content management, and database integration while maintaining a familiar, intuitive user experience.",
+                         "solution":  "Developed a full-stack web application featuring secure authentication, dynamic movie listings, category organization, search functionality, responsive layouts, and a PHP/MySQL backend for managing users and content.",
+                         "results":  "Successfully recreated the core Netflix browsing experience while demonstrating full-stack development, responsive UI design, backend integration, database management, and user authentication.",
+                         "projectRole":  "Designed and developed the complete application, including UI/UX, responsive frontend, PHP backend, MySQL database, authentication system, movie management, search functionality, testing, and deployment preparation.",
+                         "techDecisions":  [
+                                               "HTML5",
+                                               "CSS3",
+                                               "JavaScript",
+                                               "PHP",
+                                               "MySQL",
+                                               "Responsive Design",
+                                               "Session Authentication",
+                                               "MVC-inspired structure",
+                                               "Dynamic content rendering"
+                                           ],
+                         "impactDetails":  [
+                                               "User authentication",
+                                               "Movie catalog",
+                                               "Category browsing",
+                                               "Search functionality",
+                                               "Responsive interface",
+                                               "Dynamic content loading",
+                                               "Database-driven architecture",
+                                               "Secure session management",
+                                               "Clean streaming UI",
+                                               "Full-stack implementation"
+                                           ],
+                         "tags":  [
+                                      "HTML",
+                                      "CSS",
+                                      "JavaScript",
+                                      "PHP",
+                                      "MySQL",
+                                      "Netflix Clone",
+                                      "Full-Stack",
+                                      "Authentication",
+                                      "Responsive Design",
+                                      "Movie Platform"
+                                  ],
+                         "filters":  [
+                                         "Web",
+                                         "Full-Stack",
+                                         "PHP",
+                                         "MySQL",
+                                         "Entertainment",
+                                         "Personal Project"
+                                     ],
+                         "technologies":  "HTML5, CSS3, JavaScript, PHP, MySQL",
+                         "year":  2024,
+                         "status":  "Published",
+                         "featured":  false,
+                         "liveUrl":  "",
+                         "githubUrl":  "https://github.com/eru-z/netflix-clone",
+                         "coverImage":  "/uploads/1785462339732-3a633f0465-image-40.png",
+                         "images":  [
+                                        {
+                                            "id":  "348b3dbb28a0270d2772",
+                                            "name":  "image (40).png",
+                                            "type":  "image/png",
+                                            "url":  "/uploads/1785462339732-3a633f0465-image-40.png"
+                                        },
+                                        {
+                                            "id":  "5d5fd7fc74a1d054cba4",
+                                            "name":  "image (41).png",
+                                            "type":  "image/png",
+                                            "url":  "/uploads/1785462341376-6e80dd4824-image-41.png"
+                                        },
+                                        {
+                                            "id":  "2cc1adfcd5f34c4a3296",
+                                            "name":  "image (42).png",
+                                            "type":  "image/png",
+                                            "url":  "/uploads/1785462342717-7d9f187bd7-image-42.png"
+                                        },
+                                        {
+                                            "id":  "7d6fa9a2d51e8decace7",
+                                            "name":  "image (43).png",
+                                            "type":  "image/png",
+                                            "url":  "/uploads/1785462343995-5f56546b39-image-43.png"
+                                        },
+                                        {
+                                            "id":  "c2c272736d3b642b974e",
+                                            "name":  "image (44).png",
+                                            "type":  "image/png",
+                                            "url":  "/uploads/1785462345458-06fb3057e5-image-44.png"
+                                        },
+                                        {
+                                            "id":  "5dbde66475351ce9e610",
+                                            "name":  "image (45).png",
+                                            "type":  "image/png",
+                                            "url":  "/uploads/1785462346832-4513d36ffb-image-45.png"
+                                        },
+                                        {
+                                            "id":  "8b00d023aba4d5fec3c7",
+                                            "name":  "image (46).png",
+                                            "type":  "image/png",
+                                            "url":  "/uploads/1785462348473-880243801e-image-46.png"
+                                        },
+                                        {
+                                            "id":  "14ecef30bf7afbfdc400",
+                                            "name":  "image (47).png",
+                                            "type":  "image/png",
+                                            "url":  "/uploads/1785462350909-8552b00da0-image-47.png"
+                                        },
+                                        {
+                                            "id":  "772589837cf93c3720f5",
+                                            "name":  "image (48).png",
+                                            "type":  "image/png",
+                                            "url":  "/uploads/1785462353657-e1c87f3a4d-image-48.png"
+                                        },
+                                        {
+                                            "id":  "5ce6ef86a05e1a11c622",
+                                            "name":  "image (49).png",
+                                            "type":  "image/png",
+                                            "url":  "/uploads/1785462355817-9821fb82a1-image-49.png"
+                                        }
+                                    ],
+                         "videoUrl":  "/uploads/1785462361623-8e28783748-1783893390560-41eb093f97-converted-copy_5C48D386.mp4",
+                         "screenshots":  [
+                                             "/uploads/1785462339732-3a633f0465-image-40.png",
+                                             "/uploads/1785462341376-6e80dd4824-image-41.png",
+                                             "/uploads/1785462342717-7d9f187bd7-image-42.png",
+                                             "/uploads/1785462343995-5f56546b39-image-43.png",
+                                             "/uploads/1785462345458-06fb3057e5-image-44.png",
+                                             "/uploads/1785462346832-4513d36ffb-image-45.png",
+                                             "/uploads/1785462348473-880243801e-image-46.png",
+                                             "/uploads/1785462350909-8552b00da0-image-47.png",
+                                             "/uploads/1785462353657-e1c87f3a4d-image-48.png",
+                                             "/uploads/1785462355817-9821fb82a1-image-49.png"
+                                         ],
+                         "video":  "/uploads/1785462361623-8e28783748-1783893390560-41eb093f97-converted-copy_5C48D386.mp4",
+                         "live":  "",
+                         "github":  "https://github.com/eru-z/netflix-clone",
+                         "image":  "/uploads/1785462339732-3a633f0465-image-40.png",
+                         "type":  "Full-Stack Web Application",
+                         "tech":  [
+                                      "HTML",
+                                      "CSS",
+                                      "JavaScript",
+                                      "PHP",
+                                      "MySQL",
+                                      "Netflix Clone",
+                                      "Full-Stack",
+                                      "Authentication",
+                                      "Responsive Design",
+                                      "Movie Platform"
+                                  ],
+                         "updatedAt":  "2026-07-31T12:43:23.653Z",
+                         "order":  1
+                     },
+                     {
+                         "id":  "p_1785461495520",
+                         "title":  "Expense Tracker",
+                         "category":  "React Native • Finance",
+                         "description":  "Expense Tracker is a React Native personal finance application that helps users manage income, expenses, budgets, and financial goals in one intuitive mobile experience. It provides real-time spending insights, categorized transactions, visual analytics, and secure account management to simplify everyday budgeting.",
+                         "problem":  "Many users struggle to monitor daily spending, organize transactions, and understand their financial habits due to fragmented or overly complex budgeting tools.",
+                         "solution":  "Developed a mobile finance platform that centralizes income and expense tracking, spending categories, budget management, financial analytics, and transaction history into a fast, user-friendly React Native application.",
+                         "results":  "Delivered a modern expense management app that helps users track finances more efficiently, monitor budgets, understand spending habits through analytics, and make better financial decisions.",
+                         "projectRole":  "Led the complete mobile application development, including UI/UX design, React Native architecture, Node.js backend, PostgreSQL database design, authentication, transaction management, analytics, API development, testing, and deployment preparation.",
+                         "techDecisions":  [
+                                               "React Native",
+                                               "Node.js REST API",
+                                               "PostgreSQL database",
+                                               "JWT Authentication",
+                                               "Real-time expense tracking",
+                                               "Budget management system",
+                                               "Financial analytics dashboard",
+                                               "Reusable mobile components"
+                                           ],
+                         "impactDetails":  [
+                                               "Income tracking",
+                                               "Expense management",
+                                               "Budget planning",
+                                               "Transaction history",
+                                               "Category management",
+                                               "Financial analytics",
+                                               "Spending insights",
+                                               "Secure authentication",
+                                               "Responsive mobile experience",
+                                               "Scalable backend architecture"
+                                           ],
+                         "tags":  [
+                                      "React Native",
+                                      "Node.js",
+                                      "PostgreSQL",
+                                      "Finance",
+                                      "Budgeting",
+                                      "Expense Tracker",
+                                      "Mobile App",
+                                      "Personal Finance",
+                                      "Analytics"
+                                  ],
+                         "filters":  [
+                                         "Mobile",
+                                         "React Native",
+                                         "Finance",
+                                         "Budgeting",
+                                         "Personal Project"
+                                     ],
+                         "technologies":  "React Native, JavaScript, Node.js, PostgreSQL, REST API, JWT Authentication",
+                         "year":  2025,
+                         "status":  "Published",
+                         "featured":  false,
+                         "liveUrl":  "",
+                         "githubUrl":  "https://github.com/eru-z/expense-tracker",
+                         "coverImage":  "/uploads/1785461553299-5f27e0e7fc-image-29.png",
+                         "images":  [
+                                        {
+                                            "id":  "024c0c2ae98ac9b4e832",
+                                            "name":  "image (29).png",
+                                            "type":  "image/png",
+                                            "url":  "/uploads/1785461553299-5f27e0e7fc-image-29.png"
+                                        },
+                                        {
+                                            "id":  "da9d753c2ec4a0e75460",
+                                            "name":  "image (30).png",
+                                            "type":  "image/png",
+                                            "url":  "/uploads/1785461555324-d5f11bb094-image-30.png"
+                                        },
+                                        {
+                                            "id":  "27637100dafc2b7bd382",
+                                            "name":  "image (31).png",
+                                            "type":  "image/png",
+                                            "url":  "/uploads/1785461556977-f3b4081e02-image-31.png"
+                                        },
+                                        {
+                                            "id":  "00512425132fd805a23a",
+                                            "name":  "image (32).png",
+                                            "type":  "image/png",
+                                            "url":  "/uploads/1785461558689-2e2baa4c11-image-32.png"
+                                        },
+                                        {
+                                            "id":  "f1092105ace71201b114",
+                                            "name":  "image (33).png",
+                                            "type":  "image/png",
+                                            "url":  "/uploads/1785461560753-3d13460d65-image-33.png"
+                                        },
+                                        {
+                                            "id":  "e02dc2ea6080c1611747",
+                                            "name":  "image (34).png",
+                                            "type":  "image/png",
+                                            "url":  "/uploads/1785461564711-16cc63c4cc-image-34.png"
+                                        },
+                                        {
+                                            "id":  "ef96ea7220239dd600d7",
+                                            "name":  "image (35).png",
+                                            "type":  "image/png",
+                                            "url":  "/uploads/1785461566206-54461b1a2c-image-35.png"
+                                        },
+                                        {
+                                            "id":  "be790b1e3b5e498487de",
+                                            "name":  "image (36).png",
+                                            "type":  "image/png",
+                                            "url":  "/uploads/1785461567679-5c9b223d0e-image-36.png"
+                                        },
+                                        {
+                                            "id":  "406d74d91d21ceed8c0d",
+                                            "name":  "image (37).png",
+                                            "type":  "image/png",
+                                            "url":  "/uploads/1785461569135-5ba2f34cd2-image-37.png"
+                                        },
+                                        {
+                                            "id":  "cfe870df6ba4ebc31313",
+                                            "name":  "image (38).png",
+                                            "type":  "image/png",
+                                            "url":  "/uploads/1785461571608-261ab9b4e9-image-38.png"
+                                        }
+                                    ],
+                         "videoUrl":  "/uploads/1785461581158-cd7d2a21fe-1783906546727-b5916a8ef1-converted-FinTech-Portf.mp4",
+                         "screenshots":  [
+                                             "/uploads/1785461553299-5f27e0e7fc-image-29.png",
+                                             "/uploads/1785461555324-d5f11bb094-image-30.png",
+                                             "/uploads/1785461556977-f3b4081e02-image-31.png",
+                                             "/uploads/1785461558689-2e2baa4c11-image-32.png",
+                                             "/uploads/1785461560753-3d13460d65-image-33.png",
+                                             "/uploads/1785461564711-16cc63c4cc-image-34.png",
+                                             "/uploads/1785461566206-54461b1a2c-image-35.png",
+                                             "/uploads/1785461567679-5c9b223d0e-image-36.png",
+                                             "/uploads/1785461569135-5ba2f34cd2-image-37.png",
+                                             "/uploads/1785461571608-261ab9b4e9-image-38.png"
+                                         ],
+                         "video":  "/uploads/1785461581158-cd7d2a21fe-1783906546727-b5916a8ef1-converted-FinTech-Portf.mp4",
+                         "live":  "",
+                         "github":  "https://github.com/eru-z/expense-tracker",
+                         "image":  "/uploads/1785461553299-5f27e0e7fc-image-29.png",
+                         "type":  "React Native • Finance",
+                         "tech":  [
+                                      "React Native",
+                                      "Node.js",
+                                      "PostgreSQL",
+                                      "Finance",
+                                      "Budgeting",
+                                      "Expense Tracker",
+                                      "Mobile App",
+                                      "Personal Finance",
+                                      "Analytics"
+                                  ],
+                         "updatedAt":  "2026-07-31T12:43:23.653Z",
+                         "order":  2
+                     },
+                     {
+                         "id":  "p_1785461238786",
+                         "title":  "NutriFlow",
+                         "category":  "React Native • Health \u0026 Nutrition",
+                         "description":  "NutriFlow is a React Native nutrition and wellness application that helps users build healthier eating habits through personalized meal planning, nutrition tracking, calorie and macro monitoring, progress analytics, and health insights. The platform combines an intuitive mobile experience with a scalable backend to simplify daily nutrition management.",
+                         "problem":  "Many nutrition apps are difficult to use, requiring users to switch between multiple tools for meal planning, calorie tracking, progress monitoring, and health goals.",
+                         "solution":  "Developed a mobile nutrition platform that centralizes meal planning, food tracking, calorie and macronutrient monitoring, health goals, progress analytics, and personalized recommendations into one seamless React Native application.",
+                         "results":  "Delivered a modern nutrition app that simplifies healthy eating, helps users stay consistent with their goals, improves progress visibility, and provides an intuitive mobile-first experience.",
+                         "projectRole":  "Led the complete mobile application development, including UI/UX design, React Native architecture, Node.js backend, PostgreSQL database design, authentication, nutrition tracking, analytics, API development, testing, and deployment preparation.",
+                         "techDecisions":  [
+                                               "React Native",
+                                               "Node.js REST API",
+                                               "PostgreSQL database",
+                                               "JWT Authentication",
+                                               "Nutrition tracking architecture",
+                                               "Progress analytics",
+                                               "Reusable mobile components",
+                                               "Scalable backend design"
+                                           ],
+                         "impactDetails":  [
+                                               "Meal planning",
+                                               "Calorie tracking",
+                                               "Macronutrient monitoring",
+                                               "Nutrition insights",
+                                               "Progress analytics",
+                                               "Health goal tracking",
+                                               "Secure authentication",
+                                               "Responsive mobile experience",
+                                               "Scalable backend",
+                                               "Personalized nutrition workflow"
+                                           ],
+                         "tags":  [
+                                      "React Native",
+                                      "Node.js",
+                                      "PostgreSQL",
+                                      "Health",
+                                      "Nutrition",
+                                      "Calorie Tracker",
+                                      "Meal Planning",
+                                      "Mobile App",
+                                      "Analytics"
+                                  ],
+                         "filters":  [
+                                         "Mobile",
+                                         "React Native",
+                                         "Health",
+                                         "Nutrition",
+                                         "Personal Project"
+                                     ],
+                         "technologies":  "React Native, JavaScript, Node.js, PostgreSQL, REST API, JWT Authentication",
+                         "year":  2025,
+                         "status":  "Published",
+                         "featured":  false,
+                         "liveUrl":  "",
+                         "githubUrl":  "https://github.com/eru-z/nutriflow-os",
+                         "coverImage":  "/uploads/1785461245698-96bdaa2f9f-image-22.png",
+                         "images":  [
+                                        {
+                                            "id":  "527b65731abf320fd00a",
+                                            "name":  "image (22).png",
+                                            "type":  "image/png",
+                                            "url":  "/uploads/1785461245698-96bdaa2f9f-image-22.png"
+                                        },
+                                        {
+                                            "id":  "cc58d3ed95da9d15edfb",
+                                            "name":  "image (23).png",
+                                            "type":  "image/png",
+                                            "url":  "/uploads/1785461247028-ffc241925c-image-23.png"
+                                        },
+                                        {
+                                            "id":  "8328e9986ed2575135c2",
+                                            "name":  "image (24).png",
+                                            "type":  "image/png",
+                                            "url":  "/uploads/1785461248693-170ee6138d-image-24.png"
+                                        },
+                                        {
+                                            "id":  "fe03c06c02ca1b22de5a",
+                                            "name":  "image (25).png",
+                                            "type":  "image/png",
+                                            "url":  "/uploads/1785461250092-00d9e07204-image-25.png"
+                                        },
+                                        {
+                                            "id":  "6f1b857a2acbe3dbe7a5",
+                                            "name":  "image (26).png",
+                                            "type":  "image/png",
+                                            "url":  "/uploads/1785461270900-a173236a50-image-26.png"
+                                        },
+                                        {
+                                            "id":  "dcb375190a2a5c2118c8",
+                                            "name":  "image (27).png",
+                                            "type":  "image/png",
+                                            "url":  "/uploads/1785461272687-ae0566674e-image-27.png"
+                                        },
+                                        {
+                                            "id":  "16366aa9c4b7fefeb2f7",
+                                            "name":  "image (28).png",
+                                            "type":  "image/png",
+                                            "url":  "/uploads/1785461273988-9c1e5ea3d0-image-28.png"
+                                        }
+                                    ],
+                         "videoUrl":  "/uploads/1785461308856-4cd0ec660e-1783906361859-9d179785e8-converted-NutriFlow-You.mp4",
+                         "screenshots":  [
+                                             "/uploads/1785461245698-96bdaa2f9f-image-22.png",
+                                             "/uploads/1785461247028-ffc241925c-image-23.png",
+                                             "/uploads/1785461248693-170ee6138d-image-24.png",
+                                             "/uploads/1785461250092-00d9e07204-image-25.png",
+                                             "/uploads/1785461270900-a173236a50-image-26.png",
+                                             "/uploads/1785461272687-ae0566674e-image-27.png",
+                                             "/uploads/1785461273988-9c1e5ea3d0-image-28.png"
+                                         ],
+                         "video":  "/uploads/1785461308856-4cd0ec660e-1783906361859-9d179785e8-converted-NutriFlow-You.mp4",
+                         "live":  "",
+                         "github":  "https://github.com/eru-z/nutriflow-os",
+                         "image":  "/uploads/1785461245698-96bdaa2f9f-image-22.png",
+                         "type":  "React Native • Health \u0026 Nutrition",
+                         "tech":  [
+                                      "React Native",
+                                      "Node.js",
+                                      "PostgreSQL",
+                                      "Health",
+                                      "Nutrition",
+                                      "Calorie Tracker",
+                                      "Meal Planning",
+                                      "Mobile App",
+                                      "Analytics"
+                                  ],
+                         "updatedAt":  "2026-07-31T12:43:23.653Z",
+                         "order":  3
+                     },
+                     {
+                         "id":  "p_1785460958445",
+                         "title":  "MindFlow OS",
+                         "category":  "React Native • Productivity",
+                         "description":  "MindFlow OS is a React Native productivity application designed to help users organize tasks, projects, goals, notes, and daily routines in one intuitive mobile experience. It combines smart planning, progress tracking, calendar scheduling, focus sessions, and productivity insights to improve organization and daily workflow.",
+                         "problem":  "Users often rely on multiple apps for tasks, notes, goals, and schedules, making it difficult to stay organized, maintain focus, and track progress efficiently.",
+                         "solution":  "Developed a mobile productivity platform that unifies task management, project organization, goal tracking, calendar scheduling, notes, focus sessions, and productivity analytics into a single, user-friendly React Native application.",
+                         "results":  "Delivered an all-in-one mobile workspace that simplifies planning, improves productivity, centralizes personal organization, and helps users manage their daily activities more efficiently.",
+                         "projectRole":  "Led the complete mobile application development, including UI/UX design, React Native architecture, Node.js backend, PostgreSQL database design, authentication, task workflows, calendar features, analytics, testing, and deployment preparation.",
+                         "techDecisions":  [
+                                               "React Native",
+                                               "Node.js REST API",
+                                               "PostgreSQL database",
+                                               "JWT Authentication",
+                                               "Offline-first task caching",
+                                               "Modular mobile architecture",
+                                               "Calendar-based scheduling",
+                                               "Reusable UI components"
+                                           ],
+                         "impactDetails":  [
+                                               "Unified productivity workspace",
+                                               "Task and project management",
+                                               "Goal tracking",
+                                               "Calendar scheduling",
+                                               "Notes organization",
+                                               "Focus timer",
+                                               "Progress analytics",
+                                               "Mobile-first experience",
+                                               "Secure authentication",
+                                               "Scalable backend architecture"
+                                           ],
+                         "tags":  [
+                                      "React Native",
+                                      "Node.js",
+                                      "PostgreSQL",
+                                      "Productivity",
+                                      "Mobile App",
+                                      "Task Management",
+                                      "Project Management",
+                                      "Goals",
+                                      "Calendar",
+                                      "Analytics"
+                                  ],
+                         "filters":  [
+                                         "Mobile",
+                                         "React Native",
+                                         "Productivity",
+                                         "Dashboard",
+                                         "Personal Project"
+                                     ],
+                         "technologies":  "React Native, JavaScript, Node.js, PostgreSQL, REST API, JWT Authentication",
+                         "year":  2025,
+                         "status":  "Published",
+                         "featured":  false,
+                         "liveUrl":  "",
+                         "githubUrl":  "https://github.com/eru-z/mindflow-os",
+                         "coverImage":  "/uploads/1785460971221-134765b5ed-image-9.png",
+                         "images":  [
+                                        {
+                                            "id":  "f3c919cab1b5bba8d922",
+                                            "name":  "image (9).png",
+                                            "type":  "image/png",
+                                            "url":  "/uploads/1785460971221-134765b5ed-image-9.png"
+                                        },
+                                        {
+                                            "id":  "13da8a1035c3486c0760",
+                                            "name":  "image (10).png",
+                                            "type":  "image/png",
+                                            "url":  "/uploads/1785460976310-2fb9f5e773-image-10.png"
+                                        },
+                                        {
+                                            "id":  "1d9c0f44de26b3432d8c",
+                                            "name":  "image (11).png",
+                                            "type":  "image/png",
+                                            "url":  "/uploads/1785460984180-ffaedbab60-image-11.png"
+                                        },
+                                        {
+                                            "id":  "dfe5eb4f560226900432",
+                                            "name":  "image (12).png",
+                                            "type":  "image/png",
+                                            "url":  "/uploads/1785460986703-4c3a5e5b81-image-12.png"
+                                        },
+                                        {
+                                            "id":  "bbc5b5c54ed79710f08e",
+                                            "name":  "image (13).png",
+                                            "type":  "image/png",
+                                            "url":  "/uploads/1785460988220-cc219e444a-image-13.png"
+                                        },
+                                        {
+                                            "id":  "7d7036d59200c6f9d5f8",
+                                            "name":  "image (21).png",
+                                            "type":  "image/png",
+                                            "url":  "/uploads/1785460995287-9e823161cb-image-21.png"
+                                        },
+                                        {
+                                            "id":  "7e3be4f0b2cf9702b1f9",
+                                            "name":  "image (20).png",
+                                            "type":  "image/png",
+                                            "url":  "/uploads/1785460995303-882673d091-image-20.png"
+                                        },
+                                        {
+                                            "id":  "1601d868f7a211edef65",
+                                            "name":  "image (19).png",
+                                            "type":  "image/png",
+                                            "url":  "/uploads/1785460995307-6b0aa81b65-image-19.png"
+                                        },
+                                        {
+                                            "id":  "9c161de744194f8c0124",
+                                            "name":  "image (18).png",
+                                            "type":  "image/png",
+                                            "url":  "/uploads/1785460995313-f1f28c0235-image-18.png"
+                                        },
+                                        {
+                                            "id":  "21caff84a92823d41f70",
+                                            "name":  "image (17).png",
+                                            "type":  "image/png",
+                                            "url":  "/uploads/1785460995319-3e58a291a6-image-17.png"
+                                        },
+                                        {
+                                            "id":  "6da4bdd58da68653d9e9",
+                                            "name":  "image (16).png",
+                                            "type":  "image/png",
+                                            "url":  "/uploads/1785460995322-f42ccc1cd2-image-16.png"
+                                        },
+                                        {
+                                            "id":  "a56b86fcaa2a772e7087",
+                                            "name":  "image (15).png",
+                                            "type":  "image/png",
+                                            "url":  "/uploads/1785460995326-1434c42ed3-image-15.png"
+                                        },
+                                        {
+                                            "id":  "10e720b4cbbdb4905dcd",
+                                            "name":  "image (14).png",
+                                            "type":  "image/png",
+                                            "url":  "/uploads/1785460995331-acdbf41516-image-14.png"
+                                        }
+                                    ],
+                         "videoUrl":  "/uploads/1785461009402-a3e80a4acb-1783895186027-8528991c6f-converted-copy_5F896A82.mp4",
+                         "screenshots":  [
+                                             "/uploads/1785460971221-134765b5ed-image-9.png",
+                                             "/uploads/1785460976310-2fb9f5e773-image-10.png",
+                                             "/uploads/1785460984180-ffaedbab60-image-11.png",
+                                             "/uploads/1785460986703-4c3a5e5b81-image-12.png",
+                                             "/uploads/1785460988220-cc219e444a-image-13.png",
+                                             "/uploads/1785460995287-9e823161cb-image-21.png",
+                                             "/uploads/1785460995303-882673d091-image-20.png",
+                                             "/uploads/1785460995307-6b0aa81b65-image-19.png",
+                                             "/uploads/1785460995313-f1f28c0235-image-18.png",
+                                             "/uploads/1785460995319-3e58a291a6-image-17.png",
+                                             "/uploads/1785460995322-f42ccc1cd2-image-16.png",
+                                             "/uploads/1785460995326-1434c42ed3-image-15.png",
+                                             "/uploads/1785460995331-acdbf41516-image-14.png"
+                                         ],
+                         "video":  "/uploads/1785461009402-a3e80a4acb-1783895186027-8528991c6f-converted-copy_5F896A82.mp4",
+                         "live":  "",
+                         "github":  "https://github.com/eru-z/mindflow-os",
+                         "image":  "/uploads/1785460971221-134765b5ed-image-9.png",
+                         "type":  "React Native • Productivity",
+                         "tech":  [
+                                      "React Native",
+                                      "Node.js",
+                                      "PostgreSQL",
+                                      "Productivity",
+                                      "Mobile App",
+                                      "Task Management",
+                                      "Project Management",
+                                      "Goals",
+                                      "Calendar",
+                                      "Analytics"
+                                  ],
+                         "updatedAt":  "2026-07-31T12:43:23.653Z",
+                         "order":  4
+                     },
+                     {
+                         "id":  "p_1783865681287",
+                         "title":  "Pyramid Backstage",
+                         "category":  "Full-Stack Web \u0026 Mobile Platform",
+                         "description":  "A full-stack event operations platform built during JunctionX Tirana 2026, consisting of a web-based admin dashboard and a React Native mobile application for staff. The platform centralizes event planning, space allocation, scheduling, equipment reservations, proposals, task management, staff coordination, and operational readiness. It features AI-assisted event planning, a real-time Digital Twin, automatic conflict detection, Kanban-based workflows, analytics, readiness scoring, live notifications, digital checklists, and real-time synchronization between administrators and on-site teams to ensure seamless event execution.",
+                         "tags":  [
+                                      "React",
+                                      "React Native",
+                                      "TypeScript",
+                                      "Vite",
+                                      "Tailwind CSS",
+                                      "Supabase",
+                                      "PostgreSQL",
+                                      "Node.js",
+                                      "AI",
+                                      "Digital Twin",
+                                      "Event Management",
+                                      "Dashboard",
+                                      "Mobile App",
+                                      "Full-Stack"
+                                  ],
+                         "technologies":  "React, React Native, TypeScript, Vite, Tailwind CSS, Supabase, PostgreSQL, TanStack Router, Framer Motion, Node.js, REST API, Lucide React",
+                         "year":  2026,
+                         "status":  "Published",
+                         "featured":  true,
+                         "liveUrl":  "",
+                         "githubUrl":  "https://github.com/eru-z/pyramidbackstage-web",
+                         "coverImage":  "/uploads/1785459564336-0977d746df-1783904634934-0d90b031f6-ChatGPT-Image-Jul-13-20.png",
+                         "images":  [
+                                        {
+                                            "id":  "4c2fc157fd22005ef8b1",
+                                            "name":  "1783904634934-0d90b031f6-ChatGPT-Image-Jul-13-2026-03_03_31-AM.png",
+                                            "type":  "image/png",
+                                            "url":  "/uploads/1785459564336-0977d746df-1783904634934-0d90b031f6-ChatGPT-Image-Jul-13-20.png"
+                                        }
+                                    ],
+                         "videoUrl":  "/uploads/1785459560777-65e568b406-1783865774441-c7f6340fd1-Pyramid-Backstage-Junct.mp4",
+                         "screenshots":  [
+                                             "/uploads/1785459564336-0977d746df-1783904634934-0d90b031f6-ChatGPT-Image-Jul-13-20.png"
+                                         ],
+                         "video":  "/uploads/1785459560777-65e568b406-1783865774441-c7f6340fd1-Pyramid-Backstage-Junct.mp4",
+                         "live":  "",
+                         "github":  "https://github.com/eru-z/pyramidbackstage-web",
+                         "image":  "/uploads/1785459564336-0977d746df-1783904634934-0d90b031f6-ChatGPT-Image-Jul-13-20.png",
+                         "type":  "Full-Stack Web \u0026 Mobile Platform",
+                         "tech":  [
+                                      "React",
+                                      "React Native",
+                                      "TypeScript",
+                                      "Vite",
+                                      "Tailwind CSS",
+                                      "Supabase",
+                                      "PostgreSQL",
+                                      "Node.js",
+                                      "AI",
+                                      "Digital Twin",
+                                      "Event Management",
+                                      "Dashboard",
+                                      "Mobile App",
+                                      "Full-Stack"
+                                  ],
+                         "problem":  "Managing large-scale venue operations with disconnected tools made event planning, staff coordination, scheduling, and resource management inefficient. Teams lacked real-time visibility, causing scheduling conflicts, communication delays, and reduced operational readiness during live events.",
+                         "solution":  "Designed and developed a full-stack event operations platform consisting of a web-based admin dashboard and a React Native staff mobile app. The system includes AI-assisted event planning, Digital Twin visualization, scheduling, equipment reservations, proposal generation, Kanban task management, readiness scoring, live notifications, and real-time synchronization between administrators and staff.",
+                         "results":  "Delivered a unified platform that streamlined event operations, reduced manual coordination, improved scheduling accuracy, increased team visibility, enabled faster decision-making, and provided a scalable foundation for managing complex venues with real-time collaboration.",
+                         "projectRole":  "Led the end-to-end development of the platform, including UI/UX design, React web app, React Native mobile app, Supabase backend, database architecture, authentication, AI features, real-time synchronization, testing, and deployment preparation.",
+                         "filters":  [
+                                         "Full-Stack",
+                                         "Dashboard",
+                                         "AI",
+                                         "Event Management",
+                                         "React",
+                                         "React Native",
+                                         "Platform Web \u0026 Mobile"
+                                     ],
+                         "techDecisions":  [
+                                               "React",
+                                               "React Native",
+                                               "Vite",
+                                               "TypeScript",
+                                               "Tailwind CSS",
+                                               "Supabase",
+                                               "PostgreSQL",
+                                               "TanStack Router",
+                                               "Framer Motion",
+                                               "Lucide React",
+                                               "Node.js",
+                                               "REST API",
+                                               "Real-time Sync",
+                                               "AI Integration"
+                                           ],
+                         "impactDetails":  [
+                                               "Unified web \u0026 mobile platform",
+                                               "AI-assisted event planning",
+                                               "Real-time staff synchronization",
+                                               "Digital Twin visualization",
+                                               "Automated conflict detection",
+                                               "Kanban workflow management",
+                                               "Operational readiness scoring",
+                                               "Faster team coordination",
+                                               "Improved scheduling accuracy",
+                                               "Scalable event management architecture"
+                                           ],
+                         "updatedAt":  "2026-07-31T12:43:23.654Z",
+                         "order":  5
+                     },
+                     {
+                         "id":  "p1",
+                         "number":  "01",
+                         "title":  "Pizzeria Paradiso",
+                         "category":  "Web · Restaurant",
+                         "type":  "Web · Restaurant",
+                         "description":  "A premium restaurant website developed for Pizzeria Paradiso in Vaduz, Liechtenstein. Designed to showcase the brand, menu, and dining experience while providing seamless table reservations, online ordering, takeaway, and delivery. Built with a mobile-first approach, fast performance, responsive design, and SEO optimization to maximize user experience and online visibility.",
+                         "coverImage":  "/uploads/1785459669822-222eab5d74-image.png",
+                         "mobileCoverImage":  "/images/pizzeria-paradiso-mobile-about.png",
+                         "screenshots":  [
+                                             "/uploads/1785459669822-222eab5d74-image.png",
+                                             "/uploads/1785459671393-10e8bff986-image-1.png",
+                                             "/uploads/1785459672674-c7c816a115-image-2.png",
+                                             "/uploads/1785459673995-3e2d093ae4-image-3.png",
+                                             "/uploads/1785459675880-98c968e7f1-image-4.png",
+                                             "/uploads/1785459713724-981f2dfaf3-image.png",
+                                             "/uploads/1785459725916-f1f0c97683-image.png"
+                                         ],
+                         "video":  "/uploads/1785459951752-cf6d85ed47-1783903447626-09108307b5-converted-copy_C8DEB877.mp4",
+                         "liveUrl":  "https://pizzeriaparadiso.li",
+                         "githubUrl":  "",
+                         "caseStudyUrl":  "/projects/pizzeria",
+                         "tech":  [
+                                      "Restaurant Website",
+                                      "Booking System",
+                                      "Online Ordering",
+                                      "Responsive Design",
+                                      "SEO",
+                                      "Client Work"
+                                  ],
+                         "featured":  true,
+                         "status":  "Published",
+                         "year":  2026,
+                         "tone":  "restaurant",
+                         "accent":  "#F59E0B",
+                         "url":  "pizzeriaparadiso.li",
+                         "headline":  "Fresh. Authentic. Italian.",
+                         "metric":  "+42%",
+                         "metricLabel":  "Bookings",
+                         "metrics":  {
+                                         "impact":  "+42%",
+                                         "performance":  98,
+                                         "seo":  96,
+                                         "accessibility":  100
+                                     },
+                         "problem":  "The restaurant lacked a modern digital presence that clearly showcased its menu, brand, and services while making reservations and online ordering quick and intuitive across all devices.",
+                         "solution":  "Designed and developed a high-performance, mobile-first restaurant website with an immersive visual experience, streamlined navigation, online reservations, menu browsing, SEO optimization, and fast loading for an excellent user experience.",
+                         "results":  "Delivered a premium digital experience that improved online visibility, simplified reservations and ordering, strengthened the restaurant\u0027s brand, and provided customers with a fast, responsive experience on every device.",
+                         "architecture":  [
+                                              "React UI",
+                                              "Menu Content",
+                                              "Ordering Flow",
+                                              "Reservations"
+                                          ],
+                         "techDecisions":  [
+                                               "HTML",
+                                               "CSS",
+                                               "JavaScript",
+                                               "PHP",
+                                               "Responsive Design",
+                                               "SEO Optimization",
+                                               "Performance Optimization",
+                                               "Mobile-first Architecture"
+                                           ],
+                         "timeline":  "3-day production sprint from structure to polished launch.",
+                         "filters":  [
+                                         "Web",
+                                         "Client Work",
+                                         "Restaurant",
+                                         "React",
+                                         "Booking",
+                                         "Responsive",
+                                         "Business Website"
+                                     ],
+                         "tags":  [
+                                      "Restaurant Website",
+                                      "Booking System",
+                                      "Online Ordering",
+                                      "Responsive Design",
+                                      "SEO",
+                                      "Client Work"
+                                  ],
+                         "projectRole":  "Led the complete website redesign and development, including UI/UX design, frontend architecture, responsive implementation, menu experience, reservation flow, SEO optimization, performance improvements, deployment, and client collaboration.",
+                         "impactDetails":  [
+                                               "Modern restaurant experience",
+                                               "Mobile-first design",
+                                               "Faster reservations",
+                                               "Improved online ordering flow",
+                                               "Better menu discovery",
+                                               "Higher performance",
+                                               "SEO optimized",
+                                               "Responsive across all devices",
+                                               "Professional brand presence",
+                                               "Easy content management"
+                                           ],
+                         "technologies":  "HTML5, CSS3, JavaScript, Responsive Design, SEO, PHP, MySQL",
+                         "images":  [
+                                        {
+                                            "id":  "1406dd937987f73b209e",
+                                            "name":  "image.png",
+                                            "type":  "image/png",
+                                            "url":  "/uploads/1785459669822-222eab5d74-image.png"
+                                        },
+                                        {
+                                            "id":  "c06a0d8a60a398630026",
+                                            "name":  "image (1).png",
+                                            "type":  "image/png",
+                                            "url":  "/uploads/1785459671393-10e8bff986-image-1.png"
+                                        },
+                                        {
+                                            "id":  "26985edd6413e644075e",
+                                            "name":  "image (2).png",
+                                            "type":  "image/png",
+                                            "url":  "/uploads/1785459672674-c7c816a115-image-2.png"
+                                        },
+                                        {
+                                            "id":  "f311b8c5cf510d45ecd3",
+                                            "name":  "image (3).png",
+                                            "type":  "image/png",
+                                            "url":  "/uploads/1785459673995-3e2d093ae4-image-3.png"
+                                        },
+                                        {
+                                            "id":  "36cc735ac2eb523ee1d2",
+                                            "name":  "image (4).png",
+                                            "type":  "image/png",
+                                            "url":  "/uploads/1785459675880-98c968e7f1-image-4.png"
+                                        },
+                                        {
+                                            "id":  "dba92bcf22e3aac8f646",
+                                            "name":  "image.png",
+                                            "type":  "image/png",
+                                            "url":  "/uploads/1785459713724-981f2dfaf3-image.png"
+                                        },
+                                        {
+                                            "id":  "3bd8b61c63874649595f",
+                                            "name":  "image.png",
+                                            "type":  "image/png",
+                                            "url":  "/uploads/1785459725916-f1f0c97683-image.png"
+                                        }
+                                    ],
+                         "videoUrl":  "/uploads/1785459951752-cf6d85ed47-1783903447626-09108307b5-converted-copy_C8DEB877.mp4",
+                         "updatedAt":  "2026-07-31T12:43:23.654Z",
+                         "order":  6,
+                         "live":  "https://pizzeriaparadiso.li",
+                         "github":  "",
+                         "image":  "/uploads/1785459669822-222eab5d74-image.png"
+                     },
+                     {
+                         "id":  "p6",
+                         "number":  "05",
+                         "title":  "SciMaster AI — Intelligent STEM Learning Platform",
+                         "category":  "Full-Stack AI Education Platform",
+                         "type":  "Full-Stack AI Education Platform",
+                         "description":  "SciMaster AI is a full-stack learning platform designed to help students understand mathematics, biology, IT, and programming through interactive tools and AI-assisted explanations. It includes a step-by-step mathematics solver with visual graphs, biology theory, flashcards, quizzes, recall sessions, coding challenges, a browser-based coding playground, progress tracking, and a personalized student dashboard.",
+                         "coverImage":  "/uploads/1785460223089-2c34aca8df-image-5.png",
+                         "screenshots":  [
+                                             "/uploads/1785460223089-2c34aca8df-image-5.png"
+                                         ],
+                         "video":  "/uploads/1785460221844-cb26628ffa-1783907456027-b6c450e49f-SciMaster-AI-Product-Sh.mp4",
+                         "liveUrl":  "",
+                         "githubUrl":  "https://github.com/eru-z/scimaster-ai",
+                         "caseStudyUrl":  "/projects/scimaster-ai",
+                         "tech":  [
+                                      "React",
+                                      "Vite",
+                                      "Tailwind CSS",
+                                      "Python",
+                                      "Flask",
+                                      "Node.js",
+                                      "AI",
+                                      "Mathematics Solver",
+                                      "Interactive Graphs",
+                                      "Biology",
+                                      "Flashcards",
+                                      "Quizzes",
+                                      "Coding Playground",
+                                      "EdTech",
+                                      "Full-Stack"
+                                  ],
+                         "featured":  true,
+                         "status":  "Published",
+                         "year":  2026,
+                         "tone":  "dark",
+                         "accent":  "#7C3AED",
+                         "url":  "scimaster.ai",
+                         "headline":  "Study smarter with AI.",
+                         "metric":  "+36%",
+                         "metricLabel":  "Study Clarity",
+                         "metrics":  {
+                                         "impact":  "+36%",
+                                         "performance":  94,
+                                         "seo":  90,
+                                         "accessibility":  97
+                                     },
+                         "problem":  "Students often use separate tools for solving mathematics problems, viewing graphs, studying theory, practising recall, and learning code. This creates a disconnected experience and makes it difficult to understand complex topics or track progress effectively.",
+                         "solution":  "I developed a unified student platform combining step-by-step mathematics solutions, interactive function graphs, biology lessons, flashcards, quizzes, coding challenges, and an in-browser coding playground. A personalized dashboard organizes subjects, learning activity, and progress in one accessible experience.",
+                         "results":  "SciMaster AI created a more structured and interactive learning workflow where students can move from theory to practice, receive guided explanations, visualize mathematical solutions, test their knowledge, practise programming, and monitor progress from one platform.",
+                         "architecture":  [
+                                              "React App",
+                                              "AI Layer",
+                                              "Progress DB",
+                                              "Analytics"
+                                          ],
+                         "techDecisions":  [
+                                               "React for the interactive student interface",
+                                               "Vite for fast development and optimized builds",
+                                               "Tailwind CSS for responsive UI styling",
+                                               "Flask and Python for mathematics-solving services",
+                                               "Node.js for application services and APIs",
+                                               "Interactive graph rendering for mathematical functions",
+                                               "Reusable subject and lesson components",
+                                               "Modular architecture for expanding learning categories"
+                                           ],
+                         "timeline":  "Concept sprint for AI flow, dashboards and learning states.",
+                         "filters":  [
+                                         "AI",
+                                         "Full-Stack",
+                                         "Education",
+                                         "Student Platform",
+                                         "Mathematics",
+                                         "Coding",
+                                         "React",
+                                         "Python",
+                                         "Platform Web \u0026 Mobile"
+                                     ],
+                         "tags":  [
+                                      "React",
+                                      "Vite",
+                                      "Tailwind CSS",
+                                      "Python",
+                                      "Flask",
+                                      "Node.js",
+                                      "AI",
+                                      "Mathematics Solver",
+                                      "Interactive Graphs",
+                                      "Biology",
+                                      "Flashcards",
+                                      "Quizzes",
+                                      "Coding Playground",
+                                      "EdTech",
+                                      "Full-Stack"
+                                  ],
+                         "projectRole":  "Led the complete platform development, including UI/UX design, React frontend, Flask and Node.js services, AI-assisted explanations, mathematics solver, graph visualization, learning modules, coding playground, progress dashboard, testing, and deployment.",
+                         "impactDetails":  [
+                                               "Step-by-step mathematics explanations",
+                                               "Interactive function graph visualization",
+                                               "Unified multi-subject learning experience",
+                                               "Biology theory and guided lessons",
+                                               "Flashcards",
+                                               "quizzes and recall practice",
+                                               "Browser-based coding playground",
+                                               "Interactive programming challenges",
+                                               "Personalized student dashboard",
+                                               "Progress and activity tracking",
+                                               "Responsive learning experience"
+                                           ],
+                         "technologies":  "React, Vite, Tailwind CSS, JavaScript, Python, Flask, Node.js, REST API, AI Integration, Graph Visualization, Code Editor",
+                         "images":  [
+                                        {
+                                            "id":  "ac52a947bdafc1a00179",
+                                            "name":  "image (5).png",
+                                            "type":  "image/png",
+                                            "url":  "/uploads/1785460223089-2c34aca8df-image-5.png"
+                                        }
+                                    ],
+                         "videoUrl":  "/uploads/1785460221844-cb26628ffa-1783907456027-b6c450e49f-SciMaster-AI-Product-Sh.mp4",
+                         "updatedAt":  "2026-07-31T12:43:23.654Z",
+                         "order":  7,
+                         "live":  "",
+                         "github":  "https://github.com/eru-z/scimaster-ai",
+                         "image":  "/uploads/1785460223089-2c34aca8df-image-5.png"
+                     }
+                 ],
+    "skills":  [
+                   {
+                       "name":  "HTML",
+                       "level":  95,
+                       "group":  "Frontend"
+                   },
+                   {
+                       "name":  "CSS",
+                       "level":  95,
+                       "group":  "Frontend"
+                   },
+                   {
+                       "name":  "JS",
+                       "level":  92,
+                       "group":  "Frontend"
+                   },
+                   {
+                       "name":  "Bootstrap",
+                       "level":  85,
+                       "group":  "Frontend"
+                   },
+                   {
+                       "name":  "Tailwind",
+                       "level":  95,
+                       "group":  "Frontend"
+                   },
+                   {
+                       "name":  "React.js",
+                       "level":  92,
+                       "group":  "Frontend"
+                   },
+                   {
+                       "name":  "React Native",
+                       "level":  85,
+                       "group":  "Mobile"
+                   },
+                   {
+                       "name":  "WordPress",
+                       "level":  85,
+                       "group":  "CMS"
+                   },
+                   {
+                       "name":  "Python",
+                       "level":  85,
+                       "group":  "Backend"
+                   },
+                   {
+                       "name":  "Node.js",
+                       "level":  85,
+                       "group":  "Backend"
+                   },
+                   {
+                       "name":  "PHP",
+                       "level":  80,
+                       "group":  "Backend"
+                   },
+                   {
+                       "name":  "PostgreSQL",
+                       "level":  85,
+                       "group":  "Databases"
+                   },
+                   {
+                       "name":  "MySQL",
+                       "level":  85,
+                       "group":  "Databases"
+                   },
+                   {
+                       "name":  "Vercel",
+                       "level":  90,
+                       "group":  "Tools \u0026 Others"
+                   },
+                   {
+                       "name":  "git/GitHub",
+                       "level":  90,
+                       "group":  "Tools \u0026 Others"
+                   },
+                   {
+                       "name":  "Hosting/Domains",
+                       "level":  85,
+                       "group":  "Tools \u0026 Others"
+                   },
+                   {
+                       "name":  "Expo",
+                       "level":  85,
+                       "group":  "Tools \u0026 Others"
+                   },
+                   {
+                       "name":  "Supabase",
+                       "level":  88,
+                       "group":  "Tools \u0026 Others"
+                   }
+               ],
+    "services":  [
+                     {
+                         "id":  "s1",
+                         "title":  "Web Development",
+                         "description":  "High-performance marketing sites, dashboards, and web apps built with modern stacks.",
+                         "icon":  "Code2"
+                     },
+                     {
+                         "id":  "s2",
+                         "title":  "Mobile Development",
+                         "description":  "Cross-platform mobile apps with React Native — smooth, native-feeling experiences.",
+                         "icon":  "Smartphone"
+                     },
+                     {
+                         "id":  "s3",
+                         "title":  "UI / UX Design",
+                         "description":  "Design systems, wireframes, and pixel-perfect interfaces crafted in Figma.",
+                         "icon":  "Palette"
+                     },
+                     {
+                         "id":  "s4",
+                         "title":  "Full-Stack Solutions",
+                         "description":  "From database to deployment — complete product engineering, end to end.",
+                         "icon":  "Server"
+                     }
+                 ],
+    "experience":  [
+                       {
+                           "id":  "e_1783796866968",
+                           "role":  "Full-Stack Web Developer — Pizzeria Paradiso, Liechtenstein",
+                           "company":  "Pizzeria Paradiso · Liechtenstein",
+                           "period":  "2026",
+                           "description":  "Designed, developed, and delivered a production website for a real restaurant client in Liechtenstein, featuring online reservations, multilingual content, responsive design, and a polished user experience tailored to the business.",
+                           "imageUrl":  "/images/pizzeria-paradiso-cover.png"
+                       },
+                       {
+                           "id":  "e_1783796744863",
+                           "role":  "Web Development Assistant",
+                           "company":  "Digital School Tetova",
+                           "period":  "2026 — Present",
+                           "description":  "Support students during web development classes by debugging code, explaining technical concepts, and helping students who fall behind catch up, solve problems, and successfully complete their projects.",
+                           "imageUrl":  ""
+                       },
+                       {
+                           "id":  "e_1783796799896",
+                           "role":  "AI Summer School Assistant",
+                           "company":  "Create \u0026 Learn with AI",
+                           "period":  "Summer 2026 · 1-Week Program",
+                           "description":  "Assisted students during an AI-focused summer school, helping them explore AI tools, overcome technical challenges, debug their work, and turn creative ideas into functional AI-powered projects.",
+                           "imageUrl":  ""
+                       }
+                   ],
+    "contact":  {
+                    "email":  "eruditazilbearids@gmail.com",
+                    "phone":  "+389 70 902 183",
+                    "location":  "Tetovo, North Macedonia",
+                    "availability":  "Available for freelance \u0026 full-time roles"
+                },
+    "achievements":  {
+                         "recognitions":  [
+                                              {
+                                                  "id":  "achievement-1783804101992-e692a",
+                                                  "title":  "MindFlow OS — Champion Trials",
+                                                  "subtitle":  "Champion Trials · App Development Project",
+                                                  "description":  "Built MindFlow OS, an AI-powered productivity application designed to help users organize tasks, manage goals, improve focus, and create a more structured daily workflow.",
+                                                  "year":  "22 November 2025",
+                                                  "published":  true
+                                              },
+                                              {
+                                                  "id":  "achievement-1783803514068-51149",
+                                                  "title":  "Smart Tetova — Municipal Technology Competition",
+                                                  "subtitle":  "Municipality of Tetova · Innovation Competition",
+                                                  "description":  "Competed alongside industry specialists and established companies, building a smart-city platform for Tetova that combined intelligent traffic solutions, parking management, and citizen-powered reporting of urban issues.",
+                                                  "year":  "26-27 February 2025",
+                                                  "published":  true
+                                              },
+                                              {
+                                                  "id":  "achievement-1783803315567-af951",
+                                                  "title":  "JunctionX Tirana — Two-Time Hackathon Participant",
+                                                  "subtitle":  "International Hackathon · 2025 \u0026 2026",
+                                                  "description":  "Participated twice in JunctionX Tirana, tackling challenges for Raiffeisen Bank in 2025 and Pyramid Backstage in 2026, building innovative technology solutions under intense hackathon time constraints.",
+                                                  "year":  "2025 — 2026",
+                                                  "published":  true
+                                              },
+                                              {
+                                                  "id":  "achievement-1783803071071-1ea18",
+                                                  "title":  "Eco Innovation Project",
+                                                  "subtitle":  "3rd Place · Europe House × Digital School Tetova",
+                                                  "description":  "Won 3rd place for an eco-focused technology project developed through a collaboration between Europe House and Digital School Tetova.",
+                                                  "year":  "11 June 2025",
+                                                  "published":  true
+                                              },
+                                              {
+                                                  "id":  "achievement-1783802921777-102f8",
+                                                  "title":  "Summer Code Fest — Green Travel Guide (GTG)",
+                                                  "subtitle":  "3rd Place · 48-Hour Hackathon",
+                                                  "description":  "Built GTG (Green Travel Guide) in just 48 hours—a sustainable travel platform designed to help users discover greener travel options and make more environmentally responsible choices.",
+                                                  "year":  "12 May 2024",
+                                                  "published":  true
+                                              },
+                                              {
+                                                  "id":  "achievement-1783802476339-2ffd0",
+                                                  "title":  "SciMaster AI — AI-Powered Student Platform",
+                                                  "subtitle":  "1st Place · Science Fair — Information Technology",
+                                                  "description":  "Developed SciMaster AI, a full-stack web and mobile learning platform featuring AI-powered math solving, interactive graphing, medicine tools, secure authentication, and an admin dashboard. Built with React.js, React Native, Node.js, Python, and NumPy.",
+                                                  "year":  "7 May 2026",
+                                                  "published":  true
+                                              },
+                                              {
+                                                  "id":  "achievement-1783802103762-18a5f",
+                                                  "title":  "SpringCodeFest",
+                                                  "subtitle":  "1st Place · React Native Kahoot Quiz Competition",
+                                                  "description":  "Won 1st place in a competitive Kahoot quiz testing React Native knowledge, concepts, and mobile development fundamentals.",
+                                                  "year":  "7 June 2026",
+                                                  "published":  true
+                                              }
+                                          ],
+                         "certificates":  [
+
+                                          ],
+                         "clients":  [
+
+                                     ]
+                     },
+    "resume":  {
+                   "fileName":  "Nail_Beauty_Prospects_List.pdf",
+                   "url":  "/uploads/1783793023127-18f12322af-Nail_Beauty_Prospects_List.pdf",
+                   "uploadedAt":  "2026-07-11T18:03:43.175Z",
+                   "enabled":  true
+               },
+    "techStack":  [
+
+                  ]
 }
