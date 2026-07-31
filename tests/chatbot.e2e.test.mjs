@@ -30,7 +30,7 @@ async function streamChat(message) {
 
 test.before(async () => {
   dataDir = await mkdtemp(path.join(tmpdir(), "portfolio-chat-e2e-"));
-  server = spawn(process.execPath, ["server/index.js"], {
+  server = spawn(process.execPath, ["server/start.js"], {
     cwd: process.cwd(),
     env: { ...process.env, PORT: String(port), PORTFOLIO_DATA_DIR: dataDir, NODE_ENV: "test", CHATBOT_DEV_MOCK_RESPONSES: "false", SUPABASE_URL: "", SUPABASE_SERVICE_ROLE_KEY: "" },
     stdio: "ignore",

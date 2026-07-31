@@ -15,7 +15,7 @@ function run(command, args) {
 }
 
 const processes = [
-  run(process.execPath, ["server/index.js"]),
+  run(process.execPath, ["server/start.js"]),
   run(process.execPath, [viteBin]),
 ];
 

@@ -24,7 +24,7 @@ async function authed(pathname, options = {}) {
 
 test.before(async () => {
   dataDir = await mkdtemp(path.join(tmpdir(), "portfolio-projects-e2e-"));
-  server = spawn(process.execPath, ["server/index.js"], {
+  server = spawn(process.execPath, ["server/start.js"], {
     cwd: process.cwd(),
     env: {
       ...process.env,

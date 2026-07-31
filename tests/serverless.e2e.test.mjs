@@ -10,7 +10,7 @@ const sharedEnv = { ...process.env, NODE_ENV: "test", ADMIN_USERNAME: "serverles
 const servers = [];
 
 async function start(port) {
-  const child = spawn(process.execPath, ["server/index.js"], { cwd: process.cwd(), env: { ...sharedEnv, PORT: String(port) }, stdio: "ignore" });
+  const child = spawn(process.execPath, ["server/start.js"], { cwd: process.cwd(), env: { ...sharedEnv, PORT: String(port) }, stdio: "ignore" });
   servers.push(child);
   for (let attempt = 0; attempt < 50; attempt += 1) {
     try { if ((await fetch(`http://127.0.0.1:${port}/api/health`)).ok) return; } catch { /* retry */ }

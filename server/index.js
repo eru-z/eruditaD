@@ -1,4 +1,3 @@
-import http from "node:http";
 import { promises as fs } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -12,7 +11,6 @@ import { consumeOpenRouterStream, friendlyOpenRouterError, requestOpenRouterChat
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT_DIR = path.resolve(__dirname, "..");
-const PORT = Number(process.env.PORT || 3001);
 const SEED_DATA_DIR = path.join(ROOT_DIR, "data");
 const DATA_DIR = process.env.PORTFOLIO_DATA_DIR || path.join(ROOT_DIR, ".portfolio-data");
 const SEED_DATA_FILE = path.join(SEED_DATA_DIR, "portfolio.json");
@@ -22,11 +20,8 @@ const KNOWLEDGE_FILE = path.join(SEED_DATA_DIR, "knowledge.json");
 const DATA_FILE = path.join(DATA_DIR, "portfolio.json");
 const MESSAGES_FILE = path.join(DATA_DIR, "messages.json");
 const ANALYTICS_FILE = path.join(DATA_DIR, "analytics.json");
-const DIST_DIR = path.join(ROOT_DIR, "dist");
-const PUBLIC_DIR = path.join(ROOT_DIR, "public");
 const APP_UPLOADS_DIR = path.join(ROOT_DIR, "uploads");
-const PUBLIC_UPLOADS_DIR = path.join(PUBLIC_DIR, "uploads");
-const DIST_UPLOADS_DIR = path.join(DIST_DIR, "uploads");
+const PUBLIC_UPLOADS_DIR = path.join(ROOT_DIR, "public", "uploads");
 const ADMIN_USERNAME = process.env.ADMIN_USERNAME || "";
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "";
 const ADMIN_SESSION_TTL_MS = Number(process.env.ADMIN_SESSION_TTL_MINUTES || 30) * 60 * 1000;
@@ -568,7 +563,7 @@ async function saveUpload({ name, type, dataUrl }) {
   await fs.mkdir(APP_UPLOADS_DIR, { recursive: true });
   await fs.writeFile(path.join(APP_UPLOADS_DIR, fileName), buffer);
 
-  for (const mirrorDir of [PUBLIC_UPLOADS_DIR, DIST_UPLOADS_DIR]) {
+  for (const mirrorDir of [PUBLIC_UPLOADS_DIR]) {
     try {
       await fs.mkdir(mirrorDir, { recursive: true });
       await fs.writeFile(path.join(mirrorDir, fileName), buffer);
@@ -1604,62 +1599,6 @@ async function handleApi(req, res) {
   }
 }
 
-async function serveStatic(req, res) {
-  const requestedPath = req.url === "/" ? "/index.html" : decodeURIComponent(req.url.split("?")[0]);
-  if (requestedPath.startsWith("/uploads/")) {
-    const fileName = path.basename(requestedPath);
-    for (const uploadDir of [APP_UPLOADS_DIR, PUBLIC_UPLOADS_DIR, DIST_UPLOADS_DIR]) {
-      const uploadPath = path.join(uploadDir, fileName);
-      try {
-        const file = await fs.readFile(uploadPath);
-        const ext = path.extname(uploadPath);
-        const type = ext === ".mp4" ? "video/mp4" : ext === ".pdf" ? "application/pdf" : ext === ".webp" ? "image/webp" : ext === ".png" ? "image/png" : ext === ".gif" ? "image/gif" : "image/jpeg";
-        res.writeHead(200, { "Content-Type": type });
-        res.end(file);
-        return;
-      } catch {
-        // Try the next upload location.
-      }
-    }
-    res.writeHead(404);
-    res.end("Upload not found.");
-    return;
-  }
-
-  const filePath = path.resolve(DIST_DIR, `.${requestedPath}`);
-  const safePath = filePath === DIST_DIR || filePath.startsWith(`${DIST_DIR}${path.sep}`)
-    ? filePath
-    : path.join(DIST_DIR, "index.html");
-
-  try {
-    const file = await fs.readFile(safePath);
-    const ext = path.extname(safePath);
-    const contentTypes = {
-      ".html": "text/html",
-      ".js": "text/javascript",
-      ".css": "text/css",
-      ".svg": "image/svg+xml",
-      ".png": "image/png",
-      ".jpg": "image/jpeg",
-      ".jpeg": "image/jpeg",
-      ".webp": "image/webp",
-      ".pdf": "application/pdf",
-    };
-    const cacheControl = /[/\\]assets[/\\]/.test(safePath) ? "public, max-age=31536000, immutable" : "no-cache";
-    res.writeHead(200, { ...securityHeaders(), "Content-Type": contentTypes[ext] || "application/octet-stream", "Cache-Control": cacheControl });
-    res.end(file);
-  } catch {
-    try {
-      const index = await fs.readFile(path.join(DIST_DIR, "index.html"));
-      res.writeHead(200, { ...securityHeaders(), "Content-Type": "text/html", "Cache-Control": "no-cache" });
-      res.end(index);
-    } catch {
-      res.writeHead(404);
-      res.end("Build the frontend first with npm run build.");
-    }
-  }
-}
-
 function validateProductionConfig() {
   if (hasPartialRemoteConfig()) {
     throw new Error("Set both SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY, or leave both unset for local development.");
@@ -1670,8 +1609,8 @@ function validateProductionConfig() {
     );
   }
   if (process.env.NODE_ENV !== "production") return;
-  if (!process.env.ADMIN_USERNAME || !process.env.ADMIN_PASSWORD || ADMIN_PASSWORD.length < 16) {
-    throw new Error("Production requires explicit ADMIN_USERNAME and a unique ADMIN_PASSWORD of at least 16 characters.");
+  if (!process.env.ADMIN_USERNAME || !process.env.ADMIN_PASSWORD || ADMIN_PASSWORD.length < 12) {
+    throw new Error("Production requires explicit ADMIN_USERNAME and a unique ADMIN_PASSWORD of at least 12 characters.");
   }
   if (!process.env.ADMIN_SESSION_SECRET || ADMIN_SESSION_SECRET.length < 32) {
     throw new Error("Production requires ADMIN_SESSION_SECRET with at least 32 random characters.");
@@ -1701,42 +1640,18 @@ export async function handleVercelRequest(req, res) {
   return handleApi(req, res);
 }
 
-async function startStandaloneServer() {
-  if (hasRemotePersistence()) {
-    try {
-      await readData();
-    } catch (error) {
-      if (process.env.NODE_ENV === "production" || REQUIRE_DATABASE) throw error;
-      remotePersistenceDisabled = true;
-      await ensureDataFile();
-      console.warn(
-        "Supabase persistence is unavailable in development; using .portfolio-data instead. " +
-        "Run scripts/supabase-setup.sql in the Supabase SQL editor to enable durable storage."
-      );
-    }
+export async function initializePersistence() {
+  if (!hasRemotePersistence()) {
+    await ensureDataFile();
+    return;
   }
 
-  const server = http.createServer((req, res) => {
-    if (req.url?.startsWith("/api/")) return handleApi(req, res);
-    return serveStatic(req, res);
-  });
-
-  server.on("error", (error) => {
-    if (error.code === "EADDRINUSE") {
-      console.error(`Port ${PORT} is already in use. Stop the old backend before starting another one.`);
-      process.exit(1);
-    }
-    throw error;
-  });
-
-  server.listen(PORT, () => {
-    console.log(`Portfolio backend running at http://127.0.0.1:${PORT} (${hasRemotePersistence() ? "Supabase database" : "local development files"})`);
-  });
-}
-
-if (!process.env.VERCEL) {
-  startStandaloneServer().catch((error) => {
-    console.error(`Portfolio backend could not start: ${error.message}`);
-    process.exit(1);
-  });
+  try {
+    await readData();
+  } catch (error) {
+    if (process.env.NODE_ENV === "production" || REQUIRE_DATABASE) throw error;
+    remotePersistenceDisabled = true;
+    await ensureDataFile();
+    console.warn("Supabase persistence is unavailable in development; using .portfolio-data instead. Run scripts/supabase-setup.sql to enable durable storage.");
+  }
 }

@@ -11,7 +11,7 @@ const sizes = [
 const port = 3214;
 const origin = `http://127.0.0.1:${port}`;
 const dataDir = await mkdtemp(path.join(os.tmpdir(), "portfolio-browser-"));
-const server = spawn(process.execPath, ["server/index.js"], {
+const server = spawn(process.execPath, ["server/start.js"], {
   cwd: process.cwd(),
   env: { ...process.env, NODE_ENV: "test", PORT: String(port), PORTFOLIO_DATA_DIR: dataDir, ADMIN_USERNAME: "audit", ADMIN_PASSWORD: "AuditPass123!", AI_API_KEY: "", SMTP_TEST_MODE: "true" },
   stdio: ["ignore", "pipe", "pipe"],
