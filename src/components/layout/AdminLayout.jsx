@@ -1,14 +1,13 @@
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import {
+  BarChart3,
   Bell,
-  BookOpen,
   Briefcase,
   ChevronsLeft,
   ChevronsRight,
   FileBadge,
   FileText,
-  GalleryHorizontal,
   Home,
   LayoutDashboard,
   LogOut,
@@ -21,8 +20,8 @@ import {
   Shield,
   Sparkles,
   Star,
-  Upload,
   User,
+  Wrench,
   X,
 } from "lucide-react";
 
@@ -32,7 +31,10 @@ import "../../styles/adminsidebar.css";
 const navGroups = [
   {
     label: "Overview",
-    items: [{ to: "/admin/dashboard", label: "Dashboard", icon: LayoutDashboard, end: true }],
+    items: [
+      { to: "/admin/dashboard", label: "Dashboard", icon: LayoutDashboard, end: true },
+      { to: "/admin/dashboard/analytics", label: "Analytics", icon: BarChart3 },
+    ],
   },
   {
     label: "Portfolio",
@@ -41,21 +43,23 @@ const navGroups = [
       { to: "/admin/dashboard/experience", label: "Experience", icon: User },
       { to: "/admin/dashboard/achievements", label: "Achievements", icon: Star },
       { to: "/admin/dashboard/certificates", label: "Certificates", icon: FileBadge },
-      { to: "/admin/dashboard/tech-stack", label: "Tech Stack", icon: Sparkles },
+      { to: "/admin/dashboard/skills", label: "Skills", icon: Sparkles },
+      { to: '/admin/dashboard/services', label: 'Services', icon: Wrench },
     ],
   },
   {
     label: "Content",
     items: [
       { to: "/admin/dashboard/homepage", label: "Homepage", icon: Home },
-      { to: "/admin/dashboard/testimonials", label: "Testimonials", icon: BookOpen },
       { to: "/admin/dashboard/resume", label: "Resume", icon: FileText },
-      { to: "/admin/dashboard/media", label: "Media Library", icon: GalleryHorizontal },
     ],
   },
   {
     label: "Communication",
-    items: [{ to: "/admin/dashboard/messages", label: "Messages", icon: Mail }],
+    items: [
+      { to: '/admin/dashboard/contact', label: 'Contact details', icon: Mail },
+      { to: "/admin/dashboard/messages", label: "Messages", icon: Mail },
+    ],
   },
   {
     label: "System",
@@ -67,6 +71,14 @@ const navGroups = [
 ];
 const navItems = navGroups.flatMap((group) => group.items);
 const COLLAPSED_KEY = "erudita_admin_sidebar_collapsed";
+
+function adminText(value, fallback = "") {
+  if (typeof value === "string") return value;
+  if (typeof value === "number" || typeof value === "bigint") return `${value}`;
+  if (!value || typeof value !== "object") return fallback;
+  const candidate = value.value ?? value.text ?? value.label ?? value.title ?? value.name;
+  return candidate === value ? fallback : adminText(candidate, fallback);
+}
 
 export default function AdminLayout({
   title = "Dashboard",
@@ -82,6 +94,9 @@ export default function AdminLayout({
   const [notificationsOpen, setNotificationsOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
   const [messages, setMessages] = useState([]);
+  const [messagesLoading, setMessagesLoading] = useState(true);
+  const [messagesError, setMessagesError] = useState("");
+  const [saveError, setSaveError] = useState('');
   const [data] = useData();
   const location = useLocation();
   const navigate = useNavigate();
@@ -136,17 +151,43 @@ export default function AdminLayout({
     return () => window.removeEventListener("keydown", onKeyDown);
   }, []);
 
+  const loadNotifications = useCallback(async ({ quiet = false } = {}) => {
+    if (!quiet) setMessagesLoading(true);
+    setMessagesError("");
+    try {
+      setMessages(await fetchMessages());
+    } catch (error) {
+      setMessagesError(error?.message || "Could not load notifications.");
+    } finally {
+      setMessagesLoading(false);
+    }
+  }, []);
+
   useEffect(() => {
-    let alive = true;
-    fetchMessages()
-      .then((items) => {
-        if (alive) setMessages(items);
-      })
-      .catch(() => {});
+    const onSaveError = (event) => setSaveError(event.detail || 'Your last change could not be saved and was rolled back.');
+    const onOnline = () => setSaveError('');
+    const onOffline = () => setSaveError('You are offline. Changes cannot be published until the connection returns.');
+    window.addEventListener('erudita:save-error', onSaveError);
+    window.addEventListener('online', onOnline);
+    window.addEventListener('offline', onOffline);
+    if (!navigator.onLine) onOffline();
     return () => {
-      alive = false;
+      window.removeEventListener('erudita:save-error', onSaveError);
+      window.removeEventListener('online', onOnline);
+      window.removeEventListener('offline', onOffline);
     };
-  }, [location.pathname]);
+  }, []);
+
+  useEffect(() => {
+    loadNotifications();
+    const refresh = () => loadNotifications({ quiet: true });
+    const timer = window.setInterval(() => document.visibilityState === "visible" && refresh(), 30000);
+    window.addEventListener("erudita:messages", refresh);
+    return () => {
+      window.clearInterval(timer);
+      window.removeEventListener("erudita:messages", refresh);
+    };
+  }, [loadNotifications, location.pathname]);
 
   const currentSection = useMemo(
     () =>
@@ -168,13 +209,13 @@ export default function AdminLayout({
     const needle = search.trim().toLowerCase();
     const rows = [
       ...(data?.projects || []).map((item) => ({ group: "Projects", title: item.title, text: item.description || item.category, to: "/admin/dashboard/projects" })),
-      ...(data?.skills || []).map((item) => ({ group: "Technologies", title: item.name, text: item.group, to: "/admin/dashboard/tech-stack" })),
+      ...(data?.skills || []).map((item) => ({ group: "Technologies", title: item.name, text: item.group, to: "/admin/dashboard/skills" })),
       ...(data?.experience || []).map((item) => ({ group: "Experience", title: item.role || item.title, text: item.company || item.description, to: "/admin/dashboard/experience" })),
       ...(data?.achievements?.recognitions || []).map((item) => ({ group: "Achievements", title: item.title, text: item.subtitle, to: "/admin/dashboard/achievements" })),
       ...(data?.achievements?.certificates || []).map((item) => ({ group: "Certificates", title: item.title, text: item.issuer, to: "/admin/dashboard/certificates" })),
-      ...(data?.testimonials || []).map((item) => ({ group: "Testimonials", title: item.clientName || item.name, text: item.testimonial, to: "/admin/dashboard/testimonials" })),
+      ...(data?.services || []).map((item) => ({ group: "Services", title: item.title || item.name, text: item.description, to: "/admin/dashboard/services" })),
       ...messages.map((item) => ({ group: "Messages", title: item.subject, text: `${item.name} ${item.email}`, to: "/admin/dashboard/messages" })),
-    ].filter((item) => item.title);
+    ].map((item) => ({ ...item, title: adminText(item.title), text: adminText(item.text) })).filter((item) => item.title);
     if (!needle) return rows.slice(0, 10);
     return rows
       .filter((item) => `${item.group} ${item.title} ${item.text || ""}`.toLowerCase().includes(needle))
@@ -182,8 +223,13 @@ export default function AdminLayout({
   }, [data, messages, search]);
 
   const markNotificationsRead = async () => {
-    const next = await Promise.all(unreadMessages.slice(0, 8).map((message) => updateMessage(message.id, { status: "Read" }).catch(() => message)));
-    setMessages((current) => current.map((message) => next.find((item) => item.id === message.id) || message));
+    setMessagesError("");
+    try {
+      const next = await Promise.all(unreadMessages.slice(0, 8).map((message) => updateMessage(message.id, { status: "Read" })));
+      setMessages((current) => current.map((message) => next.find((item) => item.id === message.id) || message));
+    } catch (error) {
+      setMessagesError(error?.message || "Could not mark notifications as read.");
+    }
   };
 
   return (
@@ -301,6 +347,7 @@ export default function AdminLayout({
       </aside>
 
       <div className="vx-main">
+        {saveError && <div className='vx-global-save-error' role='alert'><span>{saveError}</span><button type='button' onClick={() => setSaveError('')}>Dismiss</button></div>}
         <header className="vx-topbar">
           <button
             type="button"
@@ -338,7 +385,7 @@ export default function AdminLayout({
                   <strong>Notifications</strong>
                   <button type="button" onClick={markNotificationsRead}>Mark read</button>
                 </div>
-                {messages.slice(0, 5).length ? messages.slice(0, 5).map((message) => (
+                {messagesLoading ? <p className="vx-dropdown-empty">Loading notifications...</p> : messagesError ? <div className="vx-notification-error"><p>{messagesError}</p><button type="button" onClick={() => loadNotifications()}>Retry</button></div> : messages.slice(0, 5).length ? messages.slice(0, 5).map((message) => (
                   <Link key={message.id} to="/admin/dashboard/messages" className="vx-notification-row">
                     <span className={message.status === "Unread" ? "is-unread" : ""} />
                     <div>

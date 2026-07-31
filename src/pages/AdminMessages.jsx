@@ -13,6 +13,8 @@ import { useEffect, useMemo, useState } from "react";
 import AdminLayout from "../components/layout/AdminLayout.jsx";
 import { deleteMessage, fetchMessages, updateMessage } from "../utils/storage.js";
 
+const PAGE_SIZE = 10;
+
 const toneClasses = [
   "bg-blue-50 text-blue-600",
   "bg-violet-50 text-violet-600",
@@ -50,6 +52,7 @@ export default function AdminMessages() {
   const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [page, setPage] = useState(1);
 
   const loadMessages = async () => {
     setError("");
@@ -86,6 +89,16 @@ export default function AdminMessages() {
     });
   }, [activeFilter, messages, query]);
 
+  const pageCount = Math.max(1, Math.ceil(visibleMessages.length / PAGE_SIZE));
+  const pageRows = visibleMessages.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+
+  useEffect(() => {
+    setPage(1);
+  }, [activeFilter, query]);
+
+  useEffect(() => {
+    if (page > pageCount) setPage(pageCount);
+  }, [page, pageCount]);
   const markAsRead = async (message) => {
     const updated = await updateMessage(message.id, { status: "Read" });
     setMessages((current) =>
@@ -182,7 +195,7 @@ export default function AdminMessages() {
           ) : visibleMessages.length === 0 ? (
             <EmptyState title="No messages found" text="New contact form submissions will appear here." />
           ) : (
-            visibleMessages.map((message) => (
+            pageRows.map((message) => (
               <article
                 key={message.id}
                 className="group grid gap-4 px-4 py-4 transition hover:bg-white/65 sm:px-5 xl:grid-cols-[1.25fr_1fr_1.55fr_0.65fr_0.55fr_auto] xl:items-center xl:gap-5"
@@ -249,7 +262,7 @@ export default function AdminMessages() {
 
         <footer className="flex flex-col gap-4 border-t border-black/[0.06] bg-white/40 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-5">
           <p className="text-sm text-zinc-500">
-            Showing <span className="font-semibold text-black">{visibleMessages.length}</span> of{" "}
+            Showing <span className="font-semibold text-black">{pageRows.length ? (page - 1) * PAGE_SIZE + 1 : 0}–{Math.min(page * PAGE_SIZE, visibleMessages.length)}</span> of{" "}
             <span className="font-semibold text-black">{messages.length}</span> messages
           </p>
 
@@ -258,6 +271,8 @@ export default function AdminMessages() {
               type="button"
               className="grid h-9 w-9 place-items-center rounded-xl border border-black/[0.08] bg-white/80 text-zinc-500 transition hover:bg-white hover:text-black"
               aria-label="Previous page"
+              onClick={() => setPage((current) => Math.max(1, current - 1))}
+              disabled={page === 1}
             >
               <ChevronLeft size={16} />
             </button>
@@ -271,6 +286,8 @@ export default function AdminMessages() {
               type="button"
               className="grid h-9 w-9 place-items-center rounded-xl border border-black/[0.08] bg-white/80 text-zinc-500 transition hover:bg-white hover:text-black"
               aria-label="Next page"
+              onClick={() => setPage((current) => Math.min(pageCount, current + 1))}
+              disabled={page === pageCount}
             >
               <ChevronRight size={16} />
             </button>

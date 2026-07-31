@@ -1,23 +1,15 @@
-import React from "react";
 import {
   Atom,
-  Braces,
   CalendarDays,
-  ChevronRight,
-  CircleUserRound,
   Code2,
-  Compass,
   Cuboid,
-  DatabaseZap,
   Globe2,
-  Layers3,
-  Network,
-  Search,
   Sparkles,
-  TrendingUp,
+  Rocket,
   UserRound,
   Zap,
 } from "lucide-react";
+import { publicSkills, skillLogo } from "../utils/skills.js";
 import "./about-pixel-perfect.css";
 
 const stats = [
@@ -28,72 +20,36 @@ const stats = [
 ];
 
 const services = [
-  {
-    icon: Atom,
-    title: "Frontend Engineering",
-    text: "Building responsive, accessible and production-ready React applications with attention to every detail.",
-  },
-  {
-    icon: CircleUserRound,
-    title: "Backend Development",
-    text: "Designing scalable APIs, databases and application logic that power reliable and secure digital products.",
-  },
-  {
-    icon: Zap,
-    title: "UI Engineering",
-    text: "Transforming interfaces into polished experiences through motion, usability and performance optimization.",
-  },
-  {
-    icon: TrendingUp,
-    title: "Product Thinking",
-    text: "Balancing business goals, user needs and technical decisions to build products that make a real impact.",
-  },
-];
-
-const process = [
-  {
-    number: "01",
-    title: "Discovery",
-    text: "Research requirements and define clear technical goals.",
-    progress: "72%",
-    icon: Search,
-  },
-  {
-    number: "02",
-    title: "Architecture",
-    text: "Plan scalable frontend, backend and data structures.",
-    progress: "56%",
-    icon: Cuboid,
-  },
-  {
-    number: "03",
-    title: "Engineering",
-    text: "Develop clean, maintainable and production-ready software.",
-    progress: "64%",
-    icon: Braces,
-  },
-  {
-    number: "04",
-    title: "Optimization",
-    text: "Test, refine and continuously improve performance.",
-    progress: "37%",
-    icon: Compass,
-  },
+  { icon: Atom, title: "Clean Engineering", text: "Writing maintainable, scalable and efficient code following best practices and modern standards.", tone: "blue" },
+  { icon: Cuboid, title: "Problem Solver", text: "Turning complex problems into simple, elegant and user-centered solutions.", tone: "blue" },
+  { icon: Zap, title: "UI/UX Focused", text: "Designing intuitive interfaces that provide exceptional user experience and engagement.", tone: "violet" },
+  { icon: Rocket, title: "Always Improving", text: "Continuously learning, exploring new technologies and pushing boundaries every day.", tone: "violet" },
 ];
 
 const stack = [
-  { type: "react", label: "React", node: <Atom /> },
-  { type: "next", label: "Next.js", node: <span>N.</span> },
-  { type: "ts", label: "TypeScript", node: <span>TS</span> },
-  { type: "tailwind", label: "Tailwind CSS", node: <span className="about-tailwind-mark">≈</span> },
-  { type: "node", label: "Node.js", node: <span>JS</span> },
-  { type: "supabase", label: "Supabase", node: <DatabaseZap /> },
-  { type: "more", label: "More", node: <span>•••</span> },
+  "React.js",
+  "Node.js",
+  "Tailwind",
+  "Supabase",
+  "PostgreSQL",
+  "MySQL",
+  "git/GitHub",
+].map((name) => ({
+  type: "managed",
+  label: name,
+  node: <img src={skillLogo(name)} alt={`${name} logo`} />,
+}));
+
+const verifiedImpact = [
+  { icon: Code2, value: '20+', label: 'Projects Built', tone: 'blue' },
+  { icon: CalendarDays, value: '4+', label: 'Years Coding', tone: 'blue' },
+  { icon: Globe2, value: '3+', label: 'Countries Worked', tone: 'violet' },
 ];
 
-export default function About({
-  portraitSrc = "/images/MEE.png",
-}) {
+export default function About({ data = {}, portraitSrc }) {
+  const profile = data?.profile || {};
+  const aboutPortrait = profile.portraitUrl || portraitSrc || "/images/MEE.png";
+  const aboutSkills = publicSkills(data?.skills).slice(0, 7);
   return (
     <section className="about-page" id="about">
       <div className="about-page__ambient about-page__ambient--left" />
@@ -109,10 +65,9 @@ export default function About({
             <article className="about-quote-card">
               <div className="about-quote-mark">“</div>
               <p>
-                Great software isn&apos;t just built.
-                <strong> It&apos;s engineered with purpose, precision and people in mind.</strong>
+                {profile.aboutQuote || "Great software isn't just built. It's engineered with purpose, precision and people in mind."}
               </p>
-              <div className="about-signature">Erudita Z.</div>
+              <div className="about-signature">{profile.name || "Erudita Z."}</div>
             </article>
 
             <div className="about-orbits" aria-hidden="true">
@@ -125,7 +80,7 @@ export default function About({
 
             <div className="about-portrait-frame">
               <div className="about-portrait-frame__halo" />
-              <img src={portraitSrc} alt="Erudita Zilbeari" />
+              <img src={aboutPortrait} alt={profile.name || "Erudita Zilbeari"} />
             </div>
           </div>
 
@@ -147,7 +102,7 @@ export default function About({
               <span /> TECHNOLOGIES I WORK WITH
             </div>
             <div className="about-stack">
-              {stack.map((item) => (
+              {(aboutSkills.length ? aboutSkills.map((skill) => ({ type: "managed", label: skill.name, node: <img src={skillLogo(skill.name, skill.logo)} alt={`${skill.name} logo`} /> })) : stack).map((item) => (
                 <article className="about-stack-item" key={item.label}>
                   <div className={`about-stack-icon about-stack-icon--${item.type}`}>
                     {item.node}
@@ -163,20 +118,16 @@ export default function About({
           <div className="about-heading-wrap">
             <div className="about-eyebrow"><span /> ABOUT ME</div>
             <h2>
-              I turn ideas into
-              <em>meaningful<br />digital solutions.</em>
+              {profile.aboutHeading || "I turn ideas into"}
+              <em>{profile.aboutAccent || <>meaningful<br />digital solutions.</>}</em>
             </h2>
             <div className="about-heading-rule" />
-            <p className="about-intro">
-              I build modern web and mobile applications that combine clean engineering,
-              scalable architecture and thoughtful design. From concept to deployment,
-              I focus on creating digital products that are fast, reliable and enjoyable to use.
-            </p>
+            <p className="about-intro">{profile.about || "I build modern web and mobile applications that combine clean engineering, scalable architecture and thoughtful design."}</p>
           </div>
 
           <div className="about-services">
-            {services.map(({ icon: Icon, title, text }) => (
-              <article className="about-service-card" key={title}>
+            {services.map(({ icon: Icon, title, text, tone }) => (
+              <article className={`about-service-card is-${tone}`} key={title}>
                 <div className="about-service-card__icon"><Icon /></div>
                 <h3>{title}</h3>
                 <p>{text}</p>
@@ -184,25 +135,17 @@ export default function About({
             ))}
           </div>
 
-          <div className="about-process-wrap">
-            <div className="about-micro-title">
-              <span /> ENGINEERING PROCESS
-            </div>
-            <div className="about-process">
-              {process.map(({ number, title, text, progress, icon: Icon }) => (
-                <article className="about-process-row" key={number}>
-                  <span className="about-process-row__number">{number}</span>
-                  <h3>{title}</h3>
-                  <p>{text}</p>
-                  <div className="about-process-row__track">
-                    <span style={{ width: progress }} />
-                  </div>
-                  <Icon className="about-process-row__icon" />
-                </article>
-              ))}
-            </div>
-          </div>
-        </div>
+          <div className="about-impact-rail" aria-label="Professional impact">
+            {verifiedImpact.map(({ icon: Icon, value, label, tone }) => (
+              <article className={`about-impact-item is-${tone}`} key={label}>
+                <span><Icon /></span>
+                <div>
+                  <strong>{value}</strong>
+                  <small>{label}</small>
+                </div>
+              </article>
+            ))}
+          </div>        </div>
       </div>
     </section>
   );

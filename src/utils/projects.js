@@ -5,7 +5,6 @@ const FALLBACK_IMAGE = "/images/ez-logo-blue.png";
 export function listFromBackend(projects = []) {
   return projects
     .filter((project) => project.status !== "Draft")
-    .sort((a, b) => Number(Boolean(b.featured)) - Number(Boolean(a.featured)) || Number(b.year || 0) - Number(a.year || 0))
     .map(normalizePublicProject);
 }
 

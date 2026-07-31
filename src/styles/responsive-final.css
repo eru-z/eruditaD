@@ -956,3 +956,74 @@ body.vx-admin-route :where(input, select, textarea, .vx-input, .vx-select, .vx-t
   color: #eaf2ff !important;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 16px 34px rgba(0, 0, 0, 0.2) !important;
 }
+
+/* Keep the responsive experience closing banner aligned to the mobile content gutter. */
+@media (max-width: 720px) {
+  .experience-section .xp-closing {
+    width: min(calc(100% - 32px), 500px) !important;
+    max-width: 500px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    box-sizing: border-box;
+  }
+}
+
+@media (max-width: 360px) {
+  .experience-section .xp-closing {
+    width: calc(100% - 24px) !important;
+  }
+}
+
+
+/* Production viewport and input safety guards. */
+html, body, #root {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+@supports (overflow: clip) {
+  html, body, #root { overflow-x: clip; }
+}
+
+img, video, canvas, svg { max-width: 100%; }
+img, video { height: auto; }
+
+:where(button, [role="button"], input, select, textarea) {
+  min-height: 44px;
+}
+
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 3px solid #38bdf8;
+  outline-offset: 3px;
+}
+
+.ai-assistant-panel {
+  max-height: min(720px, calc(100dvh - 132px));
+}
+
+@media (max-height: 600px), (orientation: landscape) and (max-height: 500px) {
+  .ai-assistant-panel {
+    max-height: calc(100dvh - 88px);
+    overflow: hidden;
+  }
+  .ai-assistant-messages { overflow-y: auto; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto !important; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .ai-assistant-control { width: 44px !important; height: 44px !important; }
+  .ai-assistant-launcher {
+    right: max(16px, env(safe-area-inset-right)) !important;
+    bottom: max(92px, calc(env(safe-area-inset-bottom) + 76px)) !important;
+  }
+}

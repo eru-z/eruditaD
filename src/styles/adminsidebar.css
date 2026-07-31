@@ -2543,3 +2543,75 @@ body.vx-admin-route .vx-command-row small {
     margin-left: 0 !important;
   }
 }
+
+body.vx-admin-route .vx-notification-error{padding:12px;color:#b91c1c;background:#fff1f2;font-size:10px}body.vx-admin-route .vx-notification-error p{margin:0 0 8px}body.vx-admin-route .vx-notification-error button{border:0;border-radius:8px;padding:6px 9px;color:#fff;background:#dc2626;font-size:9px;font-weight:800;cursor:pointer}
+
+/* Final production mobile layer: iPhone-safe admin workspace. */
+body.vx-admin-route .vx-global-save-error {
+  position: sticky; top: 0; z-index: 95; display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  min-height: 44px; padding: 9px 16px; border-bottom: 1px solid #fecaca; color: #991b1b; background: rgba(255,241,242,.96);
+  font-size: 12px; font-weight: 750; backdrop-filter: blur(18px);
+}
+body.vx-admin-route .vx-global-save-error button { min-height: 32px; padding: 0 11px; border: 0; border-radius: 9px; color: #fff; background: #dc2626; font-size: 11px; font-weight: 850; }
+
+@media (max-width: 767px) {
+  body.vx-admin-route { width: 100%; min-width: 0; overflow: hidden !important; overscroll-behavior: none; }
+  body.vx-admin-route .vx-shell { width: 100% !important; min-width: 0 !important; }
+  body.vx-admin-route .vx-main { width: 100% !important; min-width: 0 !important; margin: 0 !important; padding: 0 !important; overscroll-behavior-y: contain; }
+  body.vx-admin-route .vx-topbar {
+    top: 0; height: calc(62px + env(safe-area-inset-top)); min-height: calc(62px + env(safe-area-inset-top));
+    padding: env(safe-area-inset-top) 10px 0 !important; gap: 8px !important; background: rgba(248,250,255,.9) !important;
+  }
+  body.vx-admin-route .vx-topbar-menu,
+  body.vx-admin-route .vx-topbar-icon-btn { display: grid !important; width: 44px !important; height: 44px !important; min-width: 44px !important; border-radius: 14px !important; }
+  body.vx-admin-route .vx-topbar-heading { flex: 1; min-width: 0; }
+  body.vx-admin-route .vx-topbar-heading span { font-size: 8px !important; }
+  body.vx-admin-route .vx-topbar-heading strong { margin-top: 1px !important; font-size: 14px !important; }
+  body.vx-admin-route .vx-topbar-search,
+  body.vx-admin-route .vx-topbar-profile,
+  body.vx-admin-route .vx-topbar-end > a { display: none !important; }
+  body.vx-admin-route .vx-topbar-end { flex: 0 0 auto; margin-left: 0 !important; gap: 6px !important; }
+  body.vx-admin-route .vx-dropdown { position: fixed !important; top: calc(58px + env(safe-area-inset-top)) !important; right: 10px !important; left: 10px !important; width: auto !important; max-height: min(70dvh, 520px); overflow-y: auto; }
+  body.vx-admin-route .vx-content { width: 100% !important; min-width: 0 !important; padding: 10px 10px calc(24px + env(safe-area-inset-bottom)) !important; }
+  body.vx-admin-route .vx-page-head { align-items: stretch !important; flex-direction: column !important; gap: 12px !important; padding: 15px !important; margin-bottom: 10px !important; border-radius: 18px !important; }
+  body.vx-admin-route .vx-page-head h1 { font-size: clamp(24px, 8vw, 34px) !important; line-height: 1 !important; letter-spacing: -.055em !important; overflow-wrap: anywhere; }
+  body.vx-admin-route .vx-page-subtitle { margin-top: 7px !important; font-size: 12px !important; line-height: 1.5 !important; }
+  body.vx-admin-route .vx-page-actions { width: 100%; display: grid !important; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 8px !important; }
+  body.vx-admin-route .vx-page-actions > * { width: 100% !important; min-width: 0 !important; min-height: 44px !important; justify-content: center; }
+  body.vx-admin-route .vx-page-body,
+  body.vx-admin-route .vx-page-body > * { width: 100% !important; max-width: 100% !important; min-width: 0 !important; }
+  body.vx-admin-route input:not([type='checkbox']):not([type='radio']):not([type='range']),
+  body.vx-admin-route select,
+  body.vx-admin-route textarea { max-width: 100% !important; min-width: 0 !important; font-size: 16px !important; }
+  body.vx-admin-route textarea { resize: vertical; }
+  body.vx-admin-route button,
+  body.vx-admin-route a { -webkit-tap-highlight-color: transparent; }
+  body.vx-admin-route button:focus-visible,
+  body.vx-admin-route a:focus-visible,
+  body.vx-admin-route input:focus-visible,
+  body.vx-admin-route select:focus-visible,
+  body.vx-admin-route textarea:focus-visible { outline: 3px solid rgba(37,99,235,.34) !important; outline-offset: 2px !important; }
+  body.vx-admin-route .vx-sidebar { inset: 6px auto 6px 6px !important; width: min(88vw, 330px) !important; height: calc(100dvh - 12px) !important; max-height: calc(100dvh - 12px) !important; border-radius: 20px !important; }
+  body.vx-admin-route .vx-sb-top { padding-top: calc(13px + env(safe-area-inset-top)) !important; }
+  body.vx-admin-route .vx-sb-nav { max-height: none !important; padding-bottom: 18px !important; }
+  body.vx-admin-route .vx-sb-item { min-height: 46px !important; }
+  body.vx-admin-route .vx-sb-collapse { display: none !important; }
+  body.vx-admin-route .vx-overlay { z-index: 110 !important; }
+  body.vx-admin-route .vx-sidebar { z-index: 120 !important; }
+  .admin-modal-backdrop,.ap-modal-backdrop { align-items: end !important; place-items: end center !important; padding: 0 !important; }
+  .admin-modal-shell,.ap-modal-shell { width: 100% !important; max-width: none !important; max-height: calc(100dvh - env(safe-area-inset-top) - 8px) !important; border-radius: 22px 22px 0 0 !important; }
+  .admin-modal-head,.ap-modal-head { padding: 14px 15px !important; }
+  .admin-modal-head h3,.ap-modal-head h3 { font-size: 18px !important; line-height: 1.15 !important; }
+  .admin-modal-body,.ap-modal-body { max-height: none !important; padding: 15px !important; overscroll-behavior: contain; }
+  .admin-modal-foot,.ap-modal-foot { display: grid !important; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 8px !important; padding: 12px 15px calc(12px + env(safe-area-inset-bottom)) !important; }
+  .admin-modal-foot > *,.ap-modal-foot > * { width: 100% !important; min-width: 0 !important; min-height: 44px !important; justify-content: center; }
+  .vx-data-error,.vx-dashboard-error { align-items: stretch !important; flex-direction: column !important; }
+  .vx-visit-row { grid-template-columns: 1fr !important; }
+}
+
+@media (max-width: 390px) {
+  body.vx-admin-route .vx-content { padding-inline: 8px !important; }
+  body.vx-admin-route .vx-page-actions { grid-template-columns: 1fr !important; }
+  body.vx-admin-route .vx-topbar-heading span { display: none !important; }
+  body.vx-admin-route .vx-topbar-heading strong { font-size: 13px !important; }
+}

@@ -21,25 +21,25 @@ const processes = [
 
 function stopAll(signal = "SIGTERM") {
   for (const child of processes) {
-    if (!child.killed) child.kill(signal);
+    if (!child.killed && child.exitCode === null) child.kill(signal);
   }
+}
+
+let shuttingDown = false;
+function shutdown(code = 0, signal = "SIGTERM") {
+  if (shuttingDown) return;
+  shuttingDown = true;
+  process.exitCode = code;
+  stopAll(signal);
+  const forceExit = setTimeout(() => process.exit(code), 1500);
+  forceExit.unref();
 }
 
 for (const child of processes) {
   child.on("exit", (code) => {
-    if (code && code !== 0) {
-      stopAll();
-      process.exit(code);
-    }
+    if (!shuttingDown && code && code !== 0) shutdown(code);
   });
 }
 
-process.on("SIGINT", () => {
-  stopAll("SIGINT");
-  process.exit(0);
-});
-
-process.on("SIGTERM", () => {
-  stopAll("SIGTERM");
-  process.exit(0);
-});
+process.on("SIGINT", () => shutdown(0, "SIGINT"));
+process.on("SIGTERM", () => shutdown(0, "SIGTERM"));

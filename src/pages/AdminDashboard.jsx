@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { Routes, Route, Link, Navigate } from "react-router-dom";
 import {
   BarChart3,
@@ -23,8 +23,10 @@ import {
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { fetchAnalytics, fetchMessages, useData } from "../utils/storage.js";
+import "../styles/adminhome.css";
 import AdminLayout from "../components/layout/AdminLayout.jsx";
 import AdminMessages from "./AdminMessages.jsx";
+import AdminAnalytics from "./AdminAnalytics.jsx";
 import AdminSettings from "./AdminSettings.jsx";
 import ProjectsManager from "../admin/ProjectsManager.jsx";
 import SkillsManager from "../admin/SkillsManager.jsx";
@@ -36,10 +38,7 @@ import {
   AchievementsManager,
   CertificatesManager,
   HomepageManager,
-  MediaLibraryManager,
   ResumeManager,
-  TechStackManager,
-  TestimonialsManager,
 } from "../admin/CmsManagers.jsx";
 
 const fadeUp = {
@@ -53,9 +52,12 @@ const glass =
 function Overview() {
   const [data] = useData();
   const [analytics, setAnalytics] = useState(null);
-  const [messageCount, setMessageCount] = useState(0);
+  const [messages, setMessages] = useState([]);
+  const [remoteLoading, setRemoteLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
+  const [remoteError, setRemoteError] = useState("");
 
-  const projects = data?.projects || [];
+  const projects = useMemo(() => data?.projects || [], [data?.projects]);
   const skills = data?.skills || [];
   const services = data?.services || [];
   const experience = data?.experience || [];
@@ -63,24 +65,38 @@ function Overview() {
   const published = projects.filter((project) => project.status !== "Draft").length;
   const featured = projects.filter((project) => project.featured).length;
   const drafts = projects.filter((project) => project.status === "Draft").slice(0, 4);
-  const recent = projects;
+  const recent = useMemo(() => projects.slice(0, 8), [projects]);
+  const messageCount = messages.length;
+  const unreadCount = messages.filter((message) => message.status === "Unread").length;
+  const trendPoints = analytics?.dailyTrend?.map((item) => item.visits) || Array(14).fill(0);
   const categories = new Set(projects.map((project) => project.category).filter(Boolean)).size;
   const publishRate = projects.length ? Math.round((published / projects.length) * 100) : 0;
   const coverage = Math.min(100, Math.round(((skills.length + services.length + experience.length) / 18) * 100));
 
-  useEffect(() => {
-    let alive = true;
-
-    Promise.allSettled([fetchAnalytics(), fetchMessages()]).then(([analyticsResult, messagesResult]) => {
-      if (!alive) return;
-      if (analyticsResult.status === "fulfilled") setAnalytics(analyticsResult.value);
-      if (messagesResult.status === "fulfilled") setMessageCount(messagesResult.value.length);
-    });
-
-    return () => {
-      alive = false;
-    };
+  const loadRemoteData = useCallback(async ({ quiet = false } = {}) => {
+    quiet ? setRefreshing(true) : setRemoteLoading(true);
+    setRemoteError("");
+    const [analyticsResult, messagesResult] = await Promise.allSettled([fetchAnalytics(), fetchMessages()]);
+    if (analyticsResult.status === "fulfilled") setAnalytics(analyticsResult.value);
+    if (messagesResult.status === "fulfilled") setMessages(messagesResult.value);
+    const failures = [analyticsResult, messagesResult].filter((result) => result.status === "rejected");
+    if (failures.length) setRemoteError(failures.map((result) => result.reason?.message).filter(Boolean).join(" ") || "Some dashboard data could not be loaded.");
+    setRemoteLoading(false);
+    setRefreshing(false);
   }, []);
+
+  useEffect(() => {
+    loadRemoteData();
+    const refresh = () => loadRemoteData({ quiet: true });
+    const timer = window.setInterval(() => document.visibilityState === "visible" && refresh(), 30000);
+    window.addEventListener("erudita:data", refresh);
+    window.addEventListener("erudita:messages", refresh);
+    return () => {
+      window.clearInterval(timer);
+      window.removeEventListener("erudita:data", refresh);
+      window.removeEventListener("erudita:messages", refresh);
+    };
+  }, [loadRemoteData]);
 
   const metrics = [
     {
@@ -89,7 +105,7 @@ function Overview() {
       note: `${analytics?.totalVisits ?? 0} total visits`,
       icon: UserRound,
       tone: "blue",
-      points: [8, 12, 17, 15, 22, 18, 24, 28, 25, 31, 29, 35],
+      points: trendPoints,
     },
     {
       label: "Today",
@@ -97,7 +113,7 @@ function Overview() {
       note: `${analytics?.weekVisits ?? 0} this week`,
       icon: TrendingUp,
       tone: "green",
-      points: [7, 10, 9, 15, 13, 16, 21, 17, 24, 20, 28, 31],
+      points: analytics?.hourlyTrend?.map((item) => item.visits) || Array(24).fill(0),
     },
     {
       label: "Projects",
@@ -118,7 +134,7 @@ function Overview() {
     {
       label: "Messages",
       value: messageCount,
-      note: "Contact inbox",
+      note: `${unreadCount} unread`,
       icon: Mail,
       tone: "orange",
       points: [6, 8, 12, 9, 14, 12, 15, 18, 16, 21, 19, 23],
@@ -146,23 +162,25 @@ function Overview() {
     { to: "/admin/dashboard/projects", title: "Manage Projects", note: "Edit portfolio work", icon: Edit, tone: "violet" },
     { to: "/admin/dashboard/experience", title: "Edit Experience", note: "Update timeline details", icon: UserRound, tone: "green" },
     { to: "/admin/dashboard/skills", title: "Manage Skills", note: "Add or update your skills", icon: Code2, tone: "orange" },
+    { to: "/admin/dashboard/analytics", title: "View Analytics", note: "Live traffic and sources", icon: BarChart3, tone: "blue" },
     { to: "/admin/dashboard/settings", title: "Site Settings", note: "General configuration", icon: Settings, tone: "slate" },
   ];
 
   return (
     <AdminLayout
-      title="Welcome back, Erudita! 👋"
+      title="Welcome back, Erudita!"
       subtitle="Here’s what’s happening with your portfolio."
       pageClassName="bg-[#f7f9fd]"
       actions={
         <div className="flex items-center gap-2">
           <button
             type="button"
-            onClick={() => window.dispatchEvent(new Event("erudita:data"))}
+            onClick={() => loadRemoteData({ quiet: true })}
+            disabled={refreshing}
             className="grid h-9 w-9 place-items-center rounded-xl border border-white/80 bg-white/60 text-slate-500 shadow-sm backdrop-blur-xl transition hover:bg-white/90 hover:text-slate-900"
             aria-label="Refresh dashboard"
           >
-            <RefreshCw size={15} />
+            <RefreshCw size={15} className={refreshing ? "animate-spin" : ""} />
           </button>
           <Link
             to="/admin/dashboard/projects?new=1"
@@ -183,6 +201,15 @@ function Overview() {
       >
         <div className="pointer-events-none absolute -left-20 top-4 h-64 w-64 rounded-full bg-[#dce8ff]/35 blur-[90px]" />
         <div className="pointer-events-none absolute right-0 top-20 h-56 w-56 rounded-full bg-[#eee8ff]/35 blur-[90px]" />
+
+        {remoteError && (
+          <div className="vx-dashboard-error" role="alert">
+            <span>{remoteError}</span>
+            <button type="button" onClick={() => loadRemoteData()}>Retry</button>
+          </div>
+        )}
+
+        {remoteLoading ? <DashboardSkeleton /> : null}
 
         <section className="relative grid gap-3 sm:grid-cols-2 xl:grid-cols-5">
           {metrics.map((metric) => (
@@ -248,7 +275,7 @@ function Overview() {
 
           <Panel title="Recent Activity" action={<Link to="/admin/dashboard/projects">View all</Link>}>
             <div className="space-y-2.5">
-              <Activity icon={UserRound} tone="blue" text={`${analytics?.uniqueVisitors ?? 0} unique visitors detected`} time="Live" />
+              <Activity icon={UserRound} tone="blue" text={`${analytics?.uniqueVisitors ?? 0} unique visitors detected`} time={remoteLoading ? "Loading" : "Live"} />
               <Activity icon={FolderKanban} tone="green" text={recent[0]?.title ? `Project “${recent[0].title}” is in your portfolio` : "Portfolio workspace is ready"} time="Recently" />
               <Activity icon={Code2} tone="orange" text={`${skills.length} skills currently listed`} time="Current" />
               <Activity icon={Mail} tone="violet" text={`${messageCount} contact messages saved in your backend inbox`} time="Inbox" />
@@ -296,17 +323,17 @@ export default function AdminDashboard() {
       <Route path="experience" element={<Wrapped title="Experience" subtitle="Manage roles and timeline entries."><ExperienceManager /></Wrapped>} />
       <Route path="achievements" element={<Wrapped title="Achievements" subtitle="Manage public recognition cards."><AchievementsManager /></Wrapped>} />
       <Route path="certificates" element={<Wrapped title="Certificates" subtitle="Manage public certificate slider content."><CertificatesManager /></Wrapped>} />
-      <Route path="tech-stack" element={<Wrapped title="Tech Stack" subtitle="Manage technologies and capability summaries."><TechStackManager /></Wrapped>} />
+      <Route path="tech-stack" element={<Navigate to="/admin/dashboard/skills" replace />} />
       <Route path="homepage" element={<Wrapped title="Homepage" subtitle="Edit high-impact public portfolio copy and profile content."><HomepageManager /></Wrapped>} />
-      <Route path="testimonials" element={<Wrapped title="Testimonials" subtitle="Manage client quotes and hero testimonial content."><TestimonialsManager /></Wrapped>} />
+      <Route path="testimonials" element={<Navigate to="/admin/dashboard" replace />} />
       <Route path="resume" element={<Wrapped title="Resume" subtitle="Replace and review your public resume."><ResumeManager /></Wrapped>} />
-      <Route path="media" element={<Wrapped title="Media Library" subtitle="Review media currently referenced by portfolio content."><MediaLibraryManager /></Wrapped>} />
+      <Route path="media" element={<Navigate to="/admin/dashboard" replace />} />
       <Route path="contact" element={<Wrapped title="Contact" subtitle="Manage public contact information."><ContactManager /></Wrapped>} />
       <Route path="messages" element={<AdminMessages />} />
       <Route path="settings" element={<AdminSettings />} />
       <Route path="account" element={<Wrapped title="Account" subtitle="Review admin account and security status."><AccountManager /></Wrapped>} />
       <Route path="profile" element={<Navigate to="/admin/dashboard" replace />} />
-      <Route path="analytics" element={<Navigate to="/admin/dashboard" replace />} />
+      <Route path="analytics" element={<AdminAnalytics />} />
     </Routes>
   );
 }
@@ -399,7 +426,7 @@ function ProjectRow({ project }) {
       <div><span className="rounded-full bg-slate-100/80 px-2 py-1 text-[7px] font-semibold text-slate-400">{project.featured ? "Yes" : "No"}</span></div>
       <span className="text-[8px] text-slate-400">{project.year || "Recently"}</span>
       <div className="flex justify-end gap-1.5">
-        <Link to="/admin/dashboard/projects" aria-label="Edit project" className="grid h-7 w-7 place-items-center rounded-lg border border-slate-200/65 bg-white/55 text-slate-500 transition hover:bg-white hover:text-slate-900"><Edit size={11} /></Link>
+        <Link to={`/admin/dashboard/projects?edit=${encodeURIComponent(project.id)}`} aria-label="Edit project" className="grid h-7 w-7 place-items-center rounded-lg border border-slate-200/65 bg-white/55 text-slate-500 transition hover:bg-white hover:text-slate-900"><Edit size={11} /></Link>
         <a href="/#projects" target="_blank" rel="noreferrer" aria-label="Preview project" className="grid h-7 w-7 place-items-center rounded-lg border border-slate-200/65 bg-white/55 text-slate-500 transition hover:bg-white hover:text-slate-900"><Eye size={11} /></a>
       </div>
     </div>
@@ -453,6 +480,13 @@ function Activity({ icon: Icon, tone, text, time }) {
   );
 }
 
+function DashboardSkeleton() {
+  return (
+    <div className="vx-dashboard-skeleton" aria-label="Loading live dashboard data">
+      {Array.from({ length: 5 }, (_, index) => <span key={index} />)}
+    </div>
+  );
+}
 function EmptyBlock({ title, text }) {
   return (
     <div className="px-4 py-8 text-center">

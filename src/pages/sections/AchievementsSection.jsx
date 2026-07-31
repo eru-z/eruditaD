@@ -3,14 +3,11 @@ import {
   ArrowRight,
   Award,
   BrainCircuit,
-  BriefcaseBusiness,
   Building2,
-  ExternalLink,
   Leaf,
   Medal,
   Sparkles,
   Trophy,
-  Users,
   Zap,
 } from "lucide-react";
 import { useMemo, useState } from "react";
@@ -97,7 +94,7 @@ function getRecognitionMeta(item, index) {
   if (text.includes("summer code") || text.includes("green travel")) {
     return {
       icon: recognitionIconMap.eco,
-      label: "3rd place · 48h",
+      label: "3rd place - 48h",
       tone: "podium",
       rank: String(index + 1).padStart(2, "0"),
     };
@@ -115,7 +112,7 @@ function getRecognitionMeta(item, index) {
   if (text.includes("junction")) {
     return {
       icon: recognitionIconMap.hackathon,
-      label: "2× international hackathon",
+      label: "2x international hackathon",
       tone: "hackathon",
       rank: String(index + 1).padStart(2, "0"),
     };
@@ -143,31 +140,17 @@ function getRecognitionMeta(item, index) {
 }
 
 function sortRecognitions(items) {
-  const priority = (item) => {
-    const text = `${item?.title || ""} ${item?.subtitle || ""}`.toLowerCase();
-
-    if (text.includes("scimaster") || text.includes("science fair")) return 0;
-    if (text.includes("springcodefest")) return 1;
-    if (text.includes("summer code") || text.includes("green travel")) return 2;
-    if (text.includes("eco") || text.includes("europe house")) return 3;
-    if (text.includes("junction")) return 4;
-    if (text.includes("tetova") || text.includes("municipal")) return 5;
-
-    return 10;
-  };
-
-  return [...items].sort((a, b) => priority(a) - priority(b));
+  return [...items].sort((a, b) => Number(a?.order ?? 0) - Number(b?.order ?? 0));
 }
-
 
 const fallbackCertificates = [
   {
-    title: "Science Fair — 1st Place",
+    title: "Science Fair - 1st Place",
     issuer: "Information Technology",
     image: "/images/certificates/science-fair.jpg",
   },
   {
-    title: "SpringCodeFest — 1st Place",
+    title: "SpringCodeFest - 1st Place",
     issuer: "Coding Competition",
     image: "/images/certificates/spring-code-fest.jpg",
   },
@@ -177,7 +160,7 @@ const fallbackCertificates = [
     image: "/images/certificates/junctionx-tirana.jpg",
   },
   {
-    title: "Backend Developer — 3rd Place",
+    title: "Backend Developer - 3rd Place",
     issuer: "PHP & MySQL",
     image: "/images/certificates/backend-developer.jpg",
   },
@@ -188,41 +171,6 @@ const fallbackCertificates = [
   },
 ];
 
-const fallbackClients = [
-  {
-    name: "Pizzeria Paradiso",
-    logo: "/images/logos/pizzeria-paradiso.png",
-    initials: "PP",
-  },
-  {
-    name: "SciMaster AI",
-    logo: "/images/logos/scimaster-ai.png",
-    initials: "AI",
-  },
-  {
-    name: "Pyramid Backstage",
-    logo: "/images/logos/pyramid-backstage.png",
-    initials: "PB",
-  },
-  {
-    name: "MindFlow OS",
-    logo: "/images/logos/mindflow-os.png",
-    initials: "MF",
-  },
-];
-
-function appendAdminItems(value, fallback, keyForItem) {
-  const adminItems = Array.isArray(value) ? value.filter((item) => item?.published !== false) : [];
-  const seen = new Set(fallback.map(keyForItem));
-  const additions = adminItems.filter((item) => {
-    const key = keyForItem(item);
-    if (!key || seen.has(key)) return false;
-    seen.add(key);
-    return true;
-  });
-
-  return [...fallback, ...additions];
-}
 
 export default function AchievementsSection({ data = {} }) {
   const recognitions = useMemo(
@@ -231,23 +179,16 @@ export default function AchievementsSection({ data = {} }) {
         ? data.achievements.recognitions.filter((item) => item?.published !== false)
         : [];
 
-      return sortRecognitions(adminRecognitions.length ? adminRecognitions : fallbackRecognitions);
+      return sortRecognitions(Array.isArray(data?.achievements?.recognitions) ? adminRecognitions : fallbackRecognitions);
     },
     [data],
   );
 
 
   const certificates = useMemo(
-    () => appendAdminItems(data?.achievements?.certificates, fallbackCertificates, (item) => `${item.title || ""}-${item.issuer || ""}`),
+    () => Array.isArray(data?.achievements?.certificates) ? data.achievements.certificates.filter((item) => item?.published !== false) : fallbackCertificates,
     [data],
-  );
-
-  const clients = useMemo(
-    () => appendAdminItems(data?.achievements?.clients, fallbackClients, (item) => item.name || ""),
-    [data],
-  );
-
-  const [activeCertificate, setActiveCertificate] = useState(
+  );const [activeCertificate, setActiveCertificate] = useState(
     Math.min(2, certificates.length - 1),
   );
 
@@ -346,6 +287,11 @@ export default function AchievementsSection({ data = {} }) {
                   <div className="recognition-copy">
                     <h4>{item.title}</h4>
                     <strong>{item.subtitle}</strong>
+                    {String(Array.isArray(item.tags) ? item.tags.join(",") : item.tags || "").split(",").map((tag) => tag.trim()).filter(Boolean).length > 0 && (
+                      <div className="recognition-tags" aria-label="Achievement tags">
+                        {String(Array.isArray(item.tags) ? item.tags.join(",") : item.tags || "").split(",").map((tag) => tag.trim()).filter(Boolean).map((tag) => <span key={tag}>{tag}</span>)}
+                      </div>
+                    )}
                     <p>{item.description}</p>
                   </div>
 
@@ -373,10 +319,6 @@ export default function AchievementsSection({ data = {} }) {
               </div>
             </div>
 
-            <a className="achievement-text-link" href="#certificates">
-              View all certificates
-              <ArrowRight size={14} />
-            </a>
           </div>
 
           <div className="certificate-stage">
@@ -455,65 +397,7 @@ export default function AchievementsSection({ data = {} }) {
           </div>
         </section>
 
-        <section className="clients-showcase ep-achievement-glass">
-          <div className="clients-heading-row">
-            <div className="achievement-panel-heading">
-              <span className="achievement-heading-icon">
-                <BriefcaseBusiness size={16} />
-              </span>
 
-              <div>
-                <h3>Selected Work</h3>
-                <p>Brands and products I have designed and developed.</p>
-              </div>
-            </div>
-
-            <a className="achievement-text-link" href="/projects">
-              View all projects
-              <ExternalLink size={13} />
-            </a>
-          </div>
-
-          <div className="client-logo-row">
-            {clients.map((client, index) => (
-              <article
-                className="client-logo-item"
-                key={`${client.name}-${index}`}
-              >
-                <span className="client-logo-mark">
-                  {client.logo ? (
-                    <>
-                      <img
-                        src={client.logo}
-                        alt={`${client.name} logo`}
-                        onError={(event) => {
-                          event.currentTarget.style.display = "none";
-                          event.currentTarget.nextElementSibling?.removeAttribute(
-                            "hidden",
-                          );
-                        }}
-                      />
-                      <span hidden>
-                        {client.initials || client.name.slice(0, 2)}
-                      </span>
-                    </>
-                  ) : (
-                    <span>{client.initials || client.name.slice(0, 2)}</span>
-                  )}
-                </span>
-
-                <strong>{client.name}</strong>
-              </article>
-            ))}
-
-            <a className="client-logo-item client-logo-more" href="/projects">
-              <span className="client-logo-mark">
-                <Users size={16} />
-              </span>
-              <strong>And more</strong>
-            </a>
-          </div>
-        </section>
       </div>
     </SectionShell>
   );

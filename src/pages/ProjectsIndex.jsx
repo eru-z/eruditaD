@@ -1,16 +1,11 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   ArrowLeft,
   ArrowRight,
   ArrowUpRight,
-  BadgeCheck,
-  CalendarDays,
   Code2,
-  Globe2,
   Search,
   Sparkles,
-  Star,
-  UserRound,
   X,
 } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
@@ -18,13 +13,6 @@ import { Link, useLocation } from "react-router-dom";
 import { isAuthed, savePortfolioData, useData } from "../utils/storage.js";
 import { listFromBackend } from "../utils/projects.js";
 import "./projects-pixel-perfect.css";
-
-const stats = [
-  { icon: Code2, value: "20+", label: "Projects Built" },
-  { icon: UserRound, value: "10+", label: "Happy Clients" },
-  { icon: Star, value: "1st", label: "Science Fair Award" },
-  { icon: Globe2, value: "10+", label: "Technologies" },
-];
 
 export default function ProjectsIndex() {
   const [data] = useData();
@@ -37,8 +25,7 @@ export default function ProjectsIndex() {
   const canManageFeatured = isAuthed();
 
   const projects = useMemo(() => {
-    const backendProjects = listFromBackend(data?.projects || []);
-    return backendProjects.slice(0, 10);
+    return listFromBackend(data?.projects || []);
   }, [data?.projects]);
 
   const filters = useMemo(() => buildFilters(projects), [projects]);
@@ -47,8 +34,8 @@ export default function ProjectsIndex() {
     const normalizedQuery = query.trim().toLowerCase();
 
     return projects.filter((project) => {
-      const filterText = getFilterText(project);
-      const matchesFilter = activeFilter === "All" || filterText.includes(activeFilter.toLowerCase());
+      const assignedFilters = (project.filters || []).map((filter) => String(filter).toLowerCase());
+      const matchesFilter = activeFilter === "All" || assignedFilters.includes(activeFilter.toLowerCase());
       const searchable = [
         project.title,
         project.category,
@@ -83,7 +70,7 @@ export default function ProjectsIndex() {
     const rawProject = currentProjects.find((item) => String(item.id) === String(project.id));
     if (!rawProject) return;
 
-    const willFeature = !Boolean(rawProject.featured);
+    const willFeature = !rawProject.featured;
     const featuredCount = currentProjects.filter((item) => item.featured && String(item.id) !== String(project.id)).length;
 
     if (willFeature && featuredCount >= 3) {
@@ -161,29 +148,26 @@ export default function ProjectsIndex() {
                 View all projects
                 <ArrowUpRight size={13} />
               </Link>
-              <a className="projects-btn projects-btn--light" href="#contact">
-                See project planner
-                <Sparkles size={13} />
-              </a>
-            </div>
-
-            <div className="projects-stats" aria-label="Project statistics">
-              {stats.map(({ icon: Icon, value, label }) => (
-                <article className="projects-stat" key={label}>
-                  <span className="projects-stat__icon">
-                    <Icon size={15} strokeWidth={2} />
-                  </span>
-                  <strong>{value}</strong>
-                  <p>{label}</p>
-                </article>
-              ))}
+              <Link className='projects-btn projects-btn--light' to={featured?.caseStudyUrl || (featured?.id ? `/projects/${featured.id}` : '/projects')}>
+                View Case Study
+                <ArrowUpRight size={13} />
+              </Link>
             </div>
           </div>
 
           {featured && (
             <div className="projects-featured" aria-label="Selected project mockup">
               <div className="projects-featured__frame">
+                <div className='projects-featured__badge'><span />Featured project · {featured.number || '01'}</div>
                 <ProjectBrowser project={featured} />
+                <div className='projects-featured__case-meta'>
+                  <div className='projects-featured__case-copy'>
+                    <small>{featured.category || featured.type || 'Featured project'}</small>
+                    <h3>{featured.title}</h3>
+                    <div className='projects-featured__case-tech'>{(featured.tech || featured.tags || []).slice(0, 4).map((tag) => <span key={tag}>{tag}</span>)}</div>
+                  </div>
+                  <Link className='projects-featured__case-link' to={featured.caseStudyUrl || `/projects/${featured.id}`}>View Case Study<ArrowUpRight size={14} /></Link>
+                </div>
               </div>
             </div>
           )}
@@ -229,11 +213,11 @@ export default function ProjectsIndex() {
             <p>Let&apos;s turn it into a real, elegant digital product.</p>
           </div>
           <div className="projects-cta__actions">
-            <a className="projects-btn projects-btn--dark" href="#contact">
+            <a className="projects-btn projects-btn--dark" href="/#contact">
               Start a project
               <ArrowUpRight size={13} />
             </a>
-            <a className="projects-btn projects-btn--white" href="#contact">
+            <a className="projects-btn projects-btn--white" href="/#contact">
               AI Project Planner
               <Sparkles size={13} />
             </a>
@@ -257,6 +241,13 @@ function ProjectLibraryPage({
   onToggleFeatured,
   onClear,
 }) {
+  const pageSize = 6;
+  const [page, setPage] = useState(1);
+  const pageCount = Math.max(1, Math.ceil(visibleProjects.length / pageSize));
+  const paginatedProjects = visibleProjects.slice((page - 1) * pageSize, page * pageSize);
+  useEffect(() => setPage(1), [activeFilter, query]);
+  useEffect(() => { if (page > pageCount) setPage(pageCount); }, [page, pageCount]);
+
   return (
     <section className="projects-library">
       <div className="projects-section__grid" aria-hidden="true" />
@@ -279,6 +270,10 @@ function ProjectLibraryPage({
               All software projects
               <em>ready to explore.</em>
             </h1>
+            <p className="projects-library__intro">
+              A collection of full-stack applications, tools and digital products
+              built with clean code, thoughtful design and real functionality.
+            </p>
           </div>
 
           <div className="projects-library__count">
@@ -286,6 +281,8 @@ function ProjectLibraryPage({
             <span>of {projects.length} projects</span>
           </div>
         </div>
+
+
 
         <div className="projects-library__toolbar">
           <label className="projects-search">
@@ -323,7 +320,7 @@ function ProjectLibraryPage({
         )}
 
         <div className="projects-library__grid">
-          {visibleProjects.map((project, index) => (
+          {paginatedProjects.map((project, index) => (
             <ProjectCard
               key={project.id || project.title}
               project={{
@@ -340,6 +337,15 @@ function ProjectLibraryPage({
           ))}
         </div>
 
+        {visibleProjects.length > pageSize && (
+          <nav className="projects-library__pagination" aria-label="Projects pagination">
+            <button type="button" onClick={() => setPage((value) => Math.max(1, value - 1))} disabled={page === 1} aria-label="Previous page"><ArrowLeft size={14} /></button>
+            {Array.from({ length: pageCount }, (_, index) => index + 1).map((number) => (
+              <button key={number} type="button" className={number === page ? "is-active" : ""} onClick={() => setPage(number)}>{number}</button>
+            ))}
+            <button type="button" onClick={() => setPage((value) => Math.min(pageCount, value + 1))} disabled={page === pageCount} aria-label="Next page"><ArrowRight size={14} /></button>
+          </nav>
+        )}
         {!visibleProjects.length && (
           <div className="projects-empty">
             <Search size={20} />
@@ -366,15 +372,11 @@ function ProjectBrowser({ project }) {
 }
 
 function ProjectCard({
-  project,
-  index,
-  selected,
-  onSelect,
-  showMockupButton = true,
-  canManageFeatured = false,
-  onToggleFeatured,
-}) {
-  const tags = (project.tech || project.tags || []).slice(0, 3);
+  project,selected,
+  onSelect,}) {
+  const tags = (project.tech || project.tags || []).slice(0, 4);
+  const features = (project.architecture?.length ? project.architecture : project.filters?.length ? project.filters : ["Responsive UI", "Production Ready", "Custom Experience"]).slice(0, 4);
+  const pizzeriaLiveUrl = isPizzeriaParadiso(project) ? project.liveUrl : "";
 
   return (
     <article className={`project-card${selected ? " is-selected" : ""}`}>
@@ -386,77 +388,31 @@ function ProjectCard({
           aria-label={`Show ${project.title} in laptop and mobile mockup`}
         />
         <img src={getImage(project)} alt={`${project.title} preview`} />
-        <span className="project-card__number">{project.number || `0${index + 1}`}</span>
-        {canManageFeatured ? (
-          <button
-            className={`project-card__feature-star${project.featured ? " is-active" : ""}`}
-            type="button"
-            onClick={(event) => {
-              event.stopPropagation();
-              onToggleFeatured?.();
-            }}
-            aria-label={project.featured ? "Remove from main portfolio" : "Feature on main portfolio"}
-            title={project.featured ? "Remove from main portfolio" : "Feature on main portfolio"}
-          >
-            <Star size={14} fill={project.featured ? "currentColor" : "none"} />
-          </button>
-        ) : (
-          <a
-            className="project-card__external"
-            href={project.liveUrl || project.caseStudyUrl || `/projects/${project.id}`}
-            onClick={(event) => event.stopPropagation()}
-            aria-label={`Open ${project.title}`}
-          >
-            <ArrowUpRight size={13} />
-          </a>
-        )}
+
       </div>
 
       <div className="project-card__body">
         <div className="project-card__main">
-          <span className="project-card__featured">
-            {project.category || "Featured"}
-          </span>
+          <div className="project-card__eyebrow">
+            <span className="project-card__featured">{project.category || "Featured project"}</span>
+          </div>
           <h3>{project.title}</h3>
           <p>{project.shortDescription || project.description || "Project details are managed from the admin panel."}</p>
-          <div className="project-card__tags">
-            {tags.map((tag) => (
-              <span key={tag}>{tag}</span>
-            ))}
+          <div className="project-card__features">
+            {features.map((feature) => <span key={feature}><Sparkles size={8} />{feature}</span>)}
+          </div>
+          <div className="project-card__tech">
+            {tags.map((tag) => <span key={tag}><Code2 size={10} />{tag}</span>)}
           </div>
         </div>
-
-        <div className="project-card__meta">
-          <div>
-            <CalendarDays size={12} />
-            <span>
-              <small>Year</small>
-              {project.year || "2025"}
-            </span>
-          </div>
-          <div>
-            <BadgeCheck size={12} />
-            <span>
-              <small>Role</small>
-              {project.projectRole || project.role || "Developer"}
-            </span>
-          </div>
-          <div>
-            <Globe2 size={12} />
-            <span>
-              <small>Live</small>
-              {project.url || project.liveUrl?.replace(/^https?:\/\//, "") || "View project"}
-            </span>
-          </div>
-          {showMockupButton && (
-            <button className="project-card__mockup-btn" type="button" onClick={onSelect}>
-              Show mockup
-              <ArrowUpRight size={11} />
-            </button>
+        <div className={`project-card__meta${pizzeriaLiveUrl ? " has-live-link" : ""}`}>
+          {pizzeriaLiveUrl && (
+            <a className="project-card__live-link" href={pizzeriaLiveUrl} target="_blank" rel="noreferrer">
+              Live Site
+            </a>
           )}
-          <Link to={project.caseStudyUrl || `/projects/${project.id}`}>
-            View case study
-            <ArrowRight size={11} />
+          <Link className="project-card__case-study" to={project.caseStudyUrl || `/projects/${project.id}`}>
+            View Case Study
           </Link>
         </div>
       </div>
@@ -464,22 +420,12 @@ function ProjectCard({
   );
 }
 
-function buildFilters(projects) {
-  const customFilters = projects.flatMap((project) => project.filters || []).filter(Boolean);
-  return ["All", ...Array.from(new Set(customFilters)).sort()];
+function isPizzeriaParadiso(project) {
+  const identity = `${project?.title || ""} ${project?.slug || ""} ${project?.liveUrl || ""}`.toLowerCase();
+  return identity.includes("pizzeria paradiso") || identity.includes("pizzeriaparadiso");
 }
-
-function getFilterText(project) {
-  return [
-    project.category,
-    project.type,
-    ...(project.filters || []),
-    ...(project.tags || []),
-    ...(project.tech || []),
-  ]
-    .filter(Boolean)
-    .join(" ")
-    .toLowerCase();
+function buildFilters() {
+  return ["All", "Web", "Mobile", "Platform Web & Mobile", "Client Work"];
 }
 
 function getImage(project) {

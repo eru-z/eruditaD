@@ -5,12 +5,12 @@ import {
   CalendarDays,
   Check,
   ChevronDown,
-  Github,
   Lightbulb,
   Linkedin,
   LockKeyhole,
   Mail,
   MapPin,
+  Phone,
   MessageSquare,
   Send,
   ShieldCheck,
@@ -26,6 +26,17 @@ import { getBookingUrl } from "../utils/booking.js";
 import "./contact-pixel-perfect.css";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function contactText(value, fallback = "") {
+  if (typeof value === "string") return value.trim() || fallback;
+  if (typeof value === "number" || typeof value === "bigint") return `${value}`;
+  if (!value || typeof value !== "object") return fallback;
+
+  const candidate = value.value ?? value.text ?? value.label ?? value.email ?? value.phone ?? value.location;
+  if (candidate !== undefined && candidate !== value) return contactText(candidate, fallback);
+
+  return fallback;
+}
 
 const FEATURES = [
   {
@@ -179,9 +190,9 @@ export default function Contact() {
     }
   };
 
-  const email = contact.email || "eruditazilbearids@gmail.com";
-  const phone = contact.phone || "+389 70 902 183";
-  const location = contact.location || "Tetovo, North Macedonia";
+  const email = contactText(contact.email, "eruditazilbearids@gmail.com");
+  const phone = contactText(contact.phone, "+389 70 902 183");
+  const location = contactText(contact.location, "Tetovo, North Macedonia");
 
   return (
     <section id="contact" className="contact-pp" aria-label="Contact">
@@ -422,11 +433,11 @@ export default function Contact() {
           </div>
 
           <div className="contact-info">
-            <span className="contact-info__icon">⌕</span>
+            <span className="contact-info__icon"><Phone size={22} /></span>
             <div>
               <small>PHONE</small>
               <a href={`tel:${phone.replace(/\s+/g, "")}`}>{phone}</a>
-              <p>Mon – Fri, 9AM – 6PM CET</p>
+              <p>Available whenever needed</p>
             </div>
           </div>
 
@@ -443,10 +454,7 @@ export default function Contact() {
             <div>
               <small>CONNECT</small>
               <div className="contact-socials">
-                <a href="https://github.com/eru-z" target="_blank" rel="noreferrer" aria-label="GitHub">
-                  <Github size={20} />
-                </a>
-                <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+                <a href="https://www.linkedin.com/in/erudita-zilbeari-273b7035a" target="_blank" rel="noreferrer" aria-label="LinkedIn">
                   <Linkedin size={20} />
                 </a>
                 <a href={`mailto:${email}`} aria-label="Email">
@@ -459,7 +467,7 @@ export default function Contact() {
 
         <motion.div variants={fadeUp} {...motionProps} className="contact-call">
           <a href={bookingUrl} target="_blank" rel="noreferrer">
-            Schedule a call
+            Schedule a 30 min Google Meet
             <CalendarDays size={17} />
             <ArrowRight size={15} />
           </a>

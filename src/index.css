@@ -339,3 +339,161 @@ span {
     padding-top: 42px !important;
   }
 }
+
+/* =====================================================================
+   Continuous one-page portfolio canvas — no isolated section backdrops
+   ===================================================================== */
+body .public-portfolio-shell.is-light-mode {
+  background:
+    radial-gradient(circle at 78% 7%, rgba(65,126,247,.13), transparent 25rem),
+    radial-gradient(circle at 12% 31%, rgba(117,191,255,.09), transparent 30rem),
+    radial-gradient(circle at 84% 58%, rgba(109,84,238,.07), transparent 28rem),
+    radial-gradient(circle at 18% 86%, rgba(74,144,255,.08), transparent 30rem),
+    linear-gradient(145deg, #fff 0%, #f7f9ff 46%, #edf4ff 74%, #f8faff 100%) !important;
+}
+
+body .public-portfolio-shell.is-galaxy-dark {
+  background:
+    radial-gradient(circle at 16% 12%, rgba(52,105,232,.2), transparent 30rem),
+    radial-gradient(circle at 84% 23%, rgba(116,67,225,.17), transparent 32rem),
+    radial-gradient(circle at 48% 68%, rgba(14,124,192,.11), transparent 34rem),
+    linear-gradient(180deg, #020513 0%, #040817 48%, #07051a 100%) !important;
+}
+
+body .public-portfolio-shell main > :is(
+  .home-hero,
+  .about-page,
+  .about-section,
+  .experience-section,
+  .projects-section,
+  .technical-proof,
+  .achievements-section,
+  .contact-pp
+),
+body .public-portfolio-shell.is-light-mode main > :is(
+  .home-hero,
+  .about-page,
+  .about-section,
+  .experience-section,
+  .projects-section,
+  .technical-proof,
+  .achievements-section,
+  .contact-pp
+),
+body .public-portfolio-shell.is-galaxy-dark main > :is(
+  .home-hero,
+  .about-page,
+  .about-section,
+  .experience-section,
+  .projects-section,
+  .technical-proof,
+  .achievements-section,
+  .contact-pp
+) {
+  background: transparent !important;
+  background-image: none !important;
+}
+
+body .public-portfolio-shell main > :is(
+  .about-page,
+  .about-section,
+  .experience-section,
+  .projects-section,
+  .technical-proof,
+  .achievements-section,
+  .contact-pp
+)::before {
+  opacity: 0 !important;
+}
+
+body .public-portfolio-shell :is(
+  .about-section__grid,
+  .projects-section__grid,
+  .technical-proof__grid,
+  .contact-pp__grid
+) {
+  opacity: .07 !important;
+}
+
+body .public-portfolio-shell :is(
+  .about-section__glow,
+  .projects-section__glow,
+  .technical-proof__glow,
+  .contact-pp__wash,
+  .experience-effects
+) {
+  opacity: .24 !important;
+}
+
+body .public-portfolio-shell main > :is(
+  .about-page,
+  .about-section,
+  .experience-section,
+  .projects-section,
+  .technical-proof,
+  .achievements-section,
+  .contact-pp
+) {
+  border-top: 0 !important;
+  margin-block: 0 !important;
+}
+
+@media (max-width: 768px) {
+  body .public-portfolio-shell :is(
+    .about-section__grid,
+    .projects-section__grid,
+    .technical-proof__grid,
+    .contact-pp__grid,
+    .contact-pp__dots
+  ) {
+    opacity: .04 !important;
+  }
+}
+
+/* Preserve the shared canvas while restoring authored local orbs and glows. */
+body .public-portfolio-shell :is(
+  .about-section__glow,
+  .projects-section__glow,
+  .technical-proof__glow,
+  .contact-pp__wash,
+  .experience-effects
+) {
+  opacity: .58 !important;
+}
+
+body .public-portfolio-shell.is-galaxy-dark :is(
+  .about-section__glow,
+  .projects-section__glow,
+  .technical-proof__glow,
+  .contact-pp__wash,
+  .experience-effects
+) {
+  opacity: .7 !important;
+}
+
+body .public-portfolio-shell :is(
+  .about-section__grid,
+  .projects-section__grid,
+  .technical-proof__grid,
+  .contact-pp__grid
+) {
+  opacity: .12 !important;
+}
+
+@media (max-width: 768px) {
+  body .public-portfolio-shell :is(
+    .about-section__glow,
+    .projects-section__glow,
+    .technical-proof__glow,
+    .contact-pp__wash,
+    .experience-effects
+  ) {
+    opacity: .4 !important;
+  }
+}
+
+/* Shared public scroll-to-top control. */
+.portfolio-scroll-top{position:fixed;right:clamp(16px,2.2vw,32px);bottom:clamp(86px,7vw,98px);z-index:80;display:grid;width:48px;height:48px;place-items:center;border:1px solid rgba(111,151,245,.42);border-radius:15px;color:#fff;background:linear-gradient(145deg,rgba(12,86,240,.96),rgba(103,65,238,.96));box-shadow:0 14px 34px rgba(18,61,180,.32),inset 0 1px rgba(255,255,255,.2);opacity:0;pointer-events:none;transform:translateY(16px) scale(.9);transition:opacity .2s ease,transform .2s ease,box-shadow .2s ease;backdrop-filter:blur(14px)}
+.portfolio-scroll-top.is-visible{opacity:1;pointer-events:auto;transform:translateY(0) scale(1)}.portfolio-scroll-top:hover{transform:translateY(-3px);box-shadow:0 18px 42px rgba(18,61,180,.42),inset 0 1px rgba(255,255,255,.24)}.portfolio-scroll-top:focus-visible{outline:3px solid rgba(96,165,250,.5);outline-offset:4px}.is-light-mode .portfolio-scroll-top{border-color:rgba(255,255,255,.8);box-shadow:0 14px 34px rgba(37,99,235,.25)}
+@media(max-width:640px){.portfolio-scroll-top{right:14px;bottom:82px;width:44px;height:44px;border-radius:13px}}
+@media(prefers-reduced-motion:reduce){.portfolio-scroll-top{transition:opacity .01ms}.portfolio-scroll-top:hover{transform:none}}

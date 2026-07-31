@@ -1,7 +1,7 @@
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 
 export default function AvailabilityCard({ contact = {} }) {
-  const email = contact.email || "hello@erudita.pro";
+  const email = contact.email || "eruditazilbearids@gmail.com";
 
   return (
     <article className="ep-glass ep-availability-card" aria-label="Availability">

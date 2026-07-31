@@ -27,6 +27,45 @@
   --vx-bounce: cubic-bezier(.34, 1.56, .64, 1);
 }
 
+/* iPhone production layout for the complete Projects manager. */
+@media (max-width: 767px) {
+  body.vx-admin-route .ap-projects-page { padding: 10px !important; }
+  .ap-projects { width: 100%; min-width: 0; gap: 12px !important; }
+  .ap-intro { min-height: 0 !important; padding: 16px !important; border-radius: 18px !important; }
+  .ap-intro-copy h2 { font-size: clamp(31px,11vw,44px) !important; line-height: .96 !important; }
+  .ap-intro-copy p { font-size: 12px !important; }
+  .ap-intro-actions { width: 100% !important; display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 8px !important; }
+  .ap-view-toggle { grid-column: 1 / -1; width: 100% !important; min-height: 44px; }
+  .ap-btn { width: 100% !important; min-width: 0 !important; min-height: 44px !important; padding-inline: 10px !important; font-size: 11px !important; }
+  .ap-stats { grid-template-columns: repeat(2,minmax(0,1fr)) !important; gap: 8px !important; }
+  .ap-stat { min-height: 100px !important; padding: 13px !important; border-radius: 16px !important; }
+  .ap-stat:last-child { grid-column: 1 / -1; }
+  .ap-toolbar { display: grid !important; grid-template-columns: 1fr !important; gap: 8px !important; padding: 10px !important; border-radius: 16px !important; }
+  .ap-search,.ap-select,.ap-results,.ap-reset { width: 100% !important; grid-column: auto !important; min-height: 44px !important; }
+  .ap-reset { justify-self: stretch !important; }
+  .ap-grid { grid-template-columns: 1fr !important; gap: 12px !important; }
+  .ap-card { width: 100% !important; min-width: 0 !important; border-radius: 18px !important; }
+  .ap-card-media { height: 164px !important; }
+  .ap-card-body { padding: 14px !important; }
+  .ap-card-body h3 { font-size: 18px !important; }
+  .ap-card-body > p { display: -webkit-box; overflow: hidden; -webkit-box-orient: vertical; -webkit-line-clamp: 3; }
+  .ap-card-footer { align-items: stretch !important; flex-direction: column !important; gap: 9px !important; padding: 11px 14px !important; }
+  .ap-card-actions,.ap-row-actions { width: 100%; display: grid !important; grid-template-columns: repeat(6,minmax(0,1fr)); gap: 5px !important; }
+  .ap-icon-action,.ap-card-actions button,.ap-row-actions button { width: 100% !important; min-width: 0 !important; min-height: 40px !important; }
+  .ap-table-wrap { overflow: visible !important; }
+  .ap-table-scroll { overflow: visible !important; }
+  .ap-table td { align-items: center !important; }
+  .ap-row-project { max-width: 64%; }
+  .ap-row-actions { grid-template-columns: repeat(5,minmax(0,1fr)); }
+}
+
+@media (max-width: 390px) {
+  .ap-intro-actions { grid-template-columns: 1fr !important; }
+  .ap-stats { grid-template-columns: 1fr !important; }
+  .ap-stat:last-child { grid-column: auto; }
+  .ap-card-media { height: 148px !important; }
+}
+
 *, *::before, *::after { box-sizing: border-box; }
 html, body { margin: 0; background: var(--vx-bg); }
 button, input, select, textarea { font: inherit; }
@@ -1839,3 +1878,9 @@ button:disabled { cursor: not-allowed; opacity: .62; transform: none !important;
   .ap-table td:nth-child(5)::before { content: "Updated"; }
   .ap-table td:nth-child(6)::before { content: "Actions"; }
 }
+
+/* Authoritative mobile Projects manager overrides. */
+@media (max-width: 767px) {
+  body.vx-admin-route .ap-projects-page{padding:10px!important}.ap-projects{width:100%;min-width:0;gap:12px!important}.ap-intro{min-height:0!important;padding:16px!important;border-radius:18px!important}.ap-intro-copy h2{font-size:clamp(31px,11vw,44px)!important;line-height:.96!important}.ap-intro-copy p{font-size:12px!important}.ap-intro-actions{width:100%!important;display:grid!important;grid-template-columns:1fr 1fr!important;gap:8px!important}.ap-view-toggle{grid-column:1/-1;width:100%!important;min-height:44px}.ap-btn{width:100%!important;min-width:0!important;min-height:44px!important;padding-inline:10px!important;font-size:11px!important}.ap-stats{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}.ap-stat{min-height:100px!important;padding:13px!important;border-radius:16px!important}.ap-stat:last-child{grid-column:1/-1}.ap-toolbar{display:grid!important;grid-template-columns:1fr!important;gap:8px!important;padding:10px!important;border-radius:16px!important}.ap-search,.ap-select,.ap-results,.ap-reset{width:100%!important;grid-column:auto!important;min-height:44px!important}.ap-reset{justify-self:stretch!important}.ap-grid{grid-template-columns:1fr!important;gap:12px!important}.ap-card{width:100%!important;min-width:0!important;border-radius:18px!important}.ap-card-media{height:164px!important}.ap-card-body{padding:14px!important}.ap-card-body h3{font-size:18px!important}.ap-card-body>p{display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:3}.ap-card-footer{align-items:stretch!important;flex-direction:column!important;gap:9px!important;padding:11px 14px!important}.ap-card-actions,.ap-row-actions{width:100%;display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr));gap:5px!important}.ap-icon-action,.ap-card-actions button,.ap-row-actions button{width:100%!important;min-width:0!important;min-height:40px!important}.ap-table-wrap,.ap-table-scroll{overflow:visible!important}.ap-table td{align-items:center!important}.ap-row-project{max-width:64%}.ap-row-actions{grid-template-columns:repeat(5,minmax(0,1fr))}
+}
+@media (max-width:390px){.ap-intro-actions{grid-template-columns:1fr!important}.ap-stats{grid-template-columns:1fr!important}.ap-stat:last-child{grid-column:auto}.ap-card-media{height:148px!important}}

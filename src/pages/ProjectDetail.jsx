@@ -20,15 +20,6 @@ import { fadeUp, stagger } from "../utils/animations.js";
 import { useData } from "../utils/storage.js";
 import { listFromBackend } from "../utils/projects.js";
 
-function GlassPanel({ children, className = "" }) {
-  return (
-    <div
-      className={`rounded-[22px] border border-white/90 bg-white/70 shadow-[0_24px_70px_-52px_rgba(37,99,235,.6)] backdrop-blur-2xl ${className}`}
-    >
-      {children}
-    </div>
-  );
-}
 
 function InfoBlock({ title, text, icon: Icon }) {
   if (!text) return null;

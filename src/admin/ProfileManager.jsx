@@ -86,9 +86,7 @@ export default function ProfileManager() {
       <Card className="p-6">
         <h3 className="font-display text-lg font-semibold">Socials</h3>
         <div className="mt-4 grid gap-4 md:grid-cols-3">
-          <Field label="GitHub" value={form.socials?.github} onChange={(v) => setSocial("github", v)} />
           <Field label="LinkedIn" value={form.socials?.linkedin} onChange={(v) => setSocial("linkedin", v)} />
-          <Field label="Dribbble" value={form.socials?.dribbble} onChange={(v) => setSocial("dribbble", v)} />
         </div>
       </Card>
     </form>

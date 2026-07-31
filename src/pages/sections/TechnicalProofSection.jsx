@@ -1,7 +1,5 @@
-import React from "react";
 import {
   Braces,
-  Code2,
   Database,
   MonitorSmartphone,
   ServerCog,
@@ -23,7 +21,6 @@ const techGroups = [
       { label: "CSS", tone: "css", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" },
       { label: "Bootstrap", tone: "bootstrap", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" },
       { label: "Tailwind CSS", tone: "tailwind", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" },
-      { label: "WordPress", tone: "wordpress", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-plain.svg" },
       { label: "JavaScript", tone: "js", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
       { label: "React JS", tone: "react", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
     ],
@@ -35,7 +32,15 @@ const techGroups = [
     icon: MonitorSmartphone,
     items: [
       { label: "React Native", tone: "react", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
-      { label: "Expo", tone: "expo", logo: "https://cdn.simpleicons.org/expo/000000" },
+    ],
+  },
+  {
+    side: "left",
+    key: "cms",
+    title: "CMS",
+    icon: MonitorSmartphone,
+    items: [
+      { label: "WordPress", tone: "wordpress", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-plain.svg" },
     ],
   },
   {
@@ -68,6 +73,7 @@ const techGroups = [
       { label: "GitHub", tone: "github", logo: "https://cdn.simpleicons.org/github/181717" },
       { label: "Vercel", tone: "vercel", logo: "https://cdn.simpleicons.org/vercel/000000" },
       { label: "Supabase", tone: "supabase", logo: "https://cdn.simpleicons.org/supabase/3FCF8E" },
+      { label: "Expo", tone: "expo", logo: "https://cdn.simpleicons.org/expo/000000" },
       { label: "Hosting/Domains", tone: "hosting", logo: "https://cdn.simpleicons.org/cloudflare/F38020" },
     ],
   },

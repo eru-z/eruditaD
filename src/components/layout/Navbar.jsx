@@ -18,7 +18,7 @@ const navLinks = [
 
   { number: "04", label: "Projects", href: "/#projects" },
 
-  { number: "05", label: "Stack", href: "/#technical-proof" },
+  { number: "05", label: "Stack", href: "/#stack" },
 
   { number: "06", label: "Achievements", href: "/#achievements" },
 
@@ -43,31 +43,26 @@ export default function Navbar({
   const location = useLocation();
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState(() => location.hash.slice(1) || "home");
 
 
 
   const activeHref = useMemo(() => {
+    if (location.pathname.startsWith("/projects")) return "/#projects";
+    if (location.pathname === "/") return `/#${activeSection || "home"}`;
+    return "/#home";
+  }, [location.pathname, activeSection]);
 
-    if (location.pathname.startsWith("/projects")) {
-
-      return "/#projects";
-
-    }
-
-
-
-    const currentHashHref = location.hash ? `/${location.hash}` : "/#home";
-
-
-
-    return navLinks.some((link) => link.href === currentHashHref)
-
-      ? currentHashHref
-
-      : "/#home";
-
-  }, [location.pathname, location.hash]);
-
+  useEffect(() => {
+    if (location.pathname !== "/") return undefined;
+    const sections = navLinks.map((link) => document.getElementById(link.href.split("#")[1])).filter(Boolean);
+    const observer = new IntersectionObserver((entries) => {
+      const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (visible?.target?.id) setActiveSection(visible.target.id);
+    }, { rootMargin: "-24% 0px -58% 0px", threshold: [0.08, 0.2, 0.45] });
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, [location.pathname]);
   const closeMobileMenu = () => {
 
     setMobileMenuOpen(false);
@@ -192,7 +187,7 @@ export default function Navbar({
 
           <span className="pp-navbar-mark" aria-hidden="true">
 
-            <img src="/images/ez-logo-navbar.png" alt="" />
+            <img src="/images/ez-logo-navbar.png" alt="" width="78" height="40" decoding="async" />
 
           </span>
 
@@ -254,7 +249,7 @@ export default function Navbar({
 
             <Sparkles className="pp-navbar-cta-spark" size={13} />
 
-            <span>Let&rsquo;s Build</span>
+            <span>Start a Project</span>
 
             <ArrowRight size={14} />
 

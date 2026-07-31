@@ -8,6 +8,8 @@ import {
   Eye,
   Grid2X2,
   Image,
+  ArrowUp,
+  ArrowDown,
   Layers3,
   List,
   MoreHorizontal,
@@ -22,11 +24,12 @@ import {
   X,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { savePortfolioData, uploadMediaFiles, useData } from "../utils/storage.js";
+import { createProjectRecord, deleteProjectRecord, fetchAdminProjects, reorderProjectRecords, updateProjectRecord, uploadMediaFiles, useData } from "../utils/storage.js";
 import AdminLayout from "../components/layout/AdminLayout.jsx";
 import "../styles/adminprojects.css";
 
 const CURRENT_YEAR = new Date().getFullYear();
+const PROJECT_FILTERS = ["Web", "Mobile", "Platform Web & Mobile", "Client Work"];
 
 const emptyProject = {
   id: "",
@@ -67,7 +70,7 @@ export default function ProjectsManager() {
   const [query, setQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState("All");
   const [categoryFilter, setCategoryFilter] = useState("All");
-  const [sort, setSort] = useState("newest");
+  const [sort, setSort] = useState("saved");
   const [view, setView] = useState("grid");
   const [modal, setModal] = useState(null);
   const [active, setActive] = useState(null);
@@ -76,8 +79,20 @@ export default function ProjectsManager() {
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [projectRows, setProjectRows] = useState(() => (data?.projects || []).map(normalizeProject));
 
-  const projects = useMemo(() => (data?.projects || []).map(normalizeProject), [data?.projects]);
+  const projects = projectRows;
+
+  useEffect(() => {
+    let alive = true;
+    setLoading(true);
+    fetchAdminProjects()
+      .then((items) => { if (alive) setProjectRows(items.map(normalizeProject)); })
+      .catch((err) => { if (alive) setError(projectSaveError(err, "Could not load projects.")); })
+      .finally(() => { if (alive) setLoading(false); });
+    return () => { alive = false; };
+  }, []);
 
   const categories = useMemo(() => {
     const unique = new Set(projects.map((project) => project.category).filter(Boolean));
@@ -131,12 +146,20 @@ export default function ProjectsManager() {
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
-    if (params.get("new") !== "1") return;
-    openCreate();
-    params.delete("new");
+    if (params.get("new") === "1") {
+      openCreate();
+      params.delete("new");
+      navigate({ pathname: location.pathname, search: params.toString() }, { replace: true });
+      return;
+    }
+
+    const editId = params.get("edit");
+    if (!editId) return;
+    const project = projects.find((item) => String(item.id) === editId);
+    if (project) openEdit(project);
+    params.delete("edit");
     navigate({ pathname: location.pathname, search: params.toString() }, { replace: true });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [location.pathname, location.search, navigate]);
+  }, [location.pathname, location.search, navigate, projects]);
 
   function openCreate() {
     setForm({ ...emptyProject, id: `p_${Date.now()}` });
@@ -180,8 +203,31 @@ export default function ProjectsManager() {
     const cleanImages = uniqueImagesByUrl((form.images || []).filter((image) => image?.url));
     const imageUrls = cleanImages.map((image) => image.url);
     const videoUrl = form.videoUrl || form.videoFile?.url || "";
-    const title = String(form.title || "").trim() || "Untitled project";
+    const title = String(form.title || "").trim();
     const category = String(form.category || "").trim();
+    const year = Number(form.year);
+    const invalidUrl = [form.liveUrl, form.githubUrl, videoUrl].find((value) => value && !/^https?:\/\//i.test(String(value)) && !String(value).startsWith("/uploads/"));
+
+    if (!title) {
+      setError("Project title is required.");
+      setSaving(false);
+      return;
+    }
+    if (!category) {
+      setError("Project category is required.");
+      setSaving(false);
+      return;
+    }
+    if (!Number.isInteger(year) || year < 2000 || year > CURRENT_YEAR + 2) {
+      setError(`Year must be between 2000 and ${CURRENT_YEAR + 2}.`);
+      setSaving(false);
+      return;
+    }
+    if (invalidUrl) {
+      setError("Live, GitHub, and video links must be valid http(s) URLs.");
+      setSaving(false);
+      return;
+    }
     const payload = normalizeForSave({
       ...form,
       title,
@@ -195,7 +241,7 @@ export default function ProjectsManager() {
       projectRole: String(form.projectRole || "").trim(),
       techDecisions: splitList(form.techDecisions),
       impactDetails: splitList(form.impactDetails),
-      year: Number(form.year) || CURRENT_YEAR,
+      year,
       status: form.status === "Draft" ? "Draft" : "Published",
       coverImage: form.coverImage || imageUrls[0] || "",
       images: cleanImages,
@@ -209,7 +255,7 @@ export default function ProjectsManager() {
       tech: tags,
     });
 
-    const currentProjects = Array.isArray(data?.projects) ? data.projects : [];
+    const currentProjects = projects;
     const featuredCount = currentProjects.filter((project) => project.featured && project.id !== payload.id).length;
 
     if (payload.featured && featuredCount >= 3) {
@@ -218,36 +264,36 @@ export default function ProjectsManager() {
       return;
     }
 
-    try {
-      const exists = currentProjects.some((project) => project.id === payload.id);
-      const nextData = {
-        ...data,
-        projects: exists
-          ? currentProjects.map((project) => (project.id === payload.id ? payload : project))
-          : [payload, ...currentProjects],
-      };
+    const exists = currentProjects.some((project) => project.id === payload.id);
+    const previous = currentProjects;
+    const optimistic = exists
+      ? currentProjects.map((project) => (project.id === payload.id ? normalizeProject(payload) : project))
+      : [normalizeProject(payload), ...currentProjects];
+    setProjectRows(optimistic);
 
-      await savePortfolioData(nextData);
+    try {
+      const result = exists ? await updateProjectRecord(payload.id, payload) : await createProjectRecord(payload);
+      setProjectRows((result.projects || optimistic).map(normalizeProject));
       closeModal();
     } catch (err) {
+      setProjectRows(previous);
       setError(projectSaveError(err));
     } finally {
       setSaving(false);
     }
   }
-
   async function deleteProject() {
     if (!active) return;
     setSaving(true);
     setError("");
-
+    const previous = projects;
+    setProjectRows((items) => items.filter((project) => project.id !== active.id));
     try {
-      await savePortfolioData({
-        ...data,
-        projects: (data?.projects || []).filter((project) => project.id !== active.id),
-      });
+      const result = await deleteProjectRecord(active.id);
+      setProjectRows((result.projects || []).map(normalizeProject));
       closeModal();
     } catch (err) {
+      setProjectRows(previous);
       setError(err?.message || "Could not delete project from the backend.");
     } finally {
       setSaving(false);
@@ -257,25 +303,39 @@ export default function ProjectsManager() {
   async function toggleFeatured(project) {
     setError("");
     const willFeature = !project.featured;
-    const featuredCount = (data?.projects || []).filter((item) => item.featured && item.id !== project.id).length;
-
+    const featuredCount = projects.filter((item) => item.featured && item.id !== project.id).length;
     if (willFeature && featuredCount >= 3) {
-      setError("Only 3 projects can be featured on the main portfolio. Unfeature another project first.");
+      setError("Only 3 projects can be featured. Unfeature another project first.");
       return;
     }
-
+    const previous = projects;
+    setProjectRows((items) => items.map((item) => item.id === project.id ? { ...item, featured: willFeature } : item));
     try {
-      await savePortfolioData({
-        ...data,
-        projects: (data?.projects || []).map((item) =>
-          item.id === project.id ? { ...item, featured: !item.featured } : item
-        ),
-      });
+      const result = await updateProjectRecord(project.id, { featured: willFeature });
+      setProjectRows((result.projects || []).map(normalizeProject));
     } catch (err) {
+      setProjectRows(previous);
       setError(err?.message || "Could not update featured status.");
     }
   }
 
+  async function moveProject(project, direction) {
+    const index = projects.findIndex((item) => item.id === project.id);
+    const target = index + direction;
+    if (index < 0 || target < 0 || target >= projects.length) return;
+    const previous = projects;
+    const optimistic = [...projects];
+    [optimistic[index], optimistic[target]] = [optimistic[target], optimistic[index]];
+    setProjectRows(optimistic);
+    setError("");
+    try {
+      const result = await reorderProjectRecords(optimistic.map((item) => item.id));
+      setProjectRows((result.projects || optimistic).map(normalizeProject));
+    } catch (err) {
+      setProjectRows(previous);
+      setError(err?.message || "Could not save project order.");
+    }
+  }
   async function addImageFiles(files) {
     const selected = Array.from(files || []).filter((file) => file.type.startsWith("image/"));
     if (!selected.length) return;
@@ -401,6 +461,7 @@ export default function ProjectsManager() {
           <Select value={statusFilter} onChange={setStatusFilter} options={["All", "Published", "Draft"]} label="Filter by status" />
           <Select value={categoryFilter} onChange={setCategoryFilter} options={categories} label="Filter by category" />
           <select value={sort} onChange={(event) => setSort(event.target.value)} className="ap-select" aria-label="Sort projects">
+            <option value="saved">Saved order</option>
             <option value="newest">Newest first</option>
             <option value="oldest">Oldest first</option>
             <option value="title">Title A-Z</option>
@@ -427,16 +488,19 @@ export default function ProjectsManager() {
           </div>
         </section>
 
-        {filtered.length === 0 ? (
+        {error && modal === null && <div className="ap-global-error" role="alert">{error}</div>}
+        {loading ? (
+          <div className="ap-empty" role="status" aria-live="polite"><div className="ap-empty-icon"><UploadCloud size={22} /></div><h4>Loading projects</h4><p>Syncing with the production portfolioâ€¦</p></div>
+        ) : filtered.length === 0 ? (
           <EmptyState hasFilters={hasFilters} onCreate={openCreate} onClear={() => {
             setQuery("");
             setStatusFilter("All");
             setCategoryFilter("All");
           }} />
         ) : view === "grid" ? (
-          <GridView items={filtered} onEdit={openEdit} onDelete={openDelete} onView={openView} onToggleFeatured={toggleFeatured} />
+          <GridView items={filtered} onEdit={openEdit} onDelete={openDelete} onView={openView} onToggleFeatured={toggleFeatured} onMove={moveProject} allItems={projects} />
         ) : (
-          <ListView items={filtered} onEdit={openEdit} onDelete={openDelete} onView={openView} onToggleFeatured={toggleFeatured} />
+          <ListView items={filtered} onEdit={openEdit} onDelete={openDelete} onView={openView} onToggleFeatured={toggleFeatured} onMove={moveProject} allItems={projects} />
         )}
       </motion.section>
 
@@ -463,7 +527,7 @@ export default function ProjectsManager() {
   );
 }
 
-function GridView({ items, onEdit, onDelete, onView, onToggleFeatured }) {
+function GridView({ items, onEdit, onDelete, onView, onToggleFeatured, onMove, allItems }) {
   return (
     <div className="ap-grid">
       {items.map((project, index) => (
@@ -502,6 +566,8 @@ function GridView({ items, onEdit, onDelete, onView, onToggleFeatured }) {
                   <ExternalLink size={15} />
                 </a>
               )}
+              <IconButton onClick={() => onMove(project, -1)} label="Move project earlier" disabled={allItems[0]?.id === project.id}><ArrowUp size={15} /></IconButton>
+              <IconButton onClick={() => onMove(project, 1)} label="Move project later" disabled={allItems[allItems.length - 1]?.id === project.id}><ArrowDown size={15} /></IconButton>
               <IconButton onClick={() => onEdit(project)} label="Edit project"><Pencil size={15} /></IconButton>
               <IconButton danger onClick={() => onDelete(project)} label="Delete project"><MoreHorizontal size={15} /></IconButton>
             </div>
@@ -512,7 +578,7 @@ function GridView({ items, onEdit, onDelete, onView, onToggleFeatured }) {
   );
 }
 
-function ListView({ items, onEdit, onDelete, onView, onToggleFeatured }) {
+function ListView({ items, onEdit, onDelete, onView, onToggleFeatured, onMove, allItems }) {
   return (
     <div className="ap-table-wrap">
       <div className="ap-table-scroll">
@@ -552,6 +618,8 @@ function ListView({ items, onEdit, onDelete, onView, onToggleFeatured }) {
                 <td>
                   <div className="ap-row-actions">
                     <IconButton onClick={() => onView(project)} label="View"><Eye size={15} /></IconButton>
+                    <IconButton onClick={() => onMove(project, -1)} label="Move earlier" disabled={allItems[0]?.id === project.id}><ArrowUp size={15} /></IconButton>
+                    <IconButton onClick={() => onMove(project, 1)} label="Move later" disabled={allItems[allItems.length - 1]?.id === project.id}><ArrowDown size={15} /></IconButton>
                     <IconButton onClick={() => onEdit(project)} label="Edit"><Pencil size={15} /></IconButton>
                     <IconButton danger onClick={() => onDelete(project)} label="Delete"><MoreHorizontal size={15} /></IconButton>
                   </div>
@@ -604,7 +672,7 @@ function ProjectModal({ open, active, form, setForm, tagInput, setTagInput, onCl
           </div>
           <div>
             <strong className="block text-lg font-black text-black">{form.title || "Untitled project"}</strong>
-            <span className="text-sm font-semibold text-zinc-500">{form.category || "Category"} • {form.year || CURRENT_YEAR}</span>
+            <span className="text-sm font-semibold text-zinc-500">{form.category || "Category"}{" \u00b7 "}{form.year || CURRENT_YEAR}</span>
           </div>
         </div>
 
@@ -684,15 +752,21 @@ function ProjectModal({ open, active, form, setForm, tagInput, setTagInput, onCl
           </Field>
         </div>
 
-        <Field label="Public filters">
-          <input
-            className="rounded-2xl border border-black/10 bg-zinc-50 px-4 py-3 text-sm font-semibold text-black outline-none transition focus:border-black focus:bg-white w-full placeholder:text-zinc-400"
-            value={Array.isArray(form.filters) ? form.filters.join(", ") : form.filters || ""}
-            onChange={(e) => setForm({ ...form, filters: e.target.value })}
-            placeholder="Web, Mobile, Dashboard, AI, Client Work"
-          />
+        <Field label="Project filters">
+          <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
+            {PROJECT_FILTERS.map((filter) => {
+              const selectedFilters = splitList(form.filters);
+              const checked = selectedFilters.includes(filter);
+              return (
+                <label key={filter} className={`flex cursor-pointer items-center gap-3 rounded-2xl border px-4 py-3 text-sm font-bold transition ${checked ? "border-blue-500 bg-blue-50 text-blue-700" : "border-black/10 bg-zinc-50 text-zinc-600 hover:border-black/25"}`}>
+                  <input type="checkbox" className="h-4 w-4 accent-blue-600" checked={checked} onChange={() => setForm({ ...form, filters: checked ? selectedFilters.filter((item) => item !== filter) : [...selectedFilters, filter] })} />
+                  <span>{filter}</span>
+                </label>
+              );
+            })}
+          </div>
           <p className="mt-2 text-xs font-semibold text-zinc-500">
-            These are the exact filter chips shown on the public /projects page.
+            Choose every public filter this project should appear under. “All” includes every published project automatically.
           </p>
         </Field>
 
@@ -778,7 +852,7 @@ function PreviewModal({ open, project, onClose, onEdit }) {
       open={open}
       onClose={onClose}
       title={project?.title || "Project preview"}
-      subtitle={project ? `${project.category || "Uncategorized"} • ${project.year || "No year"}` : ""}
+      subtitle={project ? `${project.category || "Uncategorized"} - ${project.year || "No year"}` : ""}
       size="lg"
       footer={
         <>
@@ -859,7 +933,7 @@ function Modal({ open, onClose, title, subtitle, children, footer, size = "md" }
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[220] grid place-items-center bg-black/45 p-4 backdrop-blur-xl"
+            className="ap-modal-backdrop fixed inset-0 z-[220] grid place-items-center bg-black/45 p-4 backdrop-blur-xl"
           onClick={onClose}
         >
           <motion.div
@@ -870,9 +944,9 @@ function Modal({ open, onClose, title, subtitle, children, footer, size = "md" }
             onClick={(event) => event.stopPropagation()}
             role="dialog"
             aria-modal="true"
-            className={`max-h-[90vh] w-full overflow-hidden rounded-[2rem] border border-white/25 bg-white shadow-[0_40px_120px_rgba(0,0,0,0.35)] ${size === "lg" ? "max-w-5xl" : size === "sm" ? "max-w-md" : "max-w-2xl"}`}
+            className={`ap-modal-shell max-h-[90vh] w-full overflow-hidden rounded-[2rem] border border-white/25 bg-white shadow-[0_40px_120px_rgba(0,0,0,0.35)] ${size === "lg" ? "max-w-5xl" : size === "sm" ? "max-w-md" : "max-w-2xl"}`}
           >
-            <div className="flex items-start justify-between gap-4 border-b border-black/10 px-5 py-4 sm:px-6">
+            <div className="ap-modal-head flex items-start justify-between gap-4 border-b border-black/10 px-5 py-4 sm:px-6">
               <div>
                 <h3 className="text-2xl font-black tracking-[-0.04em] text-black">{title}</h3>
                 {subtitle && <p className="mt-1 text-sm leading-6 text-zinc-500">{subtitle}</p>}
@@ -882,8 +956,8 @@ function Modal({ open, onClose, title, subtitle, children, footer, size = "md" }
               </button>
             </div>
 
-            <div className="max-h-[65vh] overflow-y-auto p-5 sm:p-6">{children}</div>
-            {footer && <div className="flex flex-wrap justify-end gap-2 border-t border-black/10 bg-zinc-50 px-5 py-4 sm:px-6">{footer}</div>}
+            <div className="ap-modal-body max-h-[65vh] overflow-y-auto p-5 sm:p-6">{children}</div>
+            {footer && <div className="ap-modal-foot flex flex-wrap justify-end gap-2 border-t border-black/10 bg-zinc-50 px-5 py-4 sm:px-6">{footer}</div>}
           </motion.div>
         </motion.div>
       )}
@@ -973,11 +1047,12 @@ function TechRow({ items }) {
   );
 }
 
-function IconButton({ children, onClick, label, danger = false }) {
+function IconButton({ children, onClick, label, danger = false, disabled = false }) {
   return (
     <button
       type="button"
       onClick={onClick}
+      disabled={disabled}
       aria-label={label}
       title={label}
       className={`ap-icon-action${danger ? " danger" : ""}`}
@@ -1063,7 +1138,11 @@ function ProjectLink({ href, label }) {
 function normalizeProject(project) {
   const tags = project.tags || splitList(project.technologies);
   const cover = project.coverImage || project.image || "";
-  const images = project.images || (Array.isArray(project.screenshots) ? project.screenshots.map((url, index) => ({ id: `shot_${index}`, name: `Screenshot ${index + 1}`, url })) : []);
+  const images = Array.isArray(project.images) && project.images.length
+    ? project.images.map((image, index) => normalizeImage(image, index))
+    : Array.isArray(project.screenshots)
+      ? project.screenshots.map((image, index) => normalizeImage(image, index))
+      : [];
   const videoUrl = project.videoUrl || (typeof project.video === "string" ? project.video : "");
 
   return {
@@ -1084,8 +1163,22 @@ function normalizeProject(project) {
   };
 }
 
+function normalizeImage(image, index) {
+  if (typeof image === "string") {
+    return { id: `shot_${index}`, name: `Screenshot ${index + 1}`, url: image };
+  }
+
+  return {
+    ...image,
+    id: image?.id || `shot_${index}`,
+    name: image?.name || image?.title || image?.label || `Screenshot ${index + 1}`,
+    url: image?.url || image?.src || image?.image || "",
+  };
+}
+
 function normalizeForSave(project) {
-  const { videoFile, ...clean } = project;
+  const clean = { ...project };
+  delete clean.videoFile;
   return clean;
 }
 
@@ -1120,6 +1213,7 @@ function projectSaveError(error, fallback = "Could not save project to the backe
 }
 
 function sortProjects(a, b, sort) {
+  if (sort === "saved") return Number(a.order || 0) - Number(b.order || 0);
   if (sort === "title") return String(a.title || "").localeCompare(String(b.title || ""));
   if (sort === "featured") return Number(Boolean(b.featured)) - Number(Boolean(a.featured)) || Number(b.year || 0) - Number(a.year || 0);
   if (sort === "oldest") return Number(a.year || 0) - Number(b.year || 0);

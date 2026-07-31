@@ -5,8 +5,8 @@
     "location": "Tetovo, North Macedonia",
     "headline": "Crafting refined digital products with code and design.",
     "about": "I'm Erudita, a full-stack developer and UI/UX designer building software where engineering precision meets exceptional design. From AI-powered platforms and complex operational dashboards to mobile apps and production websites for real businesses, I turn ambitious ideas into polished digital products that are built to work, built to scale, and built to stand out. My experience spans 20+ projects, international hackathons, competition-winning work, and client projects across borders, but my standard remains the same: make it functional, make it exceptional, and never make it ordinary.",
-    "email": "hello@erudita.pro",
-    "phone": "+389 70 000 000",
+    "email": "eruditazilbearids@gmail.com",
+    "phone": "+389 70 902 183",
     "portraitUrl": "",
     "availabilityText": "Available for 3 new client projects this month",
     "stats": [
@@ -28,9 +28,7 @@
       }
     ],
     "socials": {
-      "github": "https://github.com/",
-      "linkedin": "https://linkedin.com/",
-      "dribbble": "https://dribbble.com/"
+      "linkedin": "https://www.linkedin.com/in/erudita-zilbeari-273b7035a"
     }
   },
   "projects": [
@@ -55,7 +53,7 @@
       "featured": true,
       "liveUrl": "",
       "githubUrl": "https://github.com/eru-z/pyramidbackstage-web",
-      "coverImage": "",
+      "coverImage": "/images/logos/pyramid-backstage.png",
       "images": [],
       "videoUrl": "/uploads/1783865774441-c7f6340fd1-Pyramid-Backstage-JunctionX-Tirana-2026-1.mp4",
       "screenshots": [],
@@ -77,111 +75,594 @@
     },
     {
       "id": "p1",
+      "number": "01",
       "title": "Pizzeria Paradiso",
       "category": "Web · Restaurant",
-      "description": "Modern restaurant website with online ordering, reservations and a beautiful menu showcase.",
+      "type": "Restaurant Platform",
+      "description": "Italian restaurant and pizzeria in Vaduz, Liechtenstein serving freshly prepared pizzas, pasta, salads and desserts with dine-in, takeaway, online ordering, delivery and table reservations.",
+      "coverImage": "/images/pizzeria-paradiso-cover.png",
+      "mobileCoverImage": "/images/pizzeria-paradiso-mobile-about.png",
+      "screenshots": [],
+      "video": "",
+      "liveUrl": "https://pizzeriaparadiso.li",
+      "githubUrl": "",
+      "caseStudyUrl": "/projects/pizzeria",
+      "tech": [
+        "React",
+        "Tailwind CSS",
+        "Content System",
+        "SEO"
+      ],
+      "featured": true,
+      "status": "Published",
+      "year": "2025",
+      "tone": "restaurant",
+      "accent": "#F59E0B",
+      "url": "pizzeriaparadiso.li",
+      "headline": "Fresh. Authentic. Italian.",
+      "metric": "+42%",
+      "metricLabel": "Bookings",
+      "metrics": {
+        "impact": "+42%",
+        "performance": 98,
+        "seo": 96,
+        "accessibility": 100
+      },
+      "problem": "Guests needed one clear place to explore authentic Italian dishes, reserve a table and choose dine-in, takeaway, online ordering or delivery.",
+      "solution": "I built a responsive restaurant platform focused on quality ingredients, modern atmosphere, friendly service and fast booking/order paths.",
+      "results": "Guests can quickly discover pizzas, pasta, salads and desserts, then order online or reserve a table at Schwefelstrasse 14.",
+      "architecture": [
+        "React UI",
+        "Menu Content",
+        "Ordering Flow",
+        "Reservations"
+      ],
+      "techDecisions": [
+        "Mobile-first guest journey",
+        "Direct ordering and booking actions",
+        "Image-led restaurant storytelling"
+      ],
+      "timeline": "3-day production sprint from structure to polished launch.",
+      "filters": [
+        "Web",
+        "Client Work"
+      ],
       "tags": [
         "React",
         "Tailwind",
         "Node.js"
       ],
-      "year": "2025"
+      "projectRole": "",
+      "impactDetails": [],
+      "technologies": "React, Tailwind, Node.js",
+      "images": [],
+      "videoUrl": ""
     },
     {
       "id": "p4",
+      "number": "08",
       "title": "Real Estate Dashboard",
       "category": "Web App · PropTech",
-      "description": "Admin dashboard for managing listings, leads, agents and analytics in real-time.",
+      "type": "PropTech Dashboard",
+      "description": "CRM dashboard for listings, leads, agent activity, revenue and pipeline visibility.",
+      "coverImage": "",
+      "screenshots": [],
+      "video": "",
+      "liveUrl": "",
+      "githubUrl": "https://github.com/",
+      "caseStudyUrl": "/projects/real-estate-crm",
+      "tech": [
+        "React",
+        "Tailwind CSS",
+        "MySQL",
+        "CRM"
+      ],
+      "featured": true,
+      "status": "Published",
+      "year": "2024",
+      "tone": "dashboard",
+      "accent": "#2563EB",
+      "url": "proptech.local",
+      "headline": "Every lead in view.",
+      "metric": "+47%",
+      "metricLabel": "Pipeline Visibility",
+      "metrics": {
+        "impact": "+47%",
+        "performance": 96,
+        "seo": 88,
+        "accessibility": 98
+      },
+      "problem": "Agents needed a clearer view of listings, lead status and revenue movement.",
+      "solution": "I designed a CRM-style dashboard with pipeline cards, listing metrics and agent views.",
+      "results": "Lead state and listing performance became easier to compare at a glance.",
+      "architecture": [
+        "CRM Shell",
+        "Listings",
+        "Pipeline",
+        "Metrics"
+      ],
+      "techDecisions": [
+        "Scannable card density",
+        "Status-driven pipeline",
+        "Metric cards for revenue signals"
+      ],
+      "timeline": "Dashboard sprint covering CRM shell, cards and analytics states.",
+      "filters": [
+        "Dashboard",
+        "Web"
+      ],
       "tags": [
         "React",
         "Tailwind",
         "MySQL"
       ],
-      "year": "2024"
+      "projectRole": "",
+      "impactDetails": [],
+      "technologies": "React, Tailwind, MySQL",
+      "images": [],
+      "videoUrl": ""
     },
     {
       "id": "p5",
+      "number": "07",
       "title": "Hospital Management System",
       "category": "Enterprise Web App",
-      "description": "End-to-end hospital management — patients, doctors, scheduling, billing, and reports.",
+      "type": "Healthcare System",
+      "description": "Management system for patients, doctors, appointments, billing and operational reports.",
+      "coverImage": "",
+      "screenshots": [],
+      "video": "",
+      "liveUrl": "",
+      "githubUrl": "https://github.com/",
+      "caseStudyUrl": "/projects/hospital-system",
+      "tech": [
+        "PHP",
+        "MySQL",
+        "Bootstrap",
+        "Reports"
+      ],
+      "featured": false,
+      "status": "Published",
+      "year": "2024",
+      "tone": "dashboard",
+      "accent": "#0284C7",
+      "url": "hospital.local",
+      "headline": "Care operations, organized.",
+      "metric": "+52%",
+      "metricLabel": "Workflow Clarity",
+      "metrics": {
+        "impact": "+52%",
+        "performance": 93,
+        "seo": 86,
+        "accessibility": 95
+      },
+      "problem": "Hospital workflows needed structured records, scheduling and billing in one system.",
+      "solution": "I implemented role-based modules for patients, doctors, appointments, billing and reports.",
+      "results": "The system organizes daily operations into clearer admin workflows.",
+      "architecture": [
+        "PHP App",
+        "MySQL",
+        "Roles",
+        "Reports"
+      ],
+      "techDecisions": [
+        "Relational data model",
+        "Role-aware screens",
+        "Report-first admin views"
+      ],
+      "timeline": "School-scale full-stack build with CRUD and reporting modules.",
+      "filters": [
+        "Dashboard",
+        "Web"
+      ],
       "tags": [
         "PHP",
         "MySQL",
         "Bootstrap"
       ],
-      "year": "2024"
+      "projectRole": "",
+      "impactDetails": [],
+      "technologies": "PHP, MySQL, Bootstrap",
+      "images": [],
+      "videoUrl": ""
     },
     {
       "id": "p6",
+      "number": "05",
       "title": "SciMaster AI",
       "category": "AI · Education",
-      "description": "An AI-powered platform that helps students master scientific concepts with adaptive learning.",
+      "type": "AI Education System",
+      "description": "Adaptive science learning concept with AI explanations, progress views and guided study sessions.",
+      "coverImage": "/images/logos/scimaster-ai.png",
+      "screenshots": [],
+      "video": "",
+      "liveUrl": "",
+      "githubUrl": "https://github.com/",
+      "caseStudyUrl": "/projects/scimaster-ai",
+      "tech": [
+        "React",
+        "Node.js",
+        "AI",
+        "PostgreSQL"
+      ],
+      "featured": false,
+      "status": "Published",
+      "year": "2025",
+      "tone": "dark",
+      "accent": "#7C3AED",
+      "url": "scimaster.ai",
+      "headline": "Study smarter with AI.",
+      "metric": "+36%",
+      "metricLabel": "Study Clarity",
+      "metrics": {
+        "impact": "+36%",
+        "performance": 94,
+        "seo": 90,
+        "accessibility": 97
+      },
+      "problem": "Students needed clearer explanations and a way to track mastery over complex science topics.",
+      "solution": "I modeled an AI-assisted study flow with topic cards, generated explanations and progress analytics.",
+      "results": "The concept creates a calmer learning loop from question to explanation to review.",
+      "architecture": [
+        "React App",
+        "AI Layer",
+        "Progress DB",
+        "Analytics"
+      ],
+      "techDecisions": [
+        "Prompt-ready content model",
+        "Progress-first dashboard",
+        "Reusable lesson components"
+      ],
+      "timeline": "Concept sprint for AI flow, dashboards and learning states.",
+      "filters": [
+        "AI",
+        "Web"
+      ],
       "tags": [
         "React",
         "Node.js",
         "AI"
       ],
-      "year": "2025"
+      "projectRole": "",
+      "impactDetails": [],
+      "technologies": "React, Node.js, AI",
+      "images": [],
+      "videoUrl": ""
+    },
+    {
+      "id": "dashboard-system",
+      "number": "03",
+      "title": "Dashboard System",
+      "category": "Dashboard",
+      "type": "Admin & Analytics",
+      "description": "Compact analytics workspace with metric cards, lead tracking, charts and practical reporting workflows.",
+      "coverImage": "",
+      "screenshots": [],
+      "video": "",
+      "liveUrl": "",
+      "githubUrl": "https://github.com/",
+      "caseStudyUrl": "/projects/dashboard-system",
+      "tech": [
+        "React",
+        "Tailwind CSS",
+        "Charts",
+        "Admin UI"
+      ],
+      "featured": false,
+      "status": "Published",
+      "year": "2025",
+      "tone": "dashboard",
+      "accent": "#2563EB",
+      "url": "dashboard.local",
+      "headline": "Business data, easy to scan.",
+      "metric": "+58%",
+      "metricLabel": "Faster Reporting",
+      "metrics": {
+        "impact": "+58%",
+        "performance": 97,
+        "seo": 92,
+        "accessibility": 99
+      },
+      "problem": "Teams needed fast visibility into leads, revenue and operations without spreadsheet-heavy reporting.",
+      "solution": "I designed a dense dashboard system with reusable metrics, chart patterns and admin workflow components.",
+      "results": "Reporting became easier to scan and business decisions moved faster across core data.",
+      "architecture": [
+        "Admin Shell",
+        "Metrics API",
+        "Charts",
+        "Reports"
+      ],
+      "techDecisions": [
+        "Dense layout for daily use",
+        "Chart-ready data model",
+        "Reusable table and metric components"
+      ],
+      "timeline": "4-day prototype covering dashboard shell, charts and table states.",
+      "filters": [
+        "Dashboard",
+        "Web"
+      ],
+      "tags": [
+        "React",
+        "Tailwind CSS",
+        "Charts",
+        "Admin UI"
+      ],
+      "technologies": "React, Tailwind CSS, Charts, Admin UI",
+      "images": [],
+      "videoUrl": ""
+    },
+    {
+      "id": "digital-school",
+      "number": "04",
+      "title": "Digital School Tetovo",
+      "category": "Web",
+      "type": "Education Platform",
+      "description": "Education platform concept for courses, events, learning paths and student outcome storytelling.",
+      "coverImage": "",
+      "screenshots": [],
+      "video": "",
+      "liveUrl": "",
+      "githubUrl": "",
+      "caseStudyUrl": "/projects/digital-school",
+      "tech": [
+        "React",
+        "Tailwind CSS",
+        "CMS",
+        "SEO"
+      ],
+      "featured": false,
+      "status": "Published",
+      "year": "2025",
+      "tone": "school",
+      "accent": "#0EA5E9",
+      "url": "digitalschool.mk",
+      "headline": "Learn. Code. Grow.",
+      "metric": "+24%",
+      "metricLabel": "Course Interest",
+      "metrics": {
+        "impact": "+24%",
+        "performance": 96,
+        "seo": 95,
+        "accessibility": 100
+      },
+      "problem": "Students and parents needed clearer course discovery, outcomes and event information.",
+      "solution": "I built an education platform structure around learning paths, proof, events and simple updates.",
+      "results": "More course interest and a clearer first impression for future learners.",
+      "architecture": [
+        "Course Pages",
+        "Student Flow",
+        "Events",
+        "Content Admin"
+      ],
+      "techDecisions": [
+        "Content-led IA",
+        "Mobile-first course cards",
+        "Accessible navigation"
+      ],
+      "timeline": "5-day concept sprint for structure, UI and responsive behavior.",
+      "filters": [
+        "Web"
+      ],
+      "tags": [
+        "React",
+        "Tailwind CSS",
+        "CMS",
+        "SEO"
+      ],
+      "technologies": "React, Tailwind CSS, CMS, SEO",
+      "images": [],
+      "videoUrl": ""
+    },
+    {
+      "id": "mobile-booking",
+      "number": "06",
+      "title": "Mobile Booking App",
+      "category": "Mobile",
+      "type": "Service Booking",
+      "description": "Mobile-first booking experience for appointments, availability, confirmations and client history.",
+      "coverImage": "",
+      "screenshots": [],
+      "video": "",
+      "liveUrl": "",
+      "githubUrl": "",
+      "caseStudyUrl": "/projects/mobile-booking",
+      "tech": [
+        "React Native",
+        "Firebase",
+        "UI/UX",
+        "Notifications"
+      ],
+      "featured": false,
+      "status": "Published",
+      "year": "2024",
+      "tone": "school",
+      "accent": "#14B8A6",
+      "url": "booking.app",
+      "headline": "Book in seconds.",
+      "metric": "-41%",
+      "metricLabel": "Booking Friction",
+      "metrics": {
+        "impact": "-41%",
+        "performance": 95,
+        "seo": 88,
+        "accessibility": 96
+      },
+      "problem": "Clients needed a faster path from service discovery to confirmed appointment.",
+      "solution": "I designed a mobile flow with clear time slots, confirmation states and admin visibility.",
+      "results": "The booking journey became shorter, clearer and easier to repeat.",
+      "architecture": [
+        "Mobile UI",
+        "Availability",
+        "Notifications",
+        "Admin"
+      ],
+      "techDecisions": [
+        "Native-feeling screens",
+        "Simple state model",
+        "Accessible form controls"
+      ],
+      "timeline": "Mobile prototype sprint with core screens and admin handoff.",
+      "filters": [
+        "Mobile"
+      ],
+      "tags": [
+        "React Native",
+        "Firebase",
+        "UI/UX",
+        "Notifications"
+      ],
+      "technologies": "React Native, Firebase, UI/UX, Notifications",
+      "images": [],
+      "videoUrl": ""
+    },
+    {
+      "id": "portfolio-os",
+      "number": "09",
+      "title": "Portfolio OS",
+      "category": "Web",
+      "type": "Personal Platform",
+      "description": "Interactive portfolio system with assistant, command palette, admin content and project storytelling.",
+      "coverImage": "",
+      "screenshots": [],
+      "video": "",
+      "liveUrl": "",
+      "githubUrl": "",
+      "caseStudyUrl": "/projects/portfolio-os",
+      "tech": [
+        "React",
+        "Framer Motion",
+        "Tailwind CSS",
+        "Local CMS"
+      ],
+      "featured": false,
+      "status": "Published",
+      "year": "2026",
+      "tone": "school",
+      "accent": "#0EA5E9",
+      "url": "portfolio.local",
+      "headline": "A portfolio that behaves like software.",
+      "metric": "+64%",
+      "metricLabel": "Project Depth",
+      "metrics": {
+        "impact": "+64%",
+        "performance": 98,
+        "seo": 94,
+        "accessibility": 99
+      },
+      "problem": "A static portfolio could not communicate the depth of software, design and product thinking.",
+      "solution": "I built an interactive portfolio OS with project browsing, AI assistance and admin-editable content.",
+      "results": "The portfolio now feels like a product, not just a page.",
+      "architecture": [
+        "Public Site",
+        "Assistant",
+        "Admin",
+        "Project Data"
+      ],
+      "techDecisions": [
+        "Shared data model",
+        "Motion-led interactions",
+        "Compact case-study structure"
+      ],
+      "timeline": "Iterative portfolio build with admin and showcase layers.",
+      "filters": [
+        "Web"
+      ],
+      "tags": [
+        "React",
+        "Framer Motion",
+        "Tailwind CSS",
+        "Local CMS"
+      ],
+      "technologies": "React, Framer Motion, Tailwind CSS, Local CMS",
+      "images": [],
+      "videoUrl": ""
+    },
+    {
+      "id": "ai-support-console",
+      "number": "10",
+      "title": "AI Support Console",
+      "category": "AI",
+      "type": "Support Dashboard",
+      "description": "AI-assisted support dashboard for triage, conversation summaries and resolution tracking.",
+      "coverImage": "",
+      "screenshots": [],
+      "video": "",
+      "liveUrl": "",
+      "githubUrl": "",
+      "caseStudyUrl": "/projects/ai-support-console",
+      "tech": [
+        "React",
+        "AI",
+        "Node.js",
+        "Dashboard UI"
+      ],
+      "featured": false,
+      "status": "Published",
+      "year": "2026",
+      "tone": "dark",
+      "accent": "#6366F1",
+      "url": "support.ai",
+      "headline": "Support work, clarified.",
+      "metric": "-33%",
+      "metricLabel": "Triage Time",
+      "metrics": {
+        "impact": "-33%",
+        "performance": 94,
+        "seo": 86,
+        "accessibility": 98
+      },
+      "problem": "Support teams needed a calmer way to understand issues and prioritize tickets.",
+      "solution": "I designed an AI console with summaries, suggested categories and resolution metrics.",
+      "results": "The workflow reduces scanning time and makes ticket state easier to reason about.",
+      "architecture": [
+        "Inbox",
+        "AI Summary",
+        "Triage",
+        "Metrics"
+      ],
+      "techDecisions": [
+        "Human-in-control AI",
+        "Compact support layout",
+        "Clear resolution states"
+      ],
+      "timeline": "AI dashboard concept with core triage and summary screens.",
+      "filters": [
+        "AI",
+        "Dashboard"
+      ],
+      "tags": [
+        "React",
+        "AI",
+        "Node.js",
+        "Dashboard UI"
+      ],
+      "technologies": "React, AI, Node.js, Dashboard UI",
+      "images": [],
+      "videoUrl": ""
     }
   ],
   "skills": [
-    {
-      "name": "HTML",
-      "level": 95,
-      "group": "Frontend"
-    },
-    {
-      "name": "CSS",
-      "level": 95,
-      "group": "Frontend"
-    },
-    {
-      "name": "Tailwind CSS",
-      "level": 95,
-      "group": "Frontend"
-    },
-    {
-      "name": "Bootstrap",
-      "level": 85,
-      "group": "Frontend"
-    },
-    {
-      "name": "React JS",
-      "level": 92,
-      "group": "Frontend"
-    },
-    {
-      "name": "React Native",
-      "level": 80,
-      "group": "Mobile"
-    },
-    {
-      "name": "Node.js",
-      "level": 85,
-      "group": "Backend"
-    },
-    {
-      "name": "PHP",
-      "level": 80,
-      "group": "Backend"
-    },
-    {
-      "name": "MySQL",
-      "level": 85,
-      "group": "Database"
-    },
-    {
-      "name": "PostgreSQL",
-      "level": 80,
-      "group": "Database"
-    },
-    {
-      "name": "WordPress",
-      "level": 80,
-      "group": "CMS"
-    }
-  ],
-  "services": [
+    { "name": "HTML", "level": 95, "group": "Frontend" },
+    { "name": "CSS", "level": 95, "group": "Frontend" },
+    { "name": "JS", "level": 92, "group": "Frontend" },
+    { "name": "Bootstrap", "level": 85, "group": "Frontend" },
+    { "name": "Tailwind", "level": 95, "group": "Frontend" },
+    { "name": "React.js", "level": 92, "group": "Frontend" },
+    { "name": "React Native", "level": 85, "group": "Mobile" },
+    { "name": "WordPress", "level": 85, "group": "CMS" },
+    { "name": "Python", "level": 85, "group": "Backend" },
+    { "name": "Node.js", "level": 85, "group": "Backend" },
+    { "name": "PHP", "level": 80, "group": "Backend" },
+    { "name": "PostgreSQL", "level": 85, "group": "Databases" },
+    { "name": "MySQL", "level": 85, "group": "Databases" },
+    { "name": "Vercel", "level": 90, "group": "Tools & Others" },
+    { "name": "git/GitHub", "level": 90, "group": "Tools & Others" },
+    { "name": "Hosting/Domains", "level": 85, "group": "Tools & Others" },
+    { "name": "Expo", "level": 85, "group": "Tools & Others" },
+    { "name": "Supabase", "level": 88, "group": "Tools & Others" }
+  ],  "services": [
     {
       "id": "s1",
       "title": "Web Development",
@@ -222,7 +703,7 @@
       "company": "Digital School Tetova",
       "period": "2026 — Present",
       "description": "Support students during web development classes by debugging code, explaining technical concepts, and helping students who fall behind catch up, solve problems, and successfully complete their projects.",
-      "imageUrl": "/uploads/1783801915357-ee121ffe72-ChatGPT-Image-Jul-11-2026-10_31_37-PM.png"
+      "imageUrl": ""
     },
     {
       "id": "e_1783796799896",
@@ -230,7 +711,7 @@
       "company": "Create & Learn with AI",
       "period": "Summer 2026 · 1-Week Program",
       "description": "Assisted students during an AI-focused summer school, helping them explore AI tools, overcome technical challenges, debug their work, and turn creative ideas into functional AI-powered projects.",
-      "imageUrl": "/uploads/1783802056465-58b2515376-ChatGPT-Image-Jul-11-2026-10_34_05-PM.png"
+      "imageUrl": ""
     }
   ],
   "contact": {

@@ -1,6 +1,6 @@
 import { Suspense, lazy, useEffect, useState } from "react";
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
-import { Sparkles } from "lucide-react";
+import { ChevronUp } from "lucide-react";
 import Navbar from "./components/layout/Navbar.jsx";
 import Footer from "./components/layout/Footer.jsx";
 import Home from "./pages/Home.jsx";
@@ -10,7 +10,7 @@ const ProjectsIndex = lazy(() => import("./pages/ProjectsIndex.jsx"));
 const ProjectDetail = lazy(() => import("./pages/ProjectDetail.jsx"));
 const AdminLogin = lazy(() => import("./pages/AdminLogin.jsx"));
 const AdminDashboard = lazy(() => import("./pages/AdminDashboard.jsx"));
-const AiAssistant = lazy(() => import("./components/os/AiAssistant.jsx"));
+const AiAssistant = lazy(() => import("./components/AIAssistant.jsx"));
 const CommandPalette = lazy(() => import("./components/os/CommandPalette.jsx"));
 
 function HashScroll() {
@@ -35,9 +35,10 @@ function PublicShell({ children }) {
   const location = useLocation();
   const [aiOpen, setAiOpen] = useState(false);
   const [paletteOpen, setPaletteOpen] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
   const [theme, setTheme] = useState(() => {
-    if (typeof window === "undefined") return "light";
-    return window.localStorage.getItem("portfolio-theme") || "light";
+    if (typeof window === "undefined") return "dark";
+    return window.localStorage.getItem("portfolio-theme") || "dark";
   });
   const email = data?.contact?.email || data?.profile?.email;
   const profile = data?.profile ?? {};
@@ -74,29 +75,35 @@ function PublicShell({ children }) {
     trackVisit({ path: `${location.pathname}${location.hash}` });
   }, [location.pathname, location.hash]);
 
+  useEffect(() => {
+    const updateScrollTop = () => setShowScrollTop(window.scrollY > 560);
+    updateScrollTop();
+    window.addEventListener("scroll", updateScrollTop, { passive: true });
+    return () => window.removeEventListener("scroll", updateScrollTop);
+  }, []);
+
   return (
     <div className={`public-portfolio-shell ${isDark ? "is-galaxy-dark" : "is-light-mode"} flex min-h-screen flex-col bg-[var(--background)] text-[var(--text-primary)]`}>
       <HashScroll />
       <Navbar
         name={profile.name}
-        title={profile.title || "Full-Stack Developer"}
+        title={profile.role || profile.title || "Full-Stack Developer"}
         theme={theme}
         onToggleTheme={() => setTheme((current) => (current === "dark" ? "light" : "dark"))}
       />
       <main className="flex-1">{children}</main>
-      <Footer />
+      <Footer data={data} />
       <button
+        className={`portfolio-scroll-top${showScrollTop ? " is-visible" : ""}`}
         type="button"
-        onClick={() => setAiOpen(true)}
-        aria-label="Open AI portfolio assistant"
-        className="fixed bottom-5 right-5 z-[60] group inline-flex h-14 w-14 items-center justify-center rounded-full border border-white/70 bg-white/70 text-[#2563EB] shadow-[0_20px_50px_-18px_rgba(37,99,235,0.55)] backdrop-blur-2xl transition hover:-translate-y-0.5 hover:bg-white/85"
+        onClick={() => window.scrollTo({ top: 0, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" })}
+        aria-label="Scroll to top"
+        title="Back to top"
       >
-        <span className="absolute inset-0 rounded-full bg-gradient-to-br from-[#2563EB]/15 via-transparent to-[#38BDF8]/20" />
-        <Sparkles size={22} className="relative" />
-        <span className="pointer-events-none absolute -inset-1 rounded-full ring-1 ring-white/40" />
+        <ChevronUp size={20} strokeWidth={2.4} />
       </button>
       <Suspense fallback={null}>
-        {aiOpen && <AiAssistant open={aiOpen} onOpenChange={setAiOpen} showLauncher={false} />}
+        <AiAssistant open={aiOpen} onOpenChange={setAiOpen} showLauncher />
         {paletteOpen && (
           <CommandPalette
             open={paletteOpen}
@@ -110,6 +117,16 @@ function PublicShell({ children }) {
   );
 }
 
+function PageLoading() {
+  return (
+    <div className="grid min-h-[45vh] place-items-center px-6" role="status" aria-live="polite">
+      <div className="flex items-center gap-3 rounded-full border border-blue-400/25 bg-blue-500/10 px-5 py-3 text-sm font-semibold text-blue-200">
+        <span className="h-4 w-4 animate-spin rounded-full border-2 border-current border-r-transparent motion-reduce:animate-none" aria-hidden="true" />
+        Loading…
+      </div>
+    </div>
+  );
+}
 function Protected({ children }) {
   const location = useLocation();
   if (!isAuthed()) return <Navigate to="/admin" replace state={{ from: location }} />;
@@ -121,15 +138,15 @@ export default function App() {
     <Routes>
       <Route path="/" element={<PublicShell><Home /></PublicShell>} />
       <Route path="/about" element={<Navigate to="/#about" replace />} />
-      <Route path="/projects" element={<PublicShell><Suspense fallback={null}><ProjectsIndex /></Suspense></PublicShell>} />
-      <Route path="/projects/:projectId" element={<PublicShell><Suspense fallback={null}><ProjectDetail /></Suspense></PublicShell>} />
+      <Route path="/projects" element={<PublicShell><Suspense fallback={<PageLoading />}><ProjectsIndex /></Suspense></PublicShell>} />
+      <Route path="/projects/:projectId" element={<PublicShell><Suspense fallback={<PageLoading />}><ProjectDetail /></Suspense></PublicShell>} />
       <Route path="/contact" element={<Navigate to="/#contact" replace />} />
-      <Route path="/admin" element={<Suspense fallback={null}><AdminLogin /></Suspense>} />
+      <Route path="/admin" element={<Suspense fallback={<PageLoading />}><AdminLogin /></Suspense>} />
       <Route
         path="/admin/dashboard/*"
         element={
           <Protected>
-            <Suspense fallback={null}><AdminDashboard /></Suspense>
+            <Suspense fallback={<PageLoading />}><AdminDashboard /></Suspense>
           </Protected>
         }
       />

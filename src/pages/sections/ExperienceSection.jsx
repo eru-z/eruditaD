@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import {
   ArrowRight,
@@ -6,6 +7,7 @@ import {
   Check,
   Code2,
   MapPin,
+  Image,
   Sparkles,
   Trophy,
   UserRound,
@@ -39,7 +41,7 @@ const aiSummerProgram = {
     "Intensive AI-focused summer program covering practical AI tools, prompt engineering, rapid prototyping, AI-assisted development, teamwork, and building real-world solutions.",
   tags: ["AI Tools", "Prompt Engineering", "Prototyping", "Teamwork", "AI Development"],
   period: "2025",
-  imageUrl: "/images/digital-school-cover.png",
+  imageUrl: "/images/home-galaxy-dark-v2.png",
 };
 
 const fallbackExperience = [
@@ -65,7 +67,7 @@ const fallbackExperience = [
       "Support students during web development classes by debugging code, explaining technical concepts, and helping students who fall behind catch up, solve problems, and successfully complete their projects.",
     tags: ["HTML", "CSS", "JavaScript", "Debugging", "Mentoring"],
     period: "2022 – Present",
-    imageUrl: "/images/digital-school-cover.png",
+    imageUrl: "/images/home-galaxy-dark-v2.png",
   },
   {
     id: "hackathons",
@@ -76,7 +78,7 @@ const fallbackExperience = [
       "Shipped product concepts under tight deadlines across hackathons, science fairs, and municipal technology competitions — from idea to functional prototype.",
     tags: ["Hackathons", "Prototyping", "Teamwork", "Pitching", "Agile"],
     period: "2021 – Present",
-    imageUrl: "/images/junctionx-cover.png",
+    imageUrl: "/images/home-galaxy-dark-v2.png",
     href: "#projects",
   },
 ];
@@ -220,15 +222,7 @@ export default function ExperienceSection({ experience = [] }) {
                     )}
                   </div>
 
-                  <div className="experience-image-shell">
-                    {item.imageUrl ? (
-                      <img src={item.imageUrl} alt={`${item.title} preview`} />
-                    ) : (
-                      <span className="experience-image-placeholder">
-                        <Code2 size={30} />
-                      </span>
-                    )}
-                  </div>
+                  <ExperiencePreview item={item} />
                 </div>
               </div>
             </motion.article>
@@ -255,6 +249,25 @@ export default function ExperienceSection({ experience = [] }) {
   );
 }
 
+
+function ExperiencePreview({ item }) {
+  const [failed, setFailed] = useState(false);
+  const showImage = Boolean(item.imageUrl) && !failed;
+
+  return (
+    <div className="experience-image-shell">
+      {showImage ? (
+        <img src={item.imageUrl} alt={`${item.title} preview`} onError={() => setFailed(true)} />
+      ) : (
+        <span className="experience-image-placeholder">
+          <Image size={28} />
+          <strong>{item.title}</strong>
+          <small>preview</small>
+        </span>
+      )}
+    </div>
+  );
+}
 function normalizeExperienceItem(item, index) {
   const fallback = fallbackExperience[index % fallbackExperience.length];
   const tags = item.tags || item.tech || item.technologies;

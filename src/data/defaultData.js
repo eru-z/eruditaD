@@ -1,6 +1,6 @@
 export const defaultData = {
   bookingUrl:
-    "https://calendar.google.com/calendar/u/0/r/eventedit?text=Project%20Discovery%20Call%20with%20Erudita%20Zilbeari&location=Google%20Meet&add=eruditazilbearids%40gmail.com&details=Let's%20schedule%20a%20Google%20Meet%20video%20call%20to%20talk%20through%20the%20project%2C%20goals%2C%20timeline%2C%20and%20next%20steps.%20Erudita%20will%20receive%20this%20calendar%20invite%20at%20eruditazilbearids%40gmail.com.",
+    "https://calendar.google.com/calendar/u/0/r/eventedit?text=30-Minute%20Google%20Meet%20with%20Erudita%20Zilbeari&location=Google%20Meet&add=eruditazilbearids%40gmail.com&details=Schedule%20a%2030-minute%20Google%20Meet%20video%20call%20to%20discuss%20your%20project%2C%20goals%2C%20timeline%2C%20and%20next%20steps.%20Erudita%20will%20receive%20the%20calendar%20invitation%20at%20eruditazilbearids%40gmail.com.",
   profile: {
     name: "Erudita Zilbeari",
     role: "Full-Stack Software Developer & UI/UX Designer",
@@ -8,8 +8,8 @@ export const defaultData = {
     headline: "Building modern web applications with software engineering principles.",
     about:
       "I build full-stack web and mobile products where engineering precision meets polished UI/UX. My work spans AI-powered platforms, operational dashboards, production websites for real businesses, international hackathons, and competition-winning product ideas.",
-    email: "hello@erudita.pro",
-    phone: "+389 70 000 000",
+    email: "eruditazilbearids@gmail.com",
+    phone: "+389 70 902 183",
     portraitUrl: "",
     availabilityText: "Available for 3 new client projects this month",
     stats: [
@@ -19,9 +19,7 @@ export const defaultData = {
       { label: "Technologies", value: "13" },
     ],
     socials: {
-      github: "https://github.com/",
-      linkedin: "https://linkedin.com/",
-      dribbble: "https://dribbble.com/",
+      linkedin: "https://www.linkedin.com/in/erudita-zilbeari-273b7035a",
     },
   },
   projects: [
@@ -67,23 +65,29 @@ export const defaultData = {
       tags: ["React", "Node.js", "AI"],
       year: "2025",
       status: "Published",
-      featured: true,
+      featured: false,
     },
   ],
   skills: [
     { name: "HTML", level: 95, group: "Frontend" },
     { name: "CSS", level: 95, group: "Frontend" },
-    { name: "Tailwind CSS", level: 95, group: "Frontend" },
+    { name: "JS", level: 92, group: "Frontend" },
     { name: "Bootstrap", level: 85, group: "Frontend" },
-    { name: "React JS", level: 92, group: "Frontend" },
-    { name: "React Native", level: 80, group: "Mobile" },
+    { name: "Tailwind", level: 95, group: "Frontend" },
+    { name: "React.js", level: 92, group: "Frontend" },
+    { name: "React Native", level: 85, group: "Mobile" },
+    { name: "WordPress", level: 85, group: "CMS" },
+    { name: "Python", level: 85, group: "Backend" },
     { name: "Node.js", level: 85, group: "Backend" },
     { name: "PHP", level: 80, group: "Backend" },
-    { name: "MySQL", level: 85, group: "Database" },
-    { name: "PostgreSQL", level: 80, group: "Database" },
-    { name: "WordPress", level: 80, group: "CMS" },
-  ],
-  services: [
+    { name: "PostgreSQL", level: 85, group: "Databases" },
+    { name: "MySQL", level: 85, group: "Databases" },
+    { name: "Vercel", level: 90, group: "Tools & Others" },
+    { name: "git/GitHub", level: 90, group: "Tools & Others" },
+    { name: "Hosting/Domains", level: 85, group: "Tools & Others" },
+    { name: "Expo", level: 85, group: "Tools & Others" },
+    { name: "Supabase", level: 88, group: "Tools & Others" },
+  ],  services: [
     {
       id: "s1",
       title: "Premium Websites",
@@ -140,8 +144,8 @@ export const defaultData = {
     },
   ],
   contact: {
-    email: "hello@erudita.pro",
-    phone: "+389 70 000 000",
+    email: "eruditazilbearids@gmail.com",
+    phone: "+389 70 902 183",
     location: "Tetovo, North Macedonia",
     availability: "Available for 3 new client projects this month",
   },

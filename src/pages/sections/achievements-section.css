@@ -1250,3 +1250,364 @@
     border-bottom: 1px solid rgba(148, 163, 184, 0.18);
   }
 }
+
+/* Reference-matched Achievements composition and light/dark skins. */
+.public-portfolio-shell .achievements-section{min-height:1400px;padding:48px 0 56px!important;font-family:"DM Sans",system-ui,sans-serif}
+.public-portfolio-shell .achievements-shell{width:min(1400px,calc(100% - 56px));margin:0 auto;gap:14px}
+.public-portfolio-shell .achievements-intro-wide{padding:0 4px 12px}
+.public-portfolio-shell .achievements-kicker{min-height:34px;margin-bottom:14px;padding:0 15px;font-size:10px}
+.public-portfolio-shell .achievements-intro-row{grid-template-columns:minmax(0,1fr) 420px;align-items:center}
+.public-portfolio-shell .achievements-intro-row h2{max-width:760px;font-size:34px;line-height:1.08}
+.public-portfolio-shell .achievements-intro-row p{max-width:410px;font-size:13px;line-height:1.55}
+.public-portfolio-shell .ep-achievement-glass{border-radius:24px}
+.public-portfolio-shell .achievements-recognition{padding:22px}
+.public-portfolio-shell .achievement-panel-heading h3{font-size:14px}.public-portfolio-shell .achievement-panel-heading p{font-size:11px}
+.public-portfolio-shell .achievement-heading-icon{width:38px;height:38px}
+.public-portfolio-shell .recognition-grid-editorial{grid-template-columns:repeat(12,minmax(0,1fr));grid-template-rows:245px 245px 210px;gap:16px;margin-top:20px}
+.public-portfolio-shell .recognition-grid-editorial .recognition-item{grid-column:auto;grid-row:auto;min-height:0;padding:20px;border-radius:18px}
+.public-portfolio-shell .recognition-grid-editorial .recognition-item:nth-child(1){grid-column:1/6;grid-row:1/3;padding:28px}
+.public-portfolio-shell .recognition-grid-editorial .recognition-item:nth-child(2){grid-column:6/9;grid-row:1}
+.public-portfolio-shell .recognition-grid-editorial .recognition-item:nth-child(3){grid-column:9/13;grid-row:1}
+.public-portfolio-shell .recognition-grid-editorial .recognition-item:nth-child(4){grid-column:6/9;grid-row:2}
+.public-portfolio-shell .recognition-grid-editorial .recognition-item:nth-child(5){grid-column:9/13;grid-row:2}
+.public-portfolio-shell .recognition-grid-editorial .recognition-item:nth-child(6){grid-column:1/6;grid-row:3}
+.public-portfolio-shell .recognition-grid-editorial .recognition-item:nth-child(7){grid-column:6/13;grid-row:3}
+.public-portfolio-shell .recognition-item-featured .recognition-copy{margin-top:64px}
+.public-portfolio-shell .recognition-item-featured .recognition-copy h4{max-width:13ch;font-size:42px;line-height:1.03}
+.public-portfolio-shell .recognition-item-featured .recognition-copy strong{max-width:35ch;margin-top:20px;font-size:14px;line-height:1.4}
+.public-portfolio-shell .recognition-item-featured .recognition-copy p{max-width:42ch;margin-top:20px;font-size:12px;line-height:1.6;-webkit-line-clamp:5}
+.public-portfolio-shell .recognition-grid-editorial .recognition-item:not(:first-child) .recognition-copy{margin-top:22px}
+.public-portfolio-shell .recognition-grid-editorial .recognition-item:not(:first-child) .recognition-copy h4{font-size:16px;line-height:1.25}
+.public-portfolio-shell .recognition-grid-editorial .recognition-item:not(:first-child) .recognition-copy strong{font-size:11px;line-height:1.4}
+.public-portfolio-shell .recognition-grid-editorial .recognition-item:not(:first-child) .recognition-copy p{font-size:11px;line-height:1.55;-webkit-line-clamp:4}
+.public-portfolio-shell .certificates-showcase{padding:20px 22px 14px}
+.public-portfolio-shell .certificate-stage{height:260px;margin-top:4px}
+.public-portfolio-shell .certificate-card{width:330px;transform:translate(calc(-50% + (var(--certificate-position) * 285px)),-50%) scale(calc(1 - (var(--certificate-distance) * .12)))}
+.public-portfolio-shell .clients-showcase{padding:18px 22px}
+.public-portfolio-shell .client-logo-row{margin-top:16px;padding:8px}.public-portfolio-shell .client-logo-item{min-height:76px}
+
+.public-portfolio-shell.is-light-mode .achievements-section{color:#0b1834;background:radial-gradient(circle at 86% 8%,rgba(89,143,255,.11),transparent 23%),linear-gradient(135deg,#fff,#f7faff 58%,#f2f7ff)!important}
+.is-light-mode .achievements-kicker,.is-light-mode .recognition-count,.is-light-mode .achievement-text-link{border-color:rgba(52,109,202,.16);background:rgba(255,255,255,.86);color:#1169ef;box-shadow:inset 0 1px #fff,0 8px 22px rgba(49,89,147,.08)}
+.is-light-mode .ep-achievement-glass{border-color:rgba(52,109,202,.18);background:rgba(255,255,255,.72);box-shadow:inset 0 1px #fff,0 20px 48px rgba(49,89,147,.08)}
+.is-light-mode .achievements-recognition{background:radial-gradient(circle at 88% 10%,rgba(74,137,255,.11),transparent 25%),rgba(255,255,255,.76)}
+.is-light-mode .recognition-grid-editorial .recognition-item{border-color:rgba(52,109,202,.14);background:linear-gradient(145deg,rgba(255,255,255,.97),rgba(247,250,255,.86));box-shadow:inset 0 1px #fff,0 14px 35px rgba(46,86,146,.06)}
+.is-light-mode .recognition-grid-editorial .recognition-item-featured{background:radial-gradient(circle at 90% 15%,rgba(50,123,255,.22),transparent 34%),linear-gradient(145deg,#fff,#edf5ff)}
+.is-light-mode .certificate-image-frame{border-color:rgba(52,109,202,.16);background:linear-gradient(145deg,#fff,#f5f9ff);box-shadow:inset 0 1px #fff,0 16px 34px rgba(43,83,143,.12)}
+.is-light-mode .client-logo-row{border-color:rgba(52,109,202,.12);background:rgba(255,255,255,.58)}
+
+.public-portfolio-shell.is-galaxy-dark .achievements-section{color:#f4f6fb;background:radial-gradient(circle at 75% 12%,rgba(38,61,177,.15),transparent 25%),linear-gradient(rgba(1,5,16,.23),rgba(1,5,16,.35)),url("/images/home-galaxy-dark-v2.png") center/cover no-repeat!important}
+.is-galaxy-dark .achievements-intro-row h2{color:#f6f7fb}.is-galaxy-dark .achievements-intro-row h2 em{color:#126fff;text-shadow:0 0 18px rgba(27,96,255,.35)}.is-galaxy-dark .achievements-intro-row p{color:#aeb8cc}
+.is-galaxy-dark .achievements-kicker,.is-galaxy-dark .recognition-count,.is-galaxy-dark .achievement-text-link{border-color:rgba(104,133,214,.42);background:linear-gradient(145deg,rgba(16,27,63,.88),rgba(4,10,28,.84));color:#b6c7ef;box-shadow:inset 0 1px rgba(255,255,255,.07),0 10px 26px rgba(0,0,0,.2)}
+.public-portfolio-shell.is-galaxy-dark .achievements-section .ep-achievement-glass{border-color:rgba(90,122,211,.48)!important;background:linear-gradient(145deg,rgba(9,18,44,.91),rgba(3,8,24,.88))!important;box-shadow:inset 0 1px rgba(255,255,255,.07),0 22px 54px rgba(0,0,0,.28)!important;backdrop-filter:blur(22px)}
+.is-galaxy-dark .achievement-heading-icon{border-color:rgba(98,131,218,.38);color:#c9d7ff;background:rgba(20,34,76,.64);box-shadow:inset 0 1px rgba(255,255,255,.08),0 0 16px rgba(42,102,255,.17)}
+.is-galaxy-dark .achievement-panel-heading h3{color:#f2f4fa}.is-galaxy-dark .achievement-panel-heading p{color:#a8b3c9}
+.public-portfolio-shell.is-galaxy-dark .achievements-section .recognition-item{border-color:rgba(88,119,201,.38)!important;background:linear-gradient(145deg,rgba(15,27,61,.94),rgba(4,10,28,.92))!important;box-shadow:inset 0 1px rgba(255,255,255,.06),0 14px 35px rgba(0,0,0,.24)!important}
+.public-portfolio-shell.is-galaxy-dark .achievements-section .recognition-item-featured{border-color:rgba(49,128,255,.62)!important;background:radial-gradient(circle at 86% 22%,rgba(19,88,218,.24),transparent 35%),linear-gradient(145deg,rgba(10,24,59,.96),rgba(2,8,24,.95)),url("/images/home-galaxy-dark-v2.png") center/cover!important;box-shadow:inset 0 1px rgba(255,255,255,.08),0 0 24px rgba(25,96,255,.2)!important}
+.is-galaxy-dark .recognition-status{border-color:rgba(91,127,219,.35);color:#73a7ff;background:rgba(27,43,86,.58)}.is-galaxy-dark .recognition-item-featured .recognition-status{color:#fff;background:linear-gradient(110deg,#087cff,#2765f3);box-shadow:0 0 18px rgba(23,105,255,.3)}
+.is-galaxy-dark .recognition-index{color:#9ba8c3}.is-galaxy-dark .recognition-copy h4{color:#f3f5fa}.is-galaxy-dark .recognition-copy strong{color:#2179ff}.is-galaxy-dark .recognition-copy p{color:#aeb7ca}.is-galaxy-dark .recognition-card-footer{color:#2680ff}
+.public-portfolio-shell.is-galaxy-dark .achievements-section .certificate-image-frame{border-color:rgba(92,125,213,.38)!important;background:linear-gradient(145deg,rgba(17,29,65,.96),rgba(4,10,29,.94))!important;box-shadow:inset 0 1px rgba(255,255,255,.07),0 18px 40px rgba(0,0,0,.3)!important}.is-galaxy-dark .certificate-card.is-active .certificate-image-frame{border-color:#4e96ff!important;box-shadow:inset 0 1px rgba(255,255,255,.1),0 0 22px rgba(46,118,255,.34)!important}
+.is-galaxy-dark .certificate-placeholder{background:linear-gradient(145deg,rgba(17,29,65,.96),rgba(4,10,29,.94));color:#edf1fa}.is-galaxy-dark .certificate-placeholder em{color:#9faac0}.is-galaxy-dark .certificate-arrow{border-color:rgba(94,126,212,.38);color:#f0f4ff;background:rgba(8,16,39,.9);box-shadow:inset 0 1px rgba(255,255,255,.08),0 10px 24px rgba(0,0,0,.25)}
+.public-portfolio-shell.is-galaxy-dark .achievements-section .client-logo-row{border-color:rgba(90,121,201,.32)!important;background:rgba(5,12,31,.54)!important}.public-portfolio-shell.is-galaxy-dark .achievements-section .client-logo-item{border-color:rgba(93,119,186,.24)!important;color:#dfe5f2!important;background:transparent!important;box-shadow:none!important}.is-galaxy-dark .client-logo-item strong{color:#dfe5f2}.is-galaxy-dark .client-logo-more{color:#b3bed3}.is-galaxy-dark .client-logo-item:not(:last-child){border-right-color:rgba(102,126,190,.28)}
+@media(max-width:1180px){.public-portfolio-shell .achievements-section{min-height:auto}.public-portfolio-shell .achievements-intro-row{grid-template-columns:1fr}.public-portfolio-shell .recognition-grid-editorial{grid-template-rows:auto}.public-portfolio-shell .recognition-grid-editorial .recognition-item:nth-child(n){grid-column:span 6;grid-row:auto;min-height:210px}.public-portfolio-shell .recognition-grid-editorial .recognition-item:nth-child(1){min-height:360px}.public-portfolio-shell .certificate-card{width:clamp(190px,27vw,310px)}}
+@media(max-width:760px){.public-portfolio-shell .achievements-shell{width:min(100% - 28px,620px)}.public-portfolio-shell .recognition-grid-editorial .recognition-item:nth-child(n){grid-column:1;min-height:auto}.public-portfolio-shell .recognition-item-featured .recognition-copy{margin-top:28px}.public-portfolio-shell .recognition-item-featured .recognition-copy h4{font-size:clamp(1.8rem,11vw,2.6rem)}.public-portfolio-shell .certificate-card{width:min(78vw,300px)}.public-portfolio-shell .achievements-section{padding-bottom:42px!important}}
+
+.recognition-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.recognition-tags span{display:inline-flex;align-items:center;min-height:24px;padding:3px 9px;border:1px solid rgba(61,123,255,.24);border-radius:999px;background:rgba(36,105,255,.08);color:#1870f5;font-size:10px;font-weight:800;letter-spacing:.03em}
+.is-galaxy-dark .recognition-tags span{border-color:rgba(80,139,255,.34);background:rgba(31,90,210,.16);color:#76aaff}
+/* =====================================================================
+   Authoritative responsive Achievements layout — 320px to 1920px
+   ===================================================================== */
+.public-portfolio-shell .achievements-section {
+  width: 100%;
+  min-width: 0;
+  min-height: 0 !important;
+  scroll-margin-top: 88px;
+  overflow-x: clip;
+  padding: clamp(70px, 6vw, 92px) 0 clamp(42px, 5vw, 64px) !important;
+}
+
+.public-portfolio-shell .achievements-shell {
+  width: min(1400px, calc(100% - clamp(32px, 5vw, 72px))) !important;
+  max-width: 1400px;
+  min-width: 0;
+  margin-inline: auto !important;
+  padding-inline: 0 !important;
+  box-sizing: border-box;
+}
+
+.public-portfolio-shell .achievements-intro-row {
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 420px);
+  gap: clamp(24px, 4vw, 64px);
+}
+
+.public-portfolio-shell .achievements-intro-row h2 {
+  font-size: clamp(30px, 2.7vw, 38px);
+  text-wrap: balance;
+}
+
+.public-portfolio-shell .recognition-grid-editorial {
+  min-width: 0;
+}
+
+.public-portfolio-shell .recognition-grid-editorial .recognition-item {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.public-portfolio-shell .certificate-stage {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.public-portfolio-shell .certificate-track {
+  max-width: 100%;
+}
+
+.public-portfolio-shell .certificate-card {
+  max-width: calc(100% - 80px);
+}
+
+@media (max-width: 1180px) {
+  .public-portfolio-shell .achievements-section {
+    scroll-margin-top: 78px;
+    padding-top: clamp(74px, 8vw, 88px) !important;
+  }
+
+  .public-portfolio-shell .achievements-shell {
+    width: min(calc(100% - 40px), 980px) !important;
+  }
+
+  .public-portfolio-shell .achievements-intro-row {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .public-portfolio-shell .achievements-intro-row p { max-width: 680px; }
+
+  .public-portfolio-shell .recognition-grid-editorial {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    grid-template-rows: none !important;
+    gap: 14px !important;
+  }
+
+  .public-portfolio-shell .recognition-grid-editorial .recognition-item:nth-child(n) {
+    grid-column: auto !important;
+    grid-row: auto !important;
+    min-height: 210px !important;
+  }
+
+  .public-portfolio-shell .recognition-grid-editorial .recognition-item:nth-child(1) {
+    grid-column: 1 / -1 !important;
+    min-height: 330px !important;
+  }
+
+  .public-portfolio-shell .recognition-item-featured .recognition-copy {
+    margin-top: clamp(30px, 5vw, 52px);
+  }
+
+  .public-portfolio-shell .recognition-item-featured .recognition-copy h4 {
+    font-size: clamp(30px, 5vw, 42px);
+  }
+
+  .public-portfolio-shell .certificate-card { width: clamp(210px, 34vw, 300px); }
+}
+
+@media (max-width: 768px) {
+  .public-portfolio-shell .achievements-section {
+    scroll-margin-top: 72px;
+    padding: 74px 0 42px !important;
+  }
+
+  .public-portfolio-shell .achievements-shell {
+    width: min(calc(100% - 28px), 620px) !important;
+    gap: 12px;
+  }
+
+  .public-portfolio-shell .achievements-intro-wide { padding-inline: 2px; }
+  .public-portfolio-shell .achievements-kicker { margin-bottom: 11px; }
+
+  .public-portfolio-shell .achievements-intro-row h2 {
+    font-size: clamp(27px, 7.5vw, 36px);
+  }
+
+  .public-portfolio-shell .achievements-intro-row p {
+    font-size: clamp(11px, 2.8vw, 13px);
+  }
+
+  .public-portfolio-shell .achievements-recognition,
+  .public-portfolio-shell .certificates-showcase,
+  .public-portfolio-shell .clients-showcase {
+    width: 100%;
+    min-width: 0;
+    padding: 14px !important;
+    border-radius: 20px;
+    box-sizing: border-box;
+  }
+
+  .public-portfolio-shell .achievement-panel-heading,
+  .public-portfolio-shell .recognition-panel-heading {
+    grid-template-columns: 36px minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  .public-portfolio-shell .recognition-grid-editorial {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  .public-portfolio-shell .recognition-grid-editorial .recognition-item:nth-child(n),
+  .public-portfolio-shell .recognition-grid-editorial .recognition-item:nth-child(1) {
+    grid-column: 1 !important;
+    min-height: 0 !important;
+    padding: 16px !important;
+  }
+
+  .public-portfolio-shell .recognition-grid-editorial .recognition-item:nth-child(1) {
+    min-height: 270px !important;
+  }
+
+  .public-portfolio-shell .recognition-item-featured .recognition-copy { margin-top: 24px; }
+  .public-portfolio-shell .recognition-item-featured .recognition-copy h4 {
+    max-width: 14ch;
+    font-size: clamp(27px, 8.5vw, 38px);
+  }
+
+  .public-portfolio-shell .recognition-item-featured .recognition-copy strong { margin-top: 13px; }
+  .public-portfolio-shell .recognition-item-featured .recognition-copy p { margin-top: 12px; }
+
+  .public-portfolio-shell .certificate-stage {
+    height: clamp(190px, 58vw, 240px) !important;
+    margin-top: 8px;
+  }
+
+  .public-portfolio-shell .certificate-card {
+    width: min(76vw, 286px) !important;
+    max-width: calc(100% - 64px);
+  }
+
+  .public-portfolio-shell .certificate-arrow {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+  }
+
+  .public-portfolio-shell .client-logo-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    overflow: hidden;
+  }
+
+  .public-portfolio-shell .client-logo-item {
+    min-width: 0;
+    border-right: 0 !important;
+    border-bottom: 1px solid rgba(148,163,184,.18);
+  }
+}
+
+@media (max-width: 430px) {
+  .public-portfolio-shell .achievements-shell {
+    width: calc(100% - 20px) !important;
+  }
+
+  .public-portfolio-shell .achievements-recognition,
+  .public-portfolio-shell .certificates-showcase,
+  .public-portfolio-shell .clients-showcase { padding: 11px !important; }
+
+  .public-portfolio-shell .recognition-grid-editorial .recognition-item:nth-child(n),
+  .public-portfolio-shell .recognition-grid-editorial .recognition-item:nth-child(1) {
+    padding: 14px !important;
+    border-radius: 16px;
+  }
+
+  .public-portfolio-shell .recognition-grid-editorial .recognition-item:nth-child(1) {
+    min-height: 250px !important;
+  }
+
+  .public-portfolio-shell .recognition-item-featured .recognition-copy h4 {
+    font-size: clamp(25px, 8.2vw, 33px);
+  }
+
+  .public-portfolio-shell .certificate-stage { height: 190px !important; }
+  .public-portfolio-shell .certificate-card { width: min(74vw, 250px) !important; }
+  .public-portfolio-shell .client-logo-row { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 340px) {
+  .public-portfolio-shell .achievements-shell { width: calc(100% - 16px) !important; }
+  .public-portfolio-shell .certificate-card { max-width: calc(100% - 52px); }
+}
+
+/* Final responsive guardrails: prevent min-content columns and vertical text. */
+@media (max-width: 768px) {
+  .public-portfolio-shell .achievements-section,
+  .public-portfolio-shell .achievements-shell,
+  .public-portfolio-shell .achievements-shell > *,
+  .public-portfolio-shell .achievements-recognition,
+  .public-portfolio-shell .certificates-showcase {
+    min-width: 0 !important; max-width: 100% !important; box-sizing: border-box !important;
+  }
+  .public-portfolio-shell .achievement-panel-heading,
+  .public-portfolio-shell .recognition-panel-heading,
+  .public-portfolio-shell .certificate-heading {
+    display: flex !important; width: 100% !important; min-width: 0 !important;
+    flex-direction: column !important; align-items: stretch !important; gap: 12px !important;
+  }
+  .public-portfolio-shell .achievement-heading-copy {
+    display: grid !important; width: 100% !important; min-width: 0 !important;
+    grid-template-columns: 38px minmax(0, 1fr) !important; align-items: start !important; gap: 10px !important;
+  }
+  .public-portfolio-shell .achievement-heading-copy > div,
+  .public-portfolio-shell .achievement-panel-heading h3,
+  .public-portfolio-shell .achievement-panel-heading p {
+    width: 100% !important; min-width: 0 !important; max-width: none !important;
+    overflow-wrap: normal !important; word-break: normal !important; white-space: normal !important;
+  }
+  .public-portfolio-shell .recognition-count { display: none !important; }
+  .public-portfolio-shell .achievement-text-link {
+    align-self: flex-start !important; width: auto !important; max-width: 100% !important;
+    min-height: 42px !important; padding-inline: 14px !important;
+  }
+  .public-portfolio-shell .recognition-grid-editorial {
+    display: grid !important; width: 100% !important; min-width: 0 !important;
+    grid-template-columns: minmax(0, 1fr) !important; grid-auto-flow: row !important;
+  }
+  .public-portfolio-shell .recognition-grid-editorial .recognition-item:nth-child(n) {
+    width: 100% !important; min-width: 0 !important; max-width: 100% !important;
+    grid-column: 1 / -1 !important; grid-row: auto !important;
+  }
+  .public-portfolio-shell .recognition-copy,
+  .public-portfolio-shell .recognition-copy h4,
+  .public-portfolio-shell .recognition-copy strong,
+  .public-portfolio-shell .recognition-copy p {
+    width: 100% !important; min-width: 0 !important; max-width: none !important;
+    overflow-wrap: break-word !important; word-break: normal !important;
+  }
+  .public-portfolio-shell .certificate-stage {
+    width: 100% !important; min-width: 0 !important; overflow: hidden !important;
+  }
+  .public-portfolio-shell .certificate-track { inset: 0 42px !important; width: auto !important; min-width: 0 !important; }
+  .public-portfolio-shell .certificate-card {
+    width: min(72vw, 286px) !important; min-width: 0 !important; max-width: calc(100% - 8px) !important;
+  }
+  .public-portfolio-shell .certificate-placeholder,
+  .public-portfolio-shell .certificate-placeholder strong,
+  .public-portfolio-shell .certificate-placeholder em {
+    max-width: 100% !important; overflow-wrap: break-word !important;
+    word-break: normal !important; white-space: normal !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .public-portfolio-shell .achievements-section { padding-top: 88px !important; }
+  .public-portfolio-shell .achievements-shell { width: calc(100% - 24px) !important; padding-inline: 0 !important; }
+  .public-portfolio-shell .achievements-intro-row h2 {
+    font-size: clamp(27px, 8.4vw, 34px) !important; line-height: 1.12 !important;
+  }
+  .public-portfolio-shell .achievements-recognition,
+  .public-portfolio-shell .certificates-showcase { padding: 14px !important; }
+  .public-portfolio-shell .certificate-stage { height: 196px !important; }
+  .public-portfolio-shell .certificate-track { inset-inline: 36px !important; }
+  .public-portfolio-shell .certificate-card { width: min(70vw, 248px) !important; }
+  .public-portfolio-shell .certificate-arrow { width: 38px !important; height: 38px !important; }
+}

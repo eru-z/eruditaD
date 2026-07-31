@@ -1,5 +1,5 @@
-import { useMemo, useState } from "react";
-import { Download, FileText, Image, Plus, Save, Trash2, Upload } from "lucide-react";
+import { useEffect, useState } from "react";
+import { ArrowDown, ArrowUp, Download, FileText, Image, Plus, Save, Trash2, Upload } from "lucide-react";
 import { savePortfolioData, uploadMediaFiles, useData } from "../utils/storage.js";
 
 const panel =
@@ -37,7 +37,8 @@ export function CollectionManager({
   const [status, setStatus] = useState("");
   const [saving, setSaving] = useState(false);
 
-  useMemo(() => setItems(getPath(data, path, [])), [data, path.join(".")]);
+  const pathKey = path.join(".");
+  useEffect(() => setItems(getPath(data, pathKey.split("."), [])), [data, pathKey]);
 
   const persist = async (nextItems, message = "Saved.") => {
     setSaving(true);
@@ -57,6 +58,15 @@ export function CollectionManager({
     setItems((current) => current.map((item) => (item.id === id ? { ...item, [key]: value } : item)));
   };
 
+  const moveItem = (index, direction) => {
+    const target = index + direction;
+    if (target < 0 || target >= items.length) return;
+    setItems((current) => {
+      const next = [...current];
+      [next[index], next[target]] = [next[target], next[index]];
+      return next.map((item, order) => ({ ...item, order }));
+    });
+  };
   const uploadForItem = async (id, key, files) => {
     const file = files?.[0];
     if (!file) return;
@@ -101,14 +111,11 @@ export function CollectionManager({
                 <span className="rounded-full bg-blue-50 px-3 py-1 text-[10px] font-black uppercase tracking-[0.14em] text-blue-600">
                   Item {index + 1}
                 </span>
-                <button
-                  type="button"
-                  onClick={() => persist(items.filter((entry) => entry.id !== item.id), "Deleted.")}
-                  className="inline-flex h-9 items-center gap-2 rounded-xl border border-red-500/15 bg-red-50 px-3 text-xs font-bold text-red-600"
-                >
-                  <Trash2 size={14} />
-                  Delete
-                </button>
+                <div className="flex items-center gap-2">
+                  <button type="button" disabled={index === 0} onClick={() => moveItem(index, -1)} className="grid h-9 w-9 place-items-center rounded-xl border border-slate-200 bg-white text-slate-700 disabled:opacity-35" aria-label={`Move ${title} item earlier`}><ArrowUp size={14} /></button>
+                  <button type="button" disabled={index === items.length - 1} onClick={() => moveItem(index, 1)} className="grid h-9 w-9 place-items-center rounded-xl border border-slate-200 bg-white text-slate-700 disabled:opacity-35" aria-label={`Move ${title} item later`}><ArrowDown size={14} /></button>
+                  <button type="button" onClick={() => window.confirm(`Delete this ${title.toLowerCase()} item? This updates the live portfolio.`) && persist(items.filter((entry) => entry.id !== item.id), "Deleted.")} className="inline-flex h-9 items-center gap-2 rounded-xl border border-red-500/15 bg-red-50 px-3 text-xs font-bold text-red-600"><Trash2 size={14} />Delete</button>
+                </div>
               </div>
               <div className="grid gap-3 md:grid-cols-2">
                 {fields.map((field) => (
@@ -186,11 +193,12 @@ export function AchievementsManager() {
       title="Achievements"
       description="Recognition cards shown on the public portfolio."
       path={["achievements", "recognitions"]}
-      createItem={() => ({ id: uid("achievement"), title: "", subtitle: "", description: "", year: "", published: true })}
+      createItem={() => ({ id: uid("achievement"), title: "", subtitle: "", description: "", year: "", tags: "", published: true })}
       fields={[
         { key: "title", label: "Main title" },
         { key: "subtitle", label: "Competition / placement" },
         { key: "year", label: "Date / year" },
+        { key: "tags", label: "Tags (comma separated)" },
         { key: "description", label: "Description", type: "textarea" },
         { key: "published", label: "Published", type: "checkbox" },
       ]}
@@ -260,7 +268,7 @@ export function HomepageManager() {
   const [draft, setDraft] = useState(data);
   const [status, setStatus] = useState("");
 
-  useMemo(() => setDraft(data), [data]);
+  useEffect(() => setDraft(data), [data]);
 
   const update = (section, key, value) => {
     setDraft((current) => ({
@@ -301,14 +309,14 @@ export function HomepageManager() {
     <div className="space-y-4">
       {status && <p className="rounded-xl bg-blue-50 px-3 py-2 text-xs font-bold text-blue-700">{status}</p>}
       {[
-        ["profile", "Hero / About", ["name", "role", "headline", "about", "portraitUrl"]],
+        ["profile", "Homepage / About / Footer", ["name", "role", "heroEyebrow", "heroTitle1", "heroAccent", "heroTitle2", "heroTitle3Lead", "heroTitle3", "heroDescription", "aboutHeading", "aboutAccent", "aboutQuote", "about", "footerDescription", "footerAvailability", "portraitUrl"]],
         ["contact", "Contact", ["email", "phone", "location", "availability"]],
       ].map(([section, title, keys]) => (
         <section className={panel} key={section}>
           <h2 className="text-lg font-black tracking-[-0.03em] text-slate-950">{title}</h2>
           <div className="mt-4 grid gap-3 md:grid-cols-2">
             {keys.map((key) => (
-              <label key={key} className={key === "about" ? "md:col-span-2" : ""}>
+              <label key={key} className={["heroDescription", "aboutQuote", "about", "footerDescription"].includes(key) ? "md:col-span-2" : ""}>
                 <span className="mb-1.5 block text-[10px] font-black uppercase tracking-[0.14em] text-slate-400">{key}</span>
                 {key === "portraitUrl" ? (
                   <div className="rounded-xl border border-slate-200 bg-white/70 p-3">
@@ -323,7 +331,7 @@ export function HomepageManager() {
                       <input type="file" accept="image/*" hidden onChange={(event) => uploadHomepageFile(section, key, event.target.files)} />
                     </label>
                   </div>
-                ) : key === "about" ? (
+                ) : ["heroDescription", "aboutQuote", "about", "footerDescription"].includes(key) ? (
                   <textarea value={draft?.[section]?.[key] || ""} onChange={(event) => update(section, key, event.target.value)} rows={5} className="w-full rounded-xl border border-slate-200 bg-white/70 px-3 py-2 text-sm outline-none focus:border-blue-300 focus:ring-4 focus:ring-blue-500/10" />
                 ) : (
                   <input value={draft?.[section]?.[key] || ""} onChange={(event) => update(section, key, event.target.value)} className="h-11 w-full rounded-xl border border-slate-200 bg-white/70 px-3 text-sm outline-none focus:border-blue-300 focus:ring-4 focus:ring-blue-500/10" />

@@ -32,7 +32,7 @@ function AppFallback({ error }) {
             Refresh portfolio
           </button>
           <a
-            href="mailto:hello@erudita.pro"
+            href="mailto:eruditazilbearids@gmail.com"
             className="rounded-full border border-white/15 px-5 py-3 text-sm font-bold text-white transition hover:bg-white/10"
           >
             Contact Erudita

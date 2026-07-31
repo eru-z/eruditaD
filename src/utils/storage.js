@@ -5,10 +5,12 @@ const KEY = "erudita_portfolio_v1";
 const AUTH_KEY = "erudita_admin_token";
 const VISITOR_KEY = "erudita_visitor_id";
 const AUTH_REQUIRED_EVENT = "erudita:auth-required";
+const IS_DEVELOPMENT = Boolean(import.meta.env?.DEV);
 const API_ORIGIN =
-  import.meta.env.VITE_API_ORIGIN ||
-  (typeof window !== "undefined" && window.location.port === "4173" ? "http://127.0.0.1:3001" : "");
-
+  import.meta.env?.VITE_API_ORIGIN ||
+  (IS_DEVELOPMENT && typeof window !== "undefined" && ["5173", "4173"].includes(window.location.port)
+    ? "http://127.0.0.1:3001"
+    : "");
 const cloneDefault = () => structuredClone(defaultData);
 
 function mergeData(data) {
@@ -81,6 +83,52 @@ async function persistData(data) {
   return saved;
 }
 
+function cacheProjects(projects) {
+  const next = mergeData({ ...loadData(), projects });
+  localStorage.setItem(KEY, JSON.stringify(next));
+  window.dispatchEvent(new Event("erudita:data"));
+  return projects;
+}
+
+async function projectRequest(path, options = {}) {
+  const token = requireToken();
+  const response = await apiFetch(path, {
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+      ...(options.headers || {}),
+    },
+  });
+  const body = await response.json().catch(() => ({}));
+  if (!response.ok) {
+    if (response.status === 401) expireSession();
+    throw new Error(body.message || "Could not update projects.");
+  }
+  if (Array.isArray(body.projects)) cacheProjects(body.projects);
+  return body;
+}
+
+export async function fetchAdminProjects() {
+  const body = await projectRequest("/api/projects?includeDrafts=1");
+  return body.projects || [];
+}
+
+export function createProjectRecord(project) {
+  return projectRequest("/api/projects", { method: "POST", body: JSON.stringify(project) });
+}
+
+export function updateProjectRecord(id, updates) {
+  return projectRequest(`/api/projects/${encodeURIComponent(id)}`, { method: "PATCH", body: JSON.stringify(updates) });
+}
+
+export function deleteProjectRecord(id) {
+  return projectRequest(`/api/projects/${encodeURIComponent(id)}`, { method: "DELETE" });
+}
+
+export function reorderProjectRecords(ids) {
+  return projectRequest("/api/projects/order", { method: "PUT", body: JSON.stringify({ ids }) });
+}
 export async function fetchData() {
   const response = await apiFetch("/api/data");
   if (!response.ok) throw new Error("Could not load portfolio data.");
@@ -113,7 +161,7 @@ export function resetData() {
 }
 
 export function useData() {
-  const [data, setData] = useState(loadData);
+  const [data, setData] = useState(cloneDefault);
 
   useEffect(() => {
     let alive = true;
@@ -122,7 +170,7 @@ export function useData() {
         if (alive) setData(fresh);
       })
       .catch(() => {
-        if (alive) setData(loadData());
+        if (alive) setData(cloneDefault());
       });
 
     const handler = () => setData(loadData());
@@ -138,7 +186,14 @@ export function useData() {
   const update = useCallback((updater) => {
     setData((prev) => {
       const next = typeof updater === "function" ? updater(prev) : updater;
-      saveData(next).catch((error) => console.error(error));
+      localStorage.setItem(KEY, JSON.stringify(next));
+      window.dispatchEvent(new Event("erudita:data"));
+      persistData(next).catch((error) => {
+        localStorage.setItem(KEY, JSON.stringify(prev));
+        setData(prev);
+        window.dispatchEvent(new Event("erudita:data"));
+        window.dispatchEvent(new CustomEvent('erudita:save-error', { detail: error?.message || 'Could not save changes.' }));
+      });
       return next;
     });
   }, []);
@@ -203,8 +258,9 @@ export async function sendContactMessage(message) {
     const body = await response.json().catch(() => ({}));
     throw new Error(body.message || "Could not send message.");
   }
-
-  return response.json();
+  const saved = await response.json();
+  window.dispatchEvent(new Event("erudita:messages"));
+  return saved;
 }
 
 export async function sendAssistantMessage(messages, message = "") {
@@ -290,8 +346,9 @@ export async function updateMessage(id, patch) {
     if (response.status === 401) expireSession();
     throw new Error("Could not update message.");
   }
-
-  return response.json();
+  const updated = await response.json();
+  window.dispatchEvent(new Event("erudita:messages"));
+  return updated;
 }
 
 export async function deleteMessage(id) {
@@ -304,8 +361,9 @@ export async function deleteMessage(id) {
     if (response.status === 401) expireSession();
     throw new Error("Could not delete message.");
   }
-
-  return response.json();
+  const deleted = await response.json();
+  window.dispatchEvent(new Event("erudita:messages"));
+  return deleted;
 }
 
 export async function fetchAnalytics() {
@@ -322,28 +380,65 @@ export async function fetchAnalytics() {
 }
 
 export async function uploadMediaFiles(files) {
-  const payload = await Promise.all(Array.from(files || []).map(fileToPayload));
-  if (!payload.length) return [];
+  const selectedFiles = Array.from(files || []);
+  if (!selectedFiles.length) return [];
+  const token = requireToken();
+  const uploaded = [];
 
+  for (const file of selectedFiles) {
+    const authorization = await apiFetch("/api/uploads/sign", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+      body: JSON.stringify({ name: file.name, type: file.type, size: file.size }),
+    });
+
+    if (!authorization.ok) {
+      if (authorization.status === 401) expireSession();
+      if (IS_DEVELOPMENT && authorization.status === 503) return uploadMediaFilesThroughLocalBackend(selectedFiles, token);
+      const body = await authorization.json().catch(() => ({}));
+      throw new Error(body.message || `Could not authorize ${file.name}.`);
+    }
+
+    const signed = await authorization.json();
+    const form = new FormData();
+    form.append("cacheControl", "31536000");
+    form.append("", file);
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), 120000);
+    try {
+      const response = await fetch(signed.signedUrl, {
+        method: "PUT",
+        headers: { "x-upsert": "false" },
+        body: form,
+        signal: controller.signal,
+      });
+      if (!response.ok) throw new Error(`Upload failed for ${file.name} (${response.status}).`);
+      uploaded.push(signed.upload);
+    } catch (error) {
+      if (error?.name === "AbortError") throw new Error(`Upload timed out for ${file.name}. Please retry.`, { cause: error });
+      throw error;
+    } finally {
+      window.clearTimeout(timeout);
+    }
+  }
+
+  return uploaded;
+}
+
+async function uploadMediaFilesThroughLocalBackend(files, token) {
+  const payload = await Promise.all(files.map(fileToPayload));
   const response = await apiFetch("/api/uploads", {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${requireToken()}`,
-    },
+    headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
     body: JSON.stringify({ files: payload }),
   });
-
   if (!response.ok) {
     if (response.status === 401) expireSession();
     const body = await response.json().catch(() => ({}));
     throw new Error(body.message || "Could not upload media.");
   }
-
-  const body = await response.json();
-  return body.uploads || [];
+  return (await response.json()).uploads || [];
 }
-
 export function trackVisit({ path, title, referrer } = {}) {
   let visitorId = localStorage.getItem(VISITOR_KEY);
   if (!visitorId) {
@@ -400,12 +495,12 @@ async function apiFetch(path, options) {
 
   try {
     const response = await fetch(target, options);
-    if (!API_ORIGIN && response.status === 404 && path.startsWith("/api/")) {
+    if (IS_DEVELOPMENT && !API_ORIGIN && response.status === 404 && path.startsWith("/api/")) {
       return fetch(`http://127.0.0.1:3001${path}`, options);
     }
     return response;
   } catch (error) {
-    if (!API_ORIGIN && path.startsWith("/api/")) {
+    if (IS_DEVELOPMENT && !API_ORIGIN && path.startsWith("/api/")) {
       return fetch(`http://127.0.0.1:3001${path}`, options);
     }
     throw error;

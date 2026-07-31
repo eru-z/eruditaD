@@ -18,11 +18,11 @@ export default function CommandPalette({ open, onOpenChange, onOpenAssistant, em
       {
         id: "copy",
         label: "Copy Email",
-        hint: email || "hello@erudita.pro",
+        hint: email || "eruditazilbearids@gmail.com",
         icon: AtSign,
         run: () => {
           try {
-            navigator.clipboard?.writeText(email || "hello@erudita.pro");
+            navigator.clipboard?.writeText(email || "eruditazilbearids@gmail.com");
           } catch {}
         },
       },
