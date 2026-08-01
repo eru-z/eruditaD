@@ -5,7 +5,7 @@ process.env.VERCEL = "1";
 process.env.NODE_ENV = "test";
 const { default: handler, normalizeVercelApiUrl } = await import("../api/[...path].js");
 const { default: projectHandler } = await import("../api/projects/[id].js");
-const { default: bridgeHandler } = await import("../api/_bridge.js");
+const { default: bridgeHandler } = await import("../api/route.js");
 
 function responseRecorder() {
   return {
@@ -117,7 +117,7 @@ test("explicit project bridge routes GET /api/projects/p_test to application JSO
 
 test("universal bridge sends unknown nested APIs to application JSON 404", async () => {
   const request = {
-    url: "/api/_bridge?source=vercel",
+    url: "/api/route?source=vercel",
     query: { path: "unknown/deep/path" },
     method: "GET",
     headers: {},

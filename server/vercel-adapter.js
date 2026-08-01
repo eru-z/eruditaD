@@ -11,7 +11,7 @@ function routeSegments(value) {
 export function normalizeVercelApiUrl(request) {
   const parsed = new URL(request?.url || "/", "http://vercel.local");
   const catchAll = routeSegments(request?.query?.path);
-  const internalPaths = new Set(["/api/[...path]", "/api/_bridge", "/api", "/"]);
+  const internalPaths = new Set(["/api/[...path]", "/api/route", "/api", "/"]);
 
   if (catchAll.length && (internalPaths.has(parsed.pathname) || !parsed.pathname.startsWith("/api/"))) {
     parsed.pathname = `/api/${catchAll.map(encodeURIComponent).join("/")}`;

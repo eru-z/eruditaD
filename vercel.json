@@ -13,7 +13,7 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "/api/_bridge?path=:path*"
+      "destination": "/api/route?path=:path*"
     },
     {
       "source": "/((?!api/).*)",
