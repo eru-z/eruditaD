@@ -1344,7 +1344,7 @@ async function handleApi(req, res) {
   try {
     const url = new URL(req.url, "http://127.0.0.1");
 
-    if (req.url === "/api/health" && req.method === "GET") {
+    if (url.pathname === "/api/health" && req.method === "GET") {
       if (hasRemotePersistence()) {
         await supabaseRequest("/rest/v1/portfolio_state?select=id&limit=1", { headers: { "Cache-Control": "no-cache" } });
       }
@@ -1362,7 +1362,7 @@ async function handleApi(req, res) {
       });
     }
 
-    if (req.url === "/api/login" && req.method === "POST") {
+    if (url.pathname === "/api/login" && req.method === "POST") {
       const loginLimit = await consumeRateLimit("admin-login", loginRateKey(req), LOGIN_MAX_ATTEMPTS, LOGIN_WINDOW_MS / 1000, loginAttempts);
       if (!loginLimit.allowed) return send(res, 429, { message: "Too many sign-in attempts. Try again in 15 minutes." }, { "Retry-After": "900", "Cache-Control": "no-store" });
       const { username, password } = await readBody(req, { limitBytes: 16 * 1024 });
@@ -1374,12 +1374,12 @@ async function handleApi(req, res) {
       return send(res, 401, { message: "Invalid username or password." }, { "Cache-Control": "no-store" });
     }
 
-    if (req.url === "/api/session" && req.method === "GET") {
+    if (url.pathname === "/api/session" && req.method === "GET") {
       const status = authStatus(req);
       return send(res, status.authenticated ? 200 : 401, status);
     }
 
-    if (req.url === "/api/logout" && req.method === "POST") {
+    if (url.pathname === "/api/logout" && req.method === "POST") {
       return send(res, 200, { ok: true });
     }
 
@@ -1440,11 +1440,11 @@ async function handleApi(req, res) {
       return send(res, 200, { ok: true, projects });
     }
 
-    if (req.url === "/api/data" && req.method === "GET") {
+    if (url.pathname === "/api/data" && req.method === "GET") {
       return send(res, 200, await readData(), { "Cache-Control": "no-store" });
     }
 
-    if (req.url === "/api/data" && req.method === "PUT") {
+    if (url.pathname === "/api/data" && req.method === "PUT") {
       if (!isAuthed(req)) return send(res, 401, { message: "Unauthorized." });
       const data = await readBody(req);
       if (Object.prototype.hasOwnProperty.call(data, "projects")) data.projects = validateProjectCollection(data.projects);
@@ -1454,25 +1454,25 @@ async function handleApi(req, res) {
       return send(res, 200, await readData(), { "Cache-Control": "no-store" });
     }
 
-    if (req.url === "/api/chat/stream" && req.method === "POST") {
+    if (url.pathname === "/api/chat/stream" && req.method === "POST") {
       const body = await readBody(req, { limitBytes: 1 * MB });
       await streamPublicAssistantReply(req, res, body.messages, body.message);
       return;
     }
 
-    if (req.url === "/api/chat" && req.method === "POST") {
+    if (url.pathname === "/api/chat" && req.method === "POST") {
       const body = await readBody(req, { limitBytes: 1 * MB });
       const reply = await createPublicAssistantReply(req, body.messages, body.message);
       return send(res, 200, { reply });
     }
 
-    if (req.url === "/api/uploads/sign" && req.method === "POST") {
+    if (url.pathname === "/api/uploads/sign" && req.method === "POST") {
       if (!isAuthed(req)) return send(res, 401, { message: "Unauthorized." });
       const file = await readBody(req, { limitBytes: 32 * 1024 });
       return send(res, 201, await createSignedUpload(file), { "Cache-Control": "no-store" });
     }
 
-    if (req.url === "/api/uploads" && req.method === "POST") {
+    if (url.pathname === "/api/uploads" && req.method === "POST") {
       if (!isAuthed(req)) return send(res, 401, { message: "Unauthorized." });
       const body = await readBody(req, { limitBytes: UPLOAD_BODY_LIMIT });
       const files = Array.isArray(body.files) ? body.files : [body];
@@ -1485,13 +1485,13 @@ async function handleApi(req, res) {
       return send(res, 201, { uploads });
     }
 
-    if (req.url === "/api/reset" && req.method === "POST") {
+    if (url.pathname === "/api/reset" && req.method === "POST") {
       if (!isAuthed(req)) return send(res, 401, { message: "Unauthorized." });
       await writeData(defaultData);
       return send(res, 200, await readData());
     }
 
-    if (req.url === "/api/messages" && req.method === "POST") {
+    if (url.pathname === "/api/messages" && req.method === "POST") {
       const body = await readBody(req);
       const name = String(body.name || "").trim();
       const email = String(body.email || "").trim();
@@ -1533,7 +1533,7 @@ async function handleApi(req, res) {
       return send(res, 201, entry);
     }
 
-    if (req.url === "/api/messages" && req.method === "GET") {
+    if (url.pathname === "/api/messages" && req.method === "GET") {
       if (!isAuthed(req)) return send(res, 401, { message: "Unauthorized." });
       return send(res, 200, await readMessages());
     }
@@ -1558,7 +1558,7 @@ async function handleApi(req, res) {
       return send(res, 200, { ok: true });
     }
 
-    if (req.url === "/api/visits" && req.method === "POST") {
+    if (url.pathname === "/api/visits" && req.method === "POST") {
       const body = await readBody(req);
       const analytics = await readAnalytics();
       const visit = {
@@ -1579,7 +1579,7 @@ async function handleApi(req, res) {
       return send(res, 201, { ok: true });
     }
 
-    if (req.url === "/api/analytics" && req.method === "GET") {
+    if (url.pathname === "/api/analytics" && req.method === "GET") {
       if (!isAuthed(req)) return send(res, 401, { message: "Unauthorized." });
       const analytics = await readAnalytics();
       return send(res, 200, summarizeAnalytics(analytics.visits || []));
