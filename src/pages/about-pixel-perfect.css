@@ -978,7 +978,7 @@
   body .public-portfolio-shell .about-layout { gap: 0 !important; }
   body .public-portfolio-shell .about-heading-wrap { scroll-margin-top: 86px; }
   body .public-portfolio-shell .about-visual { margin-top: 8px !important; }
-  body .public-portfolio-shell .about-stats-card { margin-top: -8px !important; }
+  body .public-portfolio-shell .about-stats-card { margin-top: 22px !important; }
   body .public-portfolio-shell .about-impact-rail {
     grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
     min-height: 68px !important;
@@ -995,6 +995,7 @@
   }
   body .public-portfolio-shell .about-heading-wrap h2 { text-wrap: balance; }
   body .public-portfolio-shell .about-visual { margin-top: 4px !important; }
+  body .public-portfolio-shell .about-stats-card { margin-top: 30px !important; }
   body .public-portfolio-shell .about-impact-rail {
     grid-template-columns: 1fr !important;
     gap: 0 !important;

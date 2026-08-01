@@ -3060,3 +3060,15 @@ html { scroll-behavior: smooth; }
     padding-top: clamp(92px, 22vw, 112px) !important;
   }
 }
+
+/* Mobile portrait/card relationship: intentional glass-card overlap. */
+@media (max-width: 768px) {
+  .home-portrait,
+  .public-portfolio-shell .home-portrait { bottom: clamp(76px, 19vw, 92px) !important; }
+  .home-code-card,
+  .public-portfolio-shell .home-code-card { bottom: 0 !important; z-index: 14 !important; }
+}
+@media (max-width: 430px) {
+  .home-portrait,
+  .public-portfolio-shell .home-portrait { bottom: 82px !important; }
+}

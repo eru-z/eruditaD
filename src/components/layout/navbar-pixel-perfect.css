@@ -960,6 +960,7 @@
 }
 
 /* Mobile CTA: a single centered contact icon instead of decorative arrows. */
+.pp-navbar-cta-mobile-icon { display: none; }
 @media (max-width: 640px) {
   .pp-navbar-cta {
     position: relative;
@@ -970,29 +971,18 @@
 
   .pp-navbar-cta span,
   .pp-navbar-cta .pp-navbar-cta-spark,
-  .pp-navbar-cta > svg {
+  .pp-navbar-cta > svg:not(.pp-navbar-cta-mobile-icon) {
     display: none !important;
   }
 
-  .pp-navbar-cta::before {
-    content: "";
-    width: 20px;
-    height: 15px;
-    border: 1.8px solid currentColor;
-    border-radius: 4px;
-    box-sizing: border-box;
-  }
+  .pp-navbar-cta::before,
+  .pp-navbar-cta::after { content: none !important; }
 
-  .pp-navbar-cta::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 10px;
-    height: 10px;
-    border-right: 1.8px solid currentColor;
-    border-bottom: 1.8px solid currentColor;
-    transform: translate(-50%, -77%) rotate(45deg);
-    border-radius: 1px;
+  .pp-navbar-cta .pp-navbar-cta-mobile-icon {
+    display: block !important;
+    width: 21px;
+    height: 21px;
+    margin: 0;
+    stroke-width: 2;
   }
 }

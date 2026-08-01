@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 
-import { ArrowRight, Menu, Moon, Sparkles, Sun, X } from "lucide-react";
+import { ArrowRight, Mail, Menu, Moon, Sparkles, Sun, X } from "lucide-react";
 
 import { Link, useLocation } from "react-router-dom";
 
@@ -252,6 +252,8 @@ export default function Navbar({
             <span>Start a Project</span>
 
             <ArrowRight size={14} />
+
+            <Mail className="pp-navbar-cta-mobile-icon" size={21} aria-hidden="true" />
 
           </Link>
 
