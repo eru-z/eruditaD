@@ -4,6 +4,8 @@ import test from "node:test";
 process.env.VERCEL = "1";
 process.env.NODE_ENV = "test";
 const { default: handler, normalizeVercelApiUrl } = await import("../api/[...path].js");
+const { default: projectHandler } = await import("../api/projects/[id].js");
+const { default: bridgeHandler } = await import("../api/_bridge.js");
 
 function responseRecorder() {
   return {
@@ -82,6 +84,48 @@ test("Vercel function rejects non-API paths with JSON", async () => {
   const request = { url: "/not-api", query: {}, method: "GET", headers: {}, socket: {} };
   const response = responseRecorder();
   await handler(request, response);
+  assert.equal(response.status, 404);
+  assert.match(contentType(response), /^application\/json/i);
+});
+test("explicit project bridge routes DELETE /api/projects/p_test to application auth", async () => {
+  const request = vercelRequest("/api/projects/p_test", "DELETE");
+  request.headers.authorization = "Bearer invalid-test-token";
+  const response = responseRecorder();
+  await projectHandler(request, response);
+  assert.equal(response.status, 401);
+  assert.match(contentType(response), /^application\/json/i);
+  assert.deepEqual(JSON.parse(response.body), { message: "Unauthorized." });
+});
+
+test("explicit project bridge routes PATCH /api/projects/p_test to application auth", async () => {
+  const request = vercelRequest("/api/projects/p_test", "PATCH");
+  request.headers.authorization = "Bearer invalid-test-token";
+  const response = responseRecorder();
+  await projectHandler(request, response);
+  assert.equal(response.status, 401);
+  assert.match(contentType(response), /^application\/json/i);
+});
+
+test("explicit project bridge routes GET /api/projects/p_test to application JSON 404", async () => {
+  const request = vercelRequest("/api/projects/p_test");
+  const response = responseRecorder();
+  await projectHandler(request, response);
+  assert.equal(response.status, 404);
+  assert.match(contentType(response), /^application\/json/i);
+  assert.deepEqual(JSON.parse(response.body), { message: "Not found." });
+});
+
+test("universal bridge sends unknown nested APIs to application JSON 404", async () => {
+  const request = {
+    url: "/api/_bridge?source=vercel",
+    query: { path: "unknown/deep/path" },
+    method: "GET",
+    headers: {},
+    socket: { remoteAddress: "127.0.0.1" },
+  };
+  const response = responseRecorder();
+  await bridgeHandler(request, response);
+  assert.equal(request.url, "/api/unknown/deep/path?source=vercel");
   assert.equal(response.status, 404);
   assert.match(contentType(response), /^application\/json/i);
 });

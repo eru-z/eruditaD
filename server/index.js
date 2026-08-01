@@ -1414,7 +1414,7 @@ async function handleApi(req, res) {
       return send(res, 200, { projects });
     }
 
-    if (url.pathname.startsWith("/api/projects/") && req.method === "PATCH") {
+    if (url.pathname.startsWith("/api/projects/") && (req.method === "PATCH" || req.method === "PUT")) {
       if (!isAuthed(req)) return send(res, 401, { message: "Unauthorized." });
       const id = decodeURIComponent(url.pathname.slice("/api/projects/".length));
       const data = await readData();
