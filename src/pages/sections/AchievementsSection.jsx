@@ -3,6 +3,7 @@ import {
   BrainCircuit,
   Building2,
   Leaf,
+  Medal,
   Sparkles,
   Trophy,
   Zap,
@@ -244,9 +245,6 @@ export default function AchievementsSection({ data = {} }) {
             })}
           </div>
         </section>
-
-
-
 
 
       </div>

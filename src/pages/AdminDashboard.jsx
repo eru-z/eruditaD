@@ -36,7 +36,6 @@ import ContactManager from "../admin/ContactManager.jsx";
 import {
   AccountManager,
   AchievementsManager,
-  CertificatesManager,
   HomepageManager,
   ResumeManager,
 } from "../admin/CmsManagers.jsx";
@@ -322,7 +321,6 @@ export default function AdminDashboard() {
       <Route path="services" element={<Wrapped title="Services" subtitle="Manage service cards shown on the public page."><ServicesManager /></Wrapped>} />
       <Route path="experience" element={<Wrapped title="Experience" subtitle="Manage roles and timeline entries."><ExperienceManager /></Wrapped>} />
       <Route path="achievements" element={<Wrapped title="Achievements" subtitle="Manage public recognition cards."><AchievementsManager /></Wrapped>} />
-      <Route path="certificates" element={<Wrapped title="Certificates" subtitle="Manage public certificate slider content."><CertificatesManager /></Wrapped>} />
       <Route path="tech-stack" element={<Navigate to="/admin/dashboard/skills" replace />} />
       <Route path="homepage" element={<Wrapped title="Homepage" subtitle="Edit high-impact public portfolio copy and profile content."><HomepageManager /></Wrapped>} />
       <Route path="testimonials" element={<Navigate to="/admin/dashboard" replace />} />

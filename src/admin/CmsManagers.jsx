@@ -206,25 +206,6 @@ export function AchievementsManager() {
   );
 }
 
-export function CertificatesManager() {
-  return (
-    <CollectionManager
-      title="Certificates"
-      description="Certificates that power the public recognition slider."
-      path={["achievements", "certificates"]}
-      createItem={() => ({ id: uid("certificate"), title: "", issuer: "", image: "", credentialUrl: "", featured: false, published: true })}
-      fields={[
-        { key: "title", label: "Certificate title" },
-        { key: "issuer", label: "Issuer" },
-        { key: "image", label: "Certificate image", type: "file", accept: "image/*,.pdf,application/pdf" },
-        { key: "credentialUrl", label: "Credential URL" },
-        { key: "featured", label: "Featured", type: "checkbox" },
-        { key: "published", label: "Published", type: "checkbox" },
-      ]}
-    />
-  );
-}
-
 export function TestimonialsManager() {
   return (
     <CollectionManager

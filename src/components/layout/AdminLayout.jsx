@@ -6,7 +6,6 @@ import {
   Briefcase,
   ChevronsLeft,
   ChevronsRight,
-  FileBadge,
   FileText,
   Home,
   LayoutDashboard,
@@ -42,7 +41,6 @@ const navGroups = [
       { to: "/admin/dashboard/projects", label: "Projects", icon: Briefcase },
       { to: "/admin/dashboard/experience", label: "Experience", icon: User },
       { to: "/admin/dashboard/achievements", label: "Achievements", icon: Star },
-      { to: "/admin/dashboard/certificates", label: "Certificates", icon: FileBadge },
       { to: "/admin/dashboard/skills", label: "Skills", icon: Sparkles },
       { to: '/admin/dashboard/services', label: 'Services', icon: Wrench },
     ],
@@ -212,7 +210,6 @@ export default function AdminLayout({
       ...(data?.skills || []).map((item) => ({ group: "Technologies", title: item.name, text: item.group, to: "/admin/dashboard/skills" })),
       ...(data?.experience || []).map((item) => ({ group: "Experience", title: item.role || item.title, text: item.company || item.description, to: "/admin/dashboard/experience" })),
       ...(data?.achievements?.recognitions || []).map((item) => ({ group: "Achievements", title: item.title, text: item.subtitle, to: "/admin/dashboard/achievements" })),
-      ...(data?.achievements?.certificates || []).map((item) => ({ group: "Certificates", title: item.title, text: item.issuer, to: "/admin/dashboard/certificates" })),
       ...(data?.services || []).map((item) => ({ group: "Services", title: item.title || item.name, text: item.description, to: "/admin/dashboard/services" })),
       ...messages.map((item) => ({ group: "Messages", title: item.subject, text: `${item.name} ${item.email}`, to: "/admin/dashboard/messages" })),
     ].map((item) => ({ ...item, title: adminText(item.title), text: adminText(item.text) })).filter((item) => item.title);
