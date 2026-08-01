@@ -490,7 +490,7 @@ export default function ProjectsManager() {
 
         {error && modal === null && <div className="ap-global-error" role="alert">{error}</div>}
         {loading ? (
-          <div className="ap-empty" role="status" aria-live="polite"><div className="ap-empty-icon"><UploadCloud size={22} /></div><h4>Loading projects</h4><p>Syncing with the production portfolioâ€¦</p></div>
+          <div className="ap-empty" role="status" aria-live="polite"><div className="ap-empty-icon"><UploadCloud size={22} /></div><h4>Loading projects</h4><p>Syncing with the production portfolio...</p></div>
         ) : filtered.length === 0 ? (
           <EmptyState hasFilters={hasFilters} onCreate={openCreate} onClear={() => {
             setQuery("");

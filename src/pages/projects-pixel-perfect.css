@@ -2181,7 +2181,7 @@
 .projects-library__title em{display:block;margin-top:14px!important;color:transparent!important;background:linear-gradient(115deg,#086dff,#5c56f1);-webkit-background-clip:text;background-clip:text;font-size:.76em!important;line-height:.9!important}
 .projects-library__intro{max-width:700px!important;margin-top:26px!important;color:#60708a!important;font-size:12px!important;line-height:1.7!important}
 .projects-library__count{position:relative!important;display:grid!important;width:154px!important;height:126px!important;place-content:center!important;justify-self:end!important;padding:0!important;border:1px solid rgba(69,116,199,.16)!important;border-radius:18px!important;background:rgba(255,255,255,.72)!important;box-shadow:inset 0 1px #fff,0 18px 42px rgba(37,74,139,.09)!important;text-align:center!important;backdrop-filter:blur(16px)!important}
-.projects-library__count:before{content:"â—‡";position:absolute;left:24px;top:42px;color:rgba(33,107,255,.17);font-size:40px}
+.projects-library__count::before{content:none!important;display:none!important}
 .projects-library__count strong{color:#1667f5!important;font-size:44px!important;font-weight:850!important;line-height:1!important}.projects-library__count span{margin-top:8px;color:#67758d!important;font-size:8px!important;font-weight:800;text-transform:none!important}
 .projects-library__stats{display:grid!important;grid-template-columns:repeat(4,1fr)!important;margin:0!important;padding:17px 0!important;border:1px solid rgba(69,116,199,.15)!important;border-radius:15px!important;background:rgba(255,255,255,.67)!important;box-shadow:inset 0 1px #fff,0 16px 38px rgba(37,74,139,.08)!important;backdrop-filter:blur(16px)!important}
 .projects-library__stat{min-height:52px!important;padding:4px 30px!important}.projects-library__stat:first-child{padding-left:30px!important}.projects-library__stat>span{width:36px!important;height:36px!important;border:0!important;border-radius:11px!important;color:#126bff!important;background:#edf4ff!important;box-shadow:0 8px 18px rgba(42,96,203,.1)!important}.projects-library__stat strong{color:#1267f3!important;font-size:21px!important}.projects-library__stat small{color:#66758c!important;font-size:7px!important}
@@ -2784,3 +2784,34 @@
 .project-card__live-link:hover{border-color:#3586ff!important;color:#fff!important;background:rgba(17,44,95,.95)!important;transform:translateY(-1px)}
 .project-card__case-study svg{display:none!important}
 @media(max-width:420px){.projects-grid .project-card__meta.has-live-link,.projects-library__grid .project-card__meta.has-live-link{grid-template-columns:1fr!important}}
+
+/* Final light-card theme and reliable card actions */
+.public-portfolio-shell.is-light-mode .projects-grid .project-card,
+.public-portfolio-shell.is-light-mode .projects-library__grid .project-card:nth-child(n) {
+  border-color: rgba(86,132,205,.25) !important;
+  background: linear-gradient(145deg,rgba(255,255,255,.94),rgba(243,248,255,.88)) !important;
+  box-shadow: inset 0 1px rgba(255,255,255,.98),0 18px 44px rgba(42,78,139,.12) !important;
+}
+.public-portfolio-shell.is-light-mode .projects-grid .project-card:hover,
+.public-portfolio-shell.is-light-mode .projects-library__grid .project-card:hover {
+  border-color: rgba(45,112,232,.46) !important;
+  box-shadow: inset 0 1px #fff,0 25px 58px rgba(39,82,164,.17) !important;
+}
+.public-portfolio-shell.is-light-mode .projects-grid .project-card__main h3,
+.public-portfolio-shell.is-light-mode .projects-library__grid .project-card__main h3 { color:#0b1830 !important; }
+.public-portfolio-shell.is-light-mode .projects-grid .project-card__main > p,
+.public-portfolio-shell.is-light-mode .projects-library__grid .project-card__main > p { color:#56667e !important; }
+.public-portfolio-shell.is-light-mode .project-card__featured {
+  color:#176be9 !important;
+  background:#eaf3ff !important;
+}
+.public-portfolio-shell.is-light-mode .project-card__features span {
+  color:#47617f !important;
+  border-color:rgba(82,130,205,.2) !important;
+  background:rgba(239,246,255,.92) !important;
+}
+.public-portfolio-shell.is-light-mode .project-card__tech { border-top-color:rgba(76,118,184,.15) !important; }
+.public-portfolio-shell.is-light-mode .project-card__tech span { color:#41536d !important; }
+.project-card__meta { position:relative; z-index:4; }
+.project-card__case-study,
+.project-card__live-link { position:relative; z-index:5; pointer-events:auto !important; cursor:pointer; }

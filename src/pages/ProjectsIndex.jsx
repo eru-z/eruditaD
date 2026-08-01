@@ -411,9 +411,9 @@ function ProjectCard({
               Live Site
             </a>
           )}
-          <Link className="project-card__case-study" to={project.caseStudyUrl || `/projects/${project.id}`}>
+          <a className="project-card__case-study" href={project.caseStudyUrl || `/projects/${encodeURIComponent(project.id)}`}>
             View Case Study
-          </Link>
+          </a>
         </div>
       </div>
     </article>

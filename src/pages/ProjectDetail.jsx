@@ -19,13 +19,14 @@ import {
 import { fadeUp, stagger } from "../utils/animations.js";
 import { useData } from "../utils/storage.js";
 import { listFromBackend } from "../utils/projects.js";
+import "./project-detail.css";
 
 
 function InfoBlock({ title, text, icon: Icon }) {
   if (!text) return null;
 
   return (
-    <article className="group rounded-[20px] border border-white/90 bg-white/72 p-4 shadow-[0_22px_60px_-48px_rgba(37,99,235,.58)] backdrop-blur-2xl transition duration-300 hover:-translate-y-1 hover:border-[#BFDBFE]">
+    <article className="project-case__info group rounded-[20px] border border-white/90 bg-white/72 p-4 shadow-[0_22px_60px_-48px_rgba(37,99,235,.58)] backdrop-blur-2xl transition duration-300 hover:-translate-y-1 hover:border-[#BFDBFE]">
       <div className="flex items-center gap-2.5 text-[8px] font-black uppercase tracking-[0.14em] text-[#2563EB]">
         <span className="grid h-9 w-9 place-items-center rounded-[12px] border border-white/90 bg-[#EAF3FF]">
           <Icon size={15} />
@@ -47,7 +48,7 @@ function EvidencePanel({ title, items = [], text = "", icon: Icon }) {
   if (!text && !visibleItems.length) return null;
 
   return (
-    <article className="rounded-[22px] border border-white/90 bg-white/72 p-5 shadow-[0_24px_70px_-54px_rgba(37,99,235,.72)] backdrop-blur-2xl">
+    <article className="project-case__evidence rounded-[22px] border border-white/90 bg-white/72 p-5 shadow-[0_24px_70px_-54px_rgba(37,99,235,.72)] backdrop-blur-2xl">
       <div className="flex items-center gap-3">
         <span className="grid h-10 w-10 place-items-center rounded-[14px] border border-white/90 bg-[#EAF3FF] text-[#2563EB]">
           <Icon size={16} />
@@ -92,7 +93,7 @@ function CompactRelatedCard({ project }) {
   return (
     <Link
       to={`/projects/${project.slug || project.id}`}
-      className="group overflow-hidden rounded-[20px] border border-white/90 bg-white/72 p-2.5 shadow-[0_22px_60px_-48px_rgba(37,99,235,.55)] backdrop-blur-2xl transition hover:-translate-y-1"
+      className="project-case__related-card group overflow-hidden rounded-[20px] border border-white/90 bg-white/72 p-2.5 shadow-[0_22px_60px_-48px_rgba(37,99,235,.55)] backdrop-blur-2xl transition hover:-translate-y-1"
     >
       <div className="h-[126px] overflow-hidden rounded-[15px] bg-[#EAF3FF]">
         {cover ? (
@@ -163,9 +164,12 @@ export default function ProjectDetail() {
     .slice(0, 3);
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-[#F7F9FF] px-4 pb-14 pt-6 text-[#07111F] sm:px-6 lg:px-8">
+    <div
+      className="project-case relative min-h-screen overflow-hidden px-4 pb-14 pt-6 sm:px-6 lg:px-8"
+      style={{ background: "var(--project-case-background)", color: "var(--project-case-color)" }}
+    >
       <div
-        className="pointer-events-none fixed inset-0 -z-10"
+        className="project-case__light-backdrop pointer-events-none fixed inset-0 -z-10"
         aria-hidden="true"
       >
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_8%,rgba(96,165,250,0.20),transparent_30rem),radial-gradient(circle_at_6%_34%,rgba(37,99,235,0.09),transparent_28rem),linear-gradient(180deg,#FCFDFF_0%,#EEF5FF_48%,#F8FBFF_100%)]" />
@@ -177,12 +181,12 @@ export default function ProjectDetail() {
         variants={stagger}
         initial="hidden"
         animate="show"
-        className="relative z-10 mx-auto max-w-[1320px]"
+        className="project-case__shell relative z-10 mx-auto max-w-[1320px]"
       >
         <motion.div variants={fadeUp} className="pt-3">
           <Link
             to="/projects"
-            className="inline-flex items-center gap-2 rounded-full border border-white/90 bg-white/76 px-4 py-2 text-[8px] font-black uppercase tracking-[0.08em] text-[#07111F] shadow-[0_14px_34px_-28px_rgba(2,6,23,.55)] backdrop-blur-xl transition hover:-translate-y-0.5 hover:text-[#2563EB]"
+            className="project-case__back inline-flex items-center gap-2 rounded-full border border-white/90 bg-white/76 px-4 py-2 text-[8px] font-black uppercase tracking-[0.08em] text-[#07111F] shadow-[0_14px_34px_-28px_rgba(2,6,23,.55)] backdrop-blur-xl transition hover:-translate-y-0.5 hover:text-[#2563EB]"
           >
             <ArrowLeft size={12} />
             Back to Projects
@@ -191,31 +195,31 @@ export default function ProjectDetail() {
 
         <motion.section
           variants={fadeUp}
-          className="mt-5 grid gap-6 lg:grid-cols-[0.82fr_1.18fr] lg:items-center"
+          className="project-case__hero mt-5 grid gap-6 lg:grid-cols-[0.82fr_1.18fr] lg:items-center"
         >
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/90 bg-white/72 px-3 py-1.5 text-[8px] font-black uppercase tracking-[0.14em] text-[#2563EB] shadow-sm backdrop-blur-xl">
+            <div className="project-case__badge inline-flex items-center gap-2 rounded-full border border-white/90 bg-white/72 px-3 py-1.5 text-[8px] font-black uppercase tracking-[0.14em] text-[#2563EB] shadow-sm backdrop-blur-xl">
               <span className="h-1.5 w-1.5 rounded-full bg-[#2563EB]" />
               {getProjectType(project)}
               {project.status ? ` / ${project.status}` : ""}
               {project.year ? ` / ${project.year}` : ""}
             </div>
 
-            <h1 className="mt-4 max-w-[620px] font-display text-[42px] font-black leading-[0.95] tracking-[-0.06em] sm:text-[54px] xl:text-[62px]">
+            <h1 className="project-case__title mt-4 max-w-[620px] font-display text-[42px] font-black leading-[0.95] tracking-[-0.06em] sm:text-[54px] xl:text-[62px]">
               {project.title}
             </h1>
 
-            <p className="mt-4 max-w-[610px] text-[12px] font-semibold leading-6 text-[#526174] sm:text-[13px]">
+            <p className="project-case__description mt-4 max-w-[610px] text-[12px] font-semibold leading-6 text-[#526174] sm:text-[13px]">
               {project.description}
             </p>
 
-            <div className="mt-5 flex flex-wrap gap-2">
+            <div className="project-case__actions mt-5 flex flex-wrap gap-2">
               {project.liveUrl && (
                 <a
                   href={project.liveUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex min-h-10 items-center justify-center gap-2 rounded-full bg-[#07111F] px-5 text-[9px] font-black uppercase tracking-[0.06em] text-white transition hover:-translate-y-0.5"
+                  className="project-case__action--live inline-flex min-h-10 items-center justify-center gap-2 rounded-full bg-[#07111F] px-5 text-[9px] font-black uppercase tracking-[0.06em] text-white transition hover:-translate-y-0.5"
                 >
                   Live project
                   <ExternalLink size={12} />
@@ -231,7 +235,7 @@ export default function ProjectDetail() {
                       videoUrl,
                     })
                   }
-                  className="inline-flex min-h-10 items-center justify-center gap-2 rounded-full border border-[#DCE8F8] bg-white/84 px-5 text-[9px] font-black uppercase tracking-[0.06em] text-[#2563EB] transition hover:-translate-y-0.5 hover:bg-[#EEF4FF]"
+                  className="project-case__media-action inline-flex min-h-10 items-center justify-center gap-2 rounded-full border border-[#DCE8F8] bg-white/84 px-5 text-[9px] font-black uppercase tracking-[0.06em] text-[#2563EB] transition hover:-translate-y-0.5 hover:bg-[#EEF4FF]"
                 >
                   <Film size={12} />
                   Demo video
@@ -247,7 +251,7 @@ export default function ProjectDetail() {
                       screenshots,
                     })
                   }
-                  className="inline-flex min-h-10 items-center justify-center gap-2 rounded-full border border-[#DCE8F8] bg-white/84 px-5 text-[9px] font-black uppercase tracking-[0.06em] text-[#2563EB] transition hover:-translate-y-0.5 hover:bg-[#EEF4FF]"
+                  className="project-case__media-action inline-flex min-h-10 items-center justify-center gap-2 rounded-full border border-[#DCE8F8] bg-white/84 px-5 text-[9px] font-black uppercase tracking-[0.06em] text-[#2563EB] transition hover:-translate-y-0.5 hover:bg-[#EEF4FF]"
                 >
                   <Images size={12} />
                   Screenshots
@@ -256,7 +260,7 @@ export default function ProjectDetail() {
             </div>
 
             {!!tech.length && (
-              <div className="mt-5 flex flex-wrap gap-1.5">
+              <div className="project-case__tech mt-5 flex flex-wrap gap-1.5">
                 {tech.slice(0, 7).map((item) => (
                   <span
                     key={item}
@@ -289,7 +293,7 @@ export default function ProjectDetail() {
         {hasCaseStudy && (
           <motion.section
             variants={fadeUp}
-            className="mt-5 grid gap-4 md:grid-cols-3"
+            className="project-case__summary mt-5 grid gap-4 md:grid-cols-3"
           >
             <InfoBlock
               title="Problem"
@@ -304,7 +308,7 @@ export default function ProjectDetail() {
         {hasEvidence && (
           <motion.section
             variants={fadeUp}
-            className="mt-4 grid gap-4 lg:grid-cols-3"
+            className="project-case__evidence-grid mt-4 grid gap-4 lg:grid-cols-3"
           >
             <EvidencePanel
               title="My role"
@@ -325,7 +329,7 @@ export default function ProjectDetail() {
         )}
 
         {!!related.length && (
-          <motion.section variants={fadeUp} className="mt-7">
+          <motion.section variants={fadeUp} className="project-case__related mt-7">
             <div className="mb-3 flex items-center justify-between gap-3">
               <h2 className="font-display text-[23px] font-black tracking-[-0.05em]">
                 Related Projects
@@ -375,7 +379,7 @@ function ProjectCover({ project, screenshot, onOpen }) {
       type="button"
       onClick={onOpen}
       disabled={!screenshot}
-      className="group relative block w-full overflow-hidden rounded-[24px] border border-white/90 bg-white/72 p-2.5 text-left shadow-[0_30px_90px_-55px_rgba(37,99,235,.8)] backdrop-blur-2xl disabled:cursor-default"
+      className="project-case__cover group relative block w-full overflow-hidden rounded-[24px] border border-white/90 bg-white/72 p-2.5 text-left shadow-[0_30px_90px_-55px_rgba(37,99,235,.8)] backdrop-blur-2xl disabled:cursor-default"
     >
       <div className="relative aspect-[16/10] overflow-hidden rounded-[18px] bg-[#EAF3FF]">
         {cover ? (
@@ -423,7 +427,7 @@ function ProjectMediaModal({ project, modal, onClose }) {
   if (modal.type === "screenshots") {
     return (
       <motion.div
-        className="fixed inset-0 z-[100] grid place-items-center bg-[#07111F]/55 p-4 backdrop-blur-md"
+        className="project-media-overlay fixed inset-0 z-[100] grid place-items-center bg-[#07111F]/55 p-4 backdrop-blur-md"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
@@ -436,7 +440,7 @@ function ProjectMediaModal({ project, modal, onClose }) {
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 10, scale: 0.98 }}
           transition={{ duration: 0.22 }}
-          className="relative flex w-full max-w-[min(1180px,calc(100vw-32px))] items-center justify-center"
+          className="project-media-dialog relative flex w-full max-w-[min(1180px,calc(100vw-32px))] items-center justify-center"
         >
           <button
             type="button"
@@ -460,7 +464,7 @@ function ProjectMediaModal({ project, modal, onClose }) {
               <button
                 type="button"
                 onClick={previousScreenshot}
-                className="absolute left-2 top-1/2 z-20 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full border border-white/40 bg-[#07111F]/52 text-white shadow-[0_16px_42px_-22px_rgba(2,6,23,.8)] backdrop-blur-xl transition hover:bg-[#07111F]/82 sm:-left-14"
+                className="project-media-nav project-media-nav--previous absolute left-2 top-1/2 z-20 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full border border-white/40 bg-[#07111F]/52 text-white shadow-[0_16px_42px_-22px_rgba(2,6,23,.8)] backdrop-blur-xl transition hover:bg-[#07111F]/82 sm:-left-14"
                 aria-label="Previous screenshot"
               >
                 <ChevronLeft size={22} />
@@ -469,7 +473,7 @@ function ProjectMediaModal({ project, modal, onClose }) {
               <button
                 type="button"
                 onClick={nextScreenshot}
-                className="absolute right-2 top-1/2 z-20 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full border border-white/40 bg-[#07111F]/52 text-white shadow-[0_16px_42px_-22px_rgba(2,6,23,.8)] backdrop-blur-xl transition hover:bg-[#07111F]/82 sm:-right-14"
+                className="project-media-nav project-media-nav--next absolute right-2 top-1/2 z-20 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full border border-white/40 bg-[#07111F]/52 text-white shadow-[0_16px_42px_-22px_rgba(2,6,23,.8)] backdrop-blur-xl transition hover:bg-[#07111F]/82 sm:-right-14"
                 aria-label="Next screenshot"
               >
                 <ChevronRight size={22} />
@@ -483,7 +487,7 @@ function ProjectMediaModal({ project, modal, onClose }) {
 
   return (
     <motion.div
-      className="fixed inset-0 z-[100] grid place-items-center bg-[#07111F]/45 p-4 backdrop-blur-md"
+      className="project-video-overlay fixed inset-0 z-[100] grid place-items-center bg-[#07111F]/45 p-4 backdrop-blur-md"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -496,7 +500,7 @@ function ProjectMediaModal({ project, modal, onClose }) {
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, y: 12, scale: 0.98 }}
         transition={{ duration: 0.22 }}
-        className="w-full max-w-5xl overflow-hidden rounded-[28px] border border-white/80 bg-white/88 p-3 shadow-[0_40px_120px_-40px_rgba(2,6,23,.65)] backdrop-blur-3xl"
+        className="project-video-dialog w-full max-w-5xl overflow-hidden rounded-[28px] border border-white/80 bg-white/88 p-3 shadow-[0_40px_120px_-40px_rgba(2,6,23,.65)] backdrop-blur-3xl"
       >
         <div className="flex items-center justify-between gap-4 px-2 pb-3 pt-1">
           <div>

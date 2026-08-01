@@ -161,7 +161,9 @@ export function resetData() {
 }
 
 export function useData() {
-  const [data, setData] = useState(cloneDefault);
+  // Start with the last successful admin/API snapshot so saved project media
+  // never flashes back to the bundled logo-only defaults during page load.
+  const [data, setData] = useState(loadData);
 
   useEffect(() => {
     let alive = true;
@@ -170,7 +172,8 @@ export function useData() {
         if (alive) setData(fresh);
       })
       .catch(() => {
-        if (alive) setData(cloneDefault());
+        // A temporary API failure must not discard valid cached admin data.
+        if (alive) setData(loadData());
       });
 
     const handler = () => setData(loadData());

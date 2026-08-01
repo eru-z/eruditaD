@@ -193,7 +193,7 @@
 .project-media-dialog > img {
   width: auto;
   max-width: 100%;
-  max-height: calc(100vh - 190px) !important;
+  max-height: calc(100dvh - 230px) !important;
   border: 1px solid rgba(255,255,255,.22);
   border-radius: 18px;
   background: #050914;
@@ -252,14 +252,15 @@
   overflow-y: auto !important;
 }
 .project-video-dialog {
-  width: min(1120px, calc(100vw - 48px)) !important;
+  width: min(1120px, calc((100dvh - 250px) * 1.7778), calc(100vw - 48px)) !important;
   max-width: 1120px !important;
+  max-height: calc(100dvh - 150px) !important;
   margin-top: 12px !important;
   flex: 0 0 auto;
 }
 .project-video-dialog iframe,
 .project-video-dialog video {
-  max-height: calc(100vh - 190px) !important;
+  max-height: calc(100dvh - 230px) !important;
 }
 .is-galaxy-dark .project-video-dialog {
   border-color: rgba(82,116,201,.5) !important;
@@ -302,4 +303,107 @@
   border-color:#257aff !important;
   background:linear-gradient(135deg,#0878ff,#4c59ee) !important;
   box-shadow:0 10px 24px rgba(28,89,225,.24) !important;
+}
+/* Authoritative project-detail theme surfaces */
+html[data-portfolio-theme="dark"] .project-case,
+.public-portfolio-shell.is-galaxy-dark main .project-case {
+  color: #f5f7ff !important;
+  background: radial-gradient(circle at 91% 25%, rgba(58,73,255,.25), transparent 23%), radial-gradient(circle at 4% 42%, rgba(18,98,255,.2), transparent 26%), linear-gradient(180deg,#010510 0%,#020817 56%,#01050f 100%) !important;
+}
+html[data-portfolio-theme="dark"] .project-case > div[aria-hidden="true"],
+.public-portfolio-shell.is-galaxy-dark .project-case > div[aria-hidden="true"] {
+  display: none !important;
+}
+html[data-portfolio-theme="dark"] .project-case__title,
+html[data-portfolio-theme="dark"] .project-case__related h2 { color:#f7f8fd !important; }
+html[data-portfolio-theme="dark"] .project-case__description { color:#aeb9cd !important; }
+html[data-portfolio-theme="dark"] .project-case__info,
+html[data-portfolio-theme="dark"] .project-case__evidence,
+html[data-portfolio-theme="dark"] .project-case__related-card {
+  color:#f5f7ff !important;
+  border-color:rgba(73,105,185,.36) !important;
+  background:linear-gradient(145deg,rgba(10,21,48,.94),rgba(4,10,27,.93)) !important;
+  box-shadow:inset 0 1px rgba(255,255,255,.055),0 18px 42px rgba(0,0,0,.28) !important;
+}
+html[data-portfolio-theme="dark"] .project-case__cover {
+  border-color:rgba(70,119,226,.48) !important;
+  background:linear-gradient(145deg,rgba(12,24,55,.96),rgba(3,9,24,.95)) !important;
+  box-shadow:inset 0 1px rgba(255,255,255,.07),0 22px 58px rgba(0,0,0,.38),0 0 28px rgba(34,92,227,.12) !important;
+}
+html[data-portfolio-theme="light"] .project-case {
+  color:#07111f !important;
+  background:radial-gradient(circle at 84% 12%,rgba(99,131,255,.13),transparent 25%),radial-gradient(circle at 4% 42%,rgba(70,141,255,.09),transparent 24%),linear-gradient(180deg,#fbfdff 0%,#f2f7ff 52%,#f8fbff 100%) !important;
+}
+/* Deployment-safe case-study theme variables */
+.public-portfolio-shell.is-light-mode {
+  --project-case-color:#07111f;
+  --project-case-background:radial-gradient(circle at 84% 12%,rgba(99,131,255,.13),transparent 25%),radial-gradient(circle at 4% 42%,rgba(70,141,255,.09),transparent 24%),linear-gradient(180deg,#fbfdff 0%,#f2f7ff 52%,#f8fbff 100%);
+  --project-case-light-layer-opacity:1;
+}
+.public-portfolio-shell.is-galaxy-dark {
+  --project-case-color:#f5f7ff;
+  --project-case-background:radial-gradient(circle at 91% 25%,rgba(58,73,255,.25),transparent 23%),radial-gradient(circle at 4% 42%,rgba(18,98,255,.2),transparent 26%),linear-gradient(180deg,#010510 0%,#020817 56%,#01050f 100%);
+  --project-case-light-layer-opacity:0;
+}
+.project-case {
+  color:var(--project-case-color,#07111f) !important;
+  background:var(--project-case-background,#f7f9ff) !important;
+}
+.project-case__light-backdrop {
+  opacity:var(--project-case-light-layer-opacity,1) !important;
+  visibility:visible;
+}
+.public-portfolio-shell.is-galaxy-dark .project-case__light-backdrop {
+  visibility:hidden !important;
+}
+.public-portfolio-shell.is-galaxy-dark .project-case__title,
+.public-portfolio-shell.is-galaxy-dark .project-case__related h2 { color:#f7f8fd !important; }
+.public-portfolio-shell.is-galaxy-dark .project-case__description { color:#aeb9cd !important; }
+.public-portfolio-shell.is-galaxy-dark .project-case__info,
+.public-portfolio-shell.is-galaxy-dark .project-case__evidence,
+.public-portfolio-shell.is-galaxy-dark .project-case__related-card {
+  color:#f5f7ff !important;
+  border-color:rgba(73,105,185,.36) !important;
+  background:linear-gradient(145deg,rgba(10,21,48,.94),rgba(4,10,27,.93)) !important;
+  box-shadow:inset 0 1px rgba(255,255,255,.055),0 18px 42px rgba(0,0,0,.28) !important;
+}
+.public-portfolio-shell.is-galaxy-dark .project-case__cover {
+  border-color:rgba(70,119,226,.48) !important;
+  background:linear-gradient(145deg,rgba(12,24,55,.96),rgba(3,9,24,.95)) !important;
+  box-shadow:inset 0 1px rgba(255,255,255,.07),0 22px 58px rgba(0,0,0,.38),0 0 28px rgba(34,92,227,.12) !important;
+}
+/* Evidence cards: role, tech decisions, and impact stay aligned on desktop */
+@media (min-width: 1024px) {
+  .project-case__evidence-grid {
+    grid-template-columns: repeat(3,minmax(0,1fr)) !important;
+    align-items: stretch;
+  }
+  .project-case__evidence { height:100%; }
+}
+/* Screenshot modal controls stay attached to the media at every viewport */
+.project-media-overlay {
+  overflow-x:hidden !important;
+  overflow-y:auto !important;
+}
+.project-media-dialog {
+  width:fit-content !important;
+  max-width:calc(100vw - 56px) !important;
+}
+.project-media-nav--previous { left:clamp(8px,1.4vw,18px) !important; }
+.project-media-nav--next { right:clamp(8px,1.4vw,18px) !important; }
+@media (max-width:700px) {
+  .project-media-dialog { width:100% !important; max-width:100% !important; }
+  .project-media-nav {
+    width:42px !important;
+    height:42px !important;
+    border-color:rgba(255,255,255,.58) !important;
+    background:rgba(3,10,26,.76) !important;
+  }
+  .project-media-nav--previous { left:8px !important; }
+  .project-media-nav--next { right:8px !important; }
+}
+@media (max-width:420px) {
+  .project-media-nav { width:38px !important; height:38px !important; }
+  .project-media-nav--previous { left:5px !important; }
+  .project-media-nav--next { right:5px !important; }
 }
