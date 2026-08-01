@@ -491,9 +491,3 @@ body .public-portfolio-shell :is(
     opacity: .4 !important;
   }
 }
-
-/* Shared public scroll-to-top control. */
-.portfolio-scroll-top{position:fixed;right:clamp(16px,2.2vw,32px);bottom:clamp(86px,7vw,98px);z-index:80;display:grid;width:48px;height:48px;place-items:center;border:1px solid rgba(111,151,245,.42);border-radius:15px;color:#fff;background:linear-gradient(145deg,rgba(12,86,240,.96),rgba(103,65,238,.96));box-shadow:0 14px 34px rgba(18,61,180,.32),inset 0 1px rgba(255,255,255,.2);opacity:0;pointer-events:none;transform:translateY(16px) scale(.9);transition:opacity .2s ease,transform .2s ease,box-shadow .2s ease;backdrop-filter:blur(14px)}
-.portfolio-scroll-top.is-visible{opacity:1;pointer-events:auto;transform:translateY(0) scale(1)}.portfolio-scroll-top:hover{transform:translateY(-3px);box-shadow:0 18px 42px rgba(18,61,180,.42),inset 0 1px rgba(255,255,255,.24)}.portfolio-scroll-top:focus-visible{outline:3px solid rgba(96,165,250,.5);outline-offset:4px}.is-light-mode .portfolio-scroll-top{border-color:rgba(255,255,255,.8);box-shadow:0 14px 34px rgba(37,99,235,.25)}
-@media(max-width:640px){.portfolio-scroll-top{right:14px;bottom:82px;width:44px;height:44px;border-radius:13px}}
-@media(prefers-reduced-motion:reduce){.portfolio-scroll-top{transition:opacity .01ms}.portfolio-scroll-top:hover{transform:none}}

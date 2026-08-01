@@ -1,6 +1,5 @@
 import { Suspense, lazy, useEffect, useState } from "react";
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
-import { ChevronUp } from "lucide-react";
 import Navbar from "./components/layout/Navbar.jsx";
 import Footer from "./components/layout/Footer.jsx";
 import Home from "./pages/Home.jsx";
@@ -35,7 +34,6 @@ function PublicShell({ children }) {
   const location = useLocation();
   const [aiOpen, setAiOpen] = useState(false);
   const [paletteOpen, setPaletteOpen] = useState(false);
-  const [showScrollTop, setShowScrollTop] = useState(false);
   const [theme, setTheme] = useState(() => {
     if (typeof window === "undefined") return "dark";
     return window.localStorage.getItem("portfolio-theme") || "dark";
@@ -75,12 +73,6 @@ function PublicShell({ children }) {
     trackVisit({ path: `${location.pathname}${location.hash}` });
   }, [location.pathname, location.hash]);
 
-  useEffect(() => {
-    const updateScrollTop = () => setShowScrollTop(window.scrollY > 560);
-    updateScrollTop();
-    window.addEventListener("scroll", updateScrollTop, { passive: true });
-    return () => window.removeEventListener("scroll", updateScrollTop);
-  }, []);
 
   return (
     <div className={`public-portfolio-shell ${isDark ? "is-galaxy-dark" : "is-light-mode"} flex min-h-screen flex-col bg-[var(--background)] text-[var(--text-primary)]`}>
@@ -93,15 +85,6 @@ function PublicShell({ children }) {
       />
       <main className="flex-1">{children}</main>
       <Footer data={data} />
-      <button
-        className={`portfolio-scroll-top${showScrollTop ? " is-visible" : ""}`}
-        type="button"
-        onClick={() => window.scrollTo({ top: 0, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" })}
-        aria-label="Scroll to top"
-        title="Back to top"
-      >
-        <ChevronUp size={20} strokeWidth={2.4} />
-      </button>
       <Suspense fallback={null}>
         <AiAssistant open={aiOpen} onOpenChange={setAiOpen} showLauncher />
         {paletteOpen && (

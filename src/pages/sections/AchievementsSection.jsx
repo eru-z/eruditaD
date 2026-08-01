@@ -1,16 +1,13 @@
 import {
-  ArrowLeft,
-  ArrowRight,
   Award,
   BrainCircuit,
   Building2,
   Leaf,
-  Medal,
   Sparkles,
   Trophy,
   Zap,
 } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 
 import SectionShell from "./SectionShell.jsx";
 import "./achievements-section.css";
@@ -143,35 +140,6 @@ function sortRecognitions(items) {
   return [...items].sort((a, b) => Number(a?.order ?? 0) - Number(b?.order ?? 0));
 }
 
-const fallbackCertificates = [
-  {
-    title: "Science Fair - 1st Place",
-    issuer: "Information Technology",
-    image: "/images/certificates/science-fair.jpg",
-  },
-  {
-    title: "SpringCodeFest - 1st Place",
-    issuer: "Coding Competition",
-    image: "/images/certificates/spring-code-fest.jpg",
-  },
-  {
-    title: "JunctionX Tirana 2026",
-    issuer: "Certificate of Participation",
-    image: "/images/certificates/junctionx-tirana.jpg",
-  },
-  {
-    title: "Backend Developer - 3rd Place",
-    issuer: "PHP & MySQL",
-    image: "/images/certificates/backend-developer.jpg",
-  },
-  {
-    title: "Summer School",
-    issuer: "Certificate of Completion",
-    image: "/images/certificates/summer-school.jpg",
-  },
-];
-
-
 export default function AchievementsSection({ data = {} }) {
   const recognitions = useMemo(
     () => {
@@ -184,34 +152,6 @@ export default function AchievementsSection({ data = {} }) {
     [data],
   );
 
-
-  const certificates = useMemo(
-    () => Array.isArray(data?.achievements?.certificates) ? data.achievements.certificates.filter((item) => item?.published !== false) : fallbackCertificates,
-    [data],
-  );const [activeCertificate, setActiveCertificate] = useState(
-    Math.min(2, certificates.length - 1),
-  );
-
-  const moveCertificate = (direction) => {
-    setActiveCertificate((current) => {
-      const next = current + direction;
-
-      if (next < 0) return certificates.length - 1;
-      if (next >= certificates.length) return 0;
-
-      return next;
-    });
-  };
-
-  const getCertificatePosition = (index) => {
-    const total = certificates.length;
-    let offset = index - activeCertificate;
-
-    if (offset > total / 2) offset -= total;
-    if (offset < -total / 2) offset += total;
-
-    return offset;
-  };
 
   return (
     <SectionShell
@@ -233,7 +173,7 @@ export default function AchievementsSection({ data = {} }) {
             </h2>
 
             <p>
-              Titles, certificates, clients, and technologies that represent my
+              Competition wins and milestones that represent my
               experience building polished digital products.
             </p>
           </div>
@@ -306,96 +246,7 @@ export default function AchievementsSection({ data = {} }) {
         </section>
 
 
-        <section className="certificates-showcase ep-achievement-glass">
-          <div className="achievement-panel-heading certificate-heading">
-            <div className="achievement-heading-copy">
-              <span className="achievement-heading-icon">
-                <Medal size={16} />
-              </span>
 
-              <div>
-                <h3>Certificates</h3>
-                <p>Horizontal previews of my awards and course certificates.</p>
-              </div>
-            </div>
-
-          </div>
-
-          <div className="certificate-stage">
-            <button
-              className="certificate-arrow certificate-arrow-left"
-              type="button"
-              aria-label="Previous certificate"
-              onClick={() => moveCertificate(-1)}
-            >
-              <ArrowLeft size={16} />
-            </button>
-
-            <div className="certificate-track">
-              {certificates.map((certificate, index) => {
-                const position = getCertificatePosition(index);
-                const isVisible = Math.abs(position) <= 2;
-
-                return (
-                  <button
-                    className={`certificate-card ${
-                      position === 0 ? "is-active" : ""
-                    } ${isVisible ? "is-visible" : "is-hidden"}`}
-                    style={{
-                      "--certificate-position": position,
-                      "--certificate-distance": Math.abs(position),
-                    }}
-                    type="button"
-                    key={`${certificate.title}-${index}`}
-                    onClick={() => setActiveCertificate(index)}
-                    aria-label={`Show ${certificate.title}`}
-                  >
-                    <span className="certificate-image-frame">
-                      <img
-                        src={certificate.image}
-                        alt={certificate.title}
-                        onError={(event) => {
-                          event.currentTarget.style.display = "none";
-                          event.currentTarget
-                            .closest(".certificate-image-frame")
-                            ?.classList.add("certificate-image-missing");
-                        }}
-                      />
-
-                      <span className="certificate-placeholder">
-                        <Award size={22} />
-                        <small>Certificate</small>
-                        <strong>{certificate.title}</strong>
-                        <em>{certificate.issuer}</em>
-                      </span>
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
-
-            <button
-              className="certificate-arrow certificate-arrow-right"
-              type="button"
-              aria-label="Next certificate"
-              onClick={() => moveCertificate(1)}
-            >
-              <ArrowRight size={16} />
-            </button>
-          </div>
-
-          <div className="certificate-dots" aria-label="Certificate selection">
-            {certificates.map((certificate, index) => (
-              <button
-                type="button"
-                className={index === activeCertificate ? "is-active" : ""}
-                aria-label={`Open ${certificate.title}`}
-                onClick={() => setActiveCertificate(index)}
-                key={`${certificate.title}-dot`}
-              />
-            ))}
-          </div>
-        </section>
 
 
       </div>

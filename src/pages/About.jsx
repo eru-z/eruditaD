@@ -20,10 +20,10 @@ const stats = [
 ];
 
 const services = [
-  { icon: Atom, title: "Clean Engineering", text: "Writing maintainable, scalable and efficient code following best practices and modern standards.", tone: "blue" },
-  { icon: Cuboid, title: "Problem Solver", text: "Turning complex problems into simple, elegant and user-centered solutions.", tone: "blue" },
-  { icon: Zap, title: "UI/UX Focused", text: "Designing intuitive interfaces that provide exceptional user experience and engagement.", tone: "violet" },
-  { icon: Rocket, title: "Always Improving", text: "Continuously learning, exploring new technologies and pushing boundaries every day.", tone: "violet" },
+  { icon: Atom, title: "Clean Engineering", text: "Clean, scalable code built for long-term growth.", tone: "blue" },
+  { icon: Cuboid, title: "Problem Solver", text: "Simple, user-focused solutions to complex challenges.", tone: "blue" },
+  { icon: Zap, title: "UI/UX Focused", text: "Clear interfaces that feel intuitive and engaging.", tone: "violet" },
+  { icon: Rocket, title: "Always Improving", text: "Always learning and improving every product.", tone: "violet" },
 ];
 
 const stack = [
